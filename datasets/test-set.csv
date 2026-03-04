@@ -1,0 +1,524 @@
+Project,Antipattern,File,Line from,Line to,Comment
+Andrey582/NotificationBot,ID Required,scrapper/src/main/java/edu/java/database/jooq/tables/Chat.java,64,64,"createField(DSL.name(""id"") suured tähed"
+Andrey582/NotificationBot,ID Required,scrapper/src/main/java/edu/java/database/jooq/tables/Link.java,68,68,"createField(DSL.name(""id"") suured tähed"
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatRepository.java,21,21,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatRepository.java,29,29,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatRepository.java,35,35,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatRepository.java,44,44,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,28,28,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,38,38,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,48,48,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,56,56,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,66,66,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,76,76,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqChatToLinkRepository.java,86,86,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqLinkRepository.java,25,25,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqLinkRepository.java,33,33,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqLinkRepository.java,43,43,.returning()
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqLinkRepository.java,49,49,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqLinkRepository.java,57,57,select(TABLE).from(
+Andrey582/NotificationBot,Implicit Columns,scrapper/src/main/java/edu/java/database/jooq/repository/JooqLinkRepository.java,64,64,select(TABLE).from(
+balazskrizsan/stackjudge_aws_java,ID Required,src/main/java/com/kbalazsworks/stackjudge_aws/db/tables/RemoteFiles.java,54,54,"createField(DSL.name(""id"")"
+balazskrizsan/stackjudge_aws_java,Beware of the Unknown,src/main/java/com/kbalazsworks/stackjudge_aws/db/tables/RemoteFiles.java,54,54,Should be non-nullable
+balazskrizsan/stackjudge_aws_java,Implicit Columns,src/main/java/com/kbalazsworks/stackjudge_aws/s3/repositories/RemoteFileRepository.java,34,34,returningResult()
+balazskrizsan/stackjudge_aws_java,Implicit Columns,src/main/java/com/kbalazsworks/stackjudge_aws/s3/repositories/RemoteFileRepository.java,42,42,selectFrom(
+BuchnevDmitry/LinkTracker,ID Required,scrapper/src/main/java/edu/java/scrapper/domain/jooq/tables/Chat.java,63,64,"createField(DSL.name(""id"")"
+BuchnevDmitry/LinkTracker,ID Required,scrapper/src/main/java/edu/java/scrapper/domain/jooq/tables/Link.java,66,67,"createField(DSL.name(""id"")"
+BuchnevDmitry/LinkTracker,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/domain/jooq/impl/JooqChatRepository.java,51,51,selectFrom(
+BuchnevDmitry/LinkTracker,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/domain/jooq/impl/JooqLinkRepository.java,22,22,selectFrom(
+BuchnevDmitry/LinkTracker,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/domain/jooq/impl/JooqLinkRepository.java,47,47,selectFrom(
+BuchnevDmitry/LinkTracker,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/domain/jooq/impl/JooqLinkRepository.java,85,85,TABLE.fields()
+BuchnevDmitry/LinkTracker,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/domain/jooq/impl/JooqLinkRepository.java,94,94,TABLE.fields()
+corradomio/java_projects,Implicit Columns,check_odb4j/src/main/java/org/hls/check/MainJooq.java,27,27,select().from(
+corradomio/java_projects,ID Required,check_odb4j/src/main/java/test/generated/tables/Author.java,52,52,"createField(DSL.name(""id"")"
+Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Branch.java,74,75,"createField(DSL.name(""id"")"
+Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Chat.java,69,70,"createField(DSL.name(""id"")"
+Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Link.java,75,76,"createField(DSL.name(""id"")"
+Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Tracking.java,72,73,"createField(DSL.name(""id"")"
+Efler/telegram-scrapper-bot,Beware of the Unknown,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,49,49,"Puudumist tähistatakse UTC nullajaga, põhjustab teatud kohtades keerulisemat loogikat"
+Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,73,73,selectFrom(
+Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,106,106,selectFrom(
+Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkUpdateService.java,190,190,selectFrom(
+Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqTgChatService.java,43,43,selectFrom(
+gonzo1138/jOOQinSpring-basics,ID Required,src/main/java/org/anisation/jooqGenerated/tables/DatabaseEntity.java,51,51,"createField(DSL.name(""id"")"
+gonzo1138/jOOQinSpring-basics,Implicit Columns,src/main/java/org/anisation/jooqbasics/HelloController.java,28,28,select
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-h2/src/main/java/org/jooq/mcve/java/h2/tables/Test.java,55,55,"createField(DSL.name(""id"") suured tähed"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-h2/src/test/java/org/jooq/mcve/test/java/h2/JavaTest.java,45,45,fetchOne
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-mariadb/src/main/java/org/jooq/mcve/java/mariadb/tables/Test.java,55,55,"createField(DSL.name(""id"")"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-mariadb/src/test/java/org/jooq/mcve/test/java/mariadb/JavaTest.java,85,85,fetchOne
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-mysql/src/main/java/org/jooq/mcve/java/mysql/tables/Test.java,55,55,"createField(DSL.name(""id"")"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-mysql/src/test/java/org/jooq/mcve/test/java/mysql/JavaTest.java,85,85,fetchOne
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-oracle/src/main/java/org/jooq/mcve/java/oracle/tables/Test.java,55,55,"createField(DSL.name(""id"") suured tähed"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-oracle/src/test/java/org/jooq/mcve/test/java/oracle/JavaTest.java,105,105,fetchOne
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-postgres/src/main/java/org/jooq/mcve/java/postgres/tables/Test.java,55,55,"createField(DSL.name(""id"")"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-postgres/src/test/java/org/jooq/mcve/test/java/postgres/JavaTest.java,92,92,fetchOne
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-sqlite/src/main/java/org/jooq/mcve/java/h2/tables/Test.java,55,55,"createField(DSL.name(""id"") suured tähed"
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-sqlite/src/main/java/org/jooq/mcve/java/sqlite/tables/Test.java,55,55,"createField(DSL.name(""id"")"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-sqlite/src/test/java/org/jooq/mcve/test/java/sqlite/JavaTest.java,45,45,fetchOne
+jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-sqlserver/src/main/java/org/jooq/mcve/java/sqlserver/tables/Test.java,55,55,"createField(DSL.name(""id"")"
+jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-sqlserver/src/test/java/org/jooq/mcve/test/java/sqlserver/JavaTest.java,88,88,fetchOne
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/ChatRoomDBAdapterImpl.java,37,37,returning
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/ChatRoomDBAdapterImpl.java,44,44,returning
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/ChatRoomDBAdapterImpl.java,51,51,selectFrom(
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/ChatRoomDBAdapterImpl.java,59,59,selectFrom(
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/ChatRoomDBAdapterImpl.java,74,74,selectFrom(
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/MessageDBAdapterImpl.java,29,29,returning
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/MessageDBAdapterImpl.java,36,36,selectFrom(
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/UserDBAdapterImpl.java,22,22,selectFrom(
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/UserDBAdapterImpl.java,38,38,returning
+kaeru61/chat_app,Implicit Columns,src/main/java/com/chatapp/internal/adapter/adapterImpl/UserDBAdapterImpl.java,44,44,selectFrom(
+kaeru61/chat_app,ID Required,src/main/java/com/chatapp/jooq/com/chatapp/jooq/tables/ChatRooms.java,61,61,"createField(DSL.name(""id"")"
+kaeru61/chat_app,ID Required,src/main/java/com/chatapp/jooq/com/chatapp/jooq/tables/ChatRoomUsers.java,60,60,"createField(DSL.name(""id"")"
+kaeru61/chat_app,ID Required,src/main/java/com/chatapp/jooq/com/chatapp/jooq/tables/Messages.java,60,60,"createField(DSL.name(""id"")"
+kaeru61/chat_app,ID Required,src/main/java/com/chatapp/jooq/com/chatapp/jooq/tables/Users.java,57,57,"createField(DSL.name(""id"")"
+killbill/killbill-stripe-plugin,Implicit Columns,src/main/java/org/killbill/billing/plugin/stripe/dao/StripeDao.java,170,170,selectFrom(
+killbill/killbill-stripe-plugin,Implicit Columns,src/main/java/org/killbill/billing/plugin/stripe/dao/StripeDao.java,227,229,fetchOne
+killbill/killbill-stripe-plugin,Implicit Columns,src/main/java/org/killbill/billing/plugin/stripe/dao/StripeDao.java,256,256,selectFrom(
+killbill/killbill-stripe-plugin,Implicit Columns,src/main/java/org/killbill/billing/plugin/stripe/dao/StripeDao.java,306,306,selectFrom(
+lightningdevkit/vss-server,Implicit Columns,java/app/src/main/java/org/vss/impl/postgres/PostgresBackendImpl.java,53,53,selectFrom(
+linux-china/jooq-demo,ID Required,src/main/java/org/mvnsearch/infrastructure/jooq/tables/Author.java,58,58,"createField(DSL.name(""id"")"
+linux-china/jooq-demo,ID Required,src/main/java/org/mvnsearch/infrastructure/jooq/tables/Book.java,57,57,"createField(DSL.name(""id"")"
+linux-china/jooq-demo,Keyless Entry,src/main/java/org/mvnsearch/infrastructure/jooq/tables/Book.java,62,62,Viide “author” tabeli primaarvõtmele
+linux-china/jooq-demo,Keyless Entry,src/main/java/org/mvnsearch/infrastructure/jooq/tables/Book.java,77,77,Viide “language” tabeli primaarvõtmele
+linux-china/jooq-demo,Keyless Entry,src/main/java/org/mvnsearch/infrastructure/jooq/tables/BookToBookStore.java,56,56,Viide “book_store” tabeli primaarvõtmele
+linux-china/jooq-demo,Keyless Entry,src/main/java/org/mvnsearch/infrastructure/jooq/tables/BookToBookStore.java,61,51,Viide “book” tabeli primaarvõtmele
+linux-china/jooq-demo,ID Required,src/main/java/org/mvnsearch/infrastructure/jooq/tables/Language.java,57,57,"createField(DSL.name(""id"")"
+linux-china/jooq-demo,Implicit Columns,src/test/java/org/mvnsearch/jooq/JooqDemoTest.java,28,28,selectFrom(
+linux-china/jooq-demo,Implicit Columns,src/test/java/org/mvnsearch/jooq/JooqDslTest.java,30,30,selectFrom(
+NurtilekMamashakirov/Bot-Link-Tracker,ID Required,scrapper/src/main/java/edu/java/repository/jooq/tables/Chat.java,65,66,"createField(DSL.name(""id"") suured tähed"
+NurtilekMamashakirov/Bot-Link-Tracker,ID Required,scrapper/src/main/java/edu/java/repository/jooq/tables/Link.java,65,66,"createField(DSL.name(""id"") suured tähed"
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqLinkRepository.java,24,24,select().from(
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqLinkRepository.java,39,39,selectFrom(
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqLinkRepository.java,57,57,selectFrom(
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqLinkRepository.java,102,102,selectFrom(
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqLinkRepository.java,118,118,select().from(
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqTgChatRepository.java,43,43,select().from(
+NurtilekMamashakirov/Bot-Link-Tracker,Implicit Columns,scrapper/src/main/java/edu/java/repository/jooq/impls/JooqTgChatRepository.java,53,53,selectFrom(
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqChatLinkRepository.java,39,39,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqChatLinkRepository.java,46,46,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqChatLinkRepository.java,62,62,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqChatRepository.java,36,36,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqChatRepository.java,43,43,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqLinkRepository.java,41,41,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqLinkRepository.java,48,48,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqLinkRepository.java,65,65,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/main/java/edu/java/dao/repository/jooq/JooqQuestionRepository.java,28,28,TABLE.fields()
+revensif/Tinkoff_Course2024,Implicit Columns,scrapper/src/test/java/edu/java/scrapper/dao/repository/jooq/JooqQuestionRepositoryTest.java,104,104,TABLE.fields()
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Chart.java,58,58,"Alternatiivne ID on olemas, kuigi unique constraint puudub"
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Dataset.java,71,71,Alternatiivne ID on olemas
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/DatasetAudit.java,69,69,Alternatiivne ID on olemas
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Event.java,72,72,Alternatiivne ID on olemas
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/EventAudit.java,69,69,Alternatiivne ID on olemas
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/File.java,69,69,Alternatiivne ID on olemas
+rodano/rodano,Rounding Errors,backend/src/main/java/ch/rodano/core/model/jooq/tables/PaymentTarget.java,97,97,rahaline väärtus
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Resource.java,68,68,Alternatiivne ID on olemas
+rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Resource.java,118,118,Should be non-nullable
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,78,78,Alternatiivne ID on olemas
+rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,93,93,Should be non-nullable
+rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,108,108,Should be non-nullable
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,68,68,Alternatiivne ID on olemas
+rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,108,108,Should be non-nullable
+rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,123,123,Should be non-nullable
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Scope.java,77,77,Alternatiivne ID on olemas
+rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/ScopeAudit.java,71,71,Alternatiivne ID on olemas
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/model/jooqutils/JOOQTranslator.java,21,21,contains
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/model/jooqutils/JOOQTranslator.java,23,23,notContains
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/model/scope/FieldModelCriterion.java,108,108,like(‘%’ … ‘%’)
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/model/scope/FieldModelCriterion.java,109,109,notLike(‘%’ … ‘%’)
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/bll/file/FileServiceImpl.java,238,238,TABLE.asterisk()
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/bll/widget/workflow/WorkflowWidgetServiceImpl.java,258,258,likeIgnoreCase(% … %)
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/bll/widget/workflow/WorkflowWidgetServiceImpl.java,259,259,Like % … %
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/bll/widget/workflow/WorkflowWidgetServiceImpl.java,260,260,Like % … %
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/chart/ChartRepositoryImpl.java,36,36,select
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/chart/ChartRepositoryImpl.java,57,57,select
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/chart/ChartRepositoryImpl.java,99,99,fetchOne
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/chart/ChartRepositoryImpl.java,159,159,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/commons/AuditableDAOService.java,65,65,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,57,57,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,63,63,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,69,69,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,75,75,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,81,81,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,87,87,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,93,93,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,99,99,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,105,105,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,111,111,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/dataset/DatasetDAOServiceImpl.java,117,117,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,56,56,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,62,62,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,86,86,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,92,92,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,98,98,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,104,104,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,110,110,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/event/EventDAOServiceImpl.java,116,116,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,62,62,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,73,73,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,79,79,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,85,85,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,92,92,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,109,109,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,116,116,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,136,136,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/field/FieldDAOServiceImpl.java,142,142,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,44,44,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,50,50,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,66,66,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,77,77,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,88,88,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,99,99,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,110,110,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,121,121,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,131,131,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/file/FileDAOServiceImpl.java,137,137,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,55,55,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,61,61,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,67,67,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,73,73,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,79,79,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,85,85,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/form/FormDAOServiceImpl.java,91,91,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailAttachmentDAOServiceImpl.java,42,42,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailAttachmentDAOServiceImpl.java,48,48,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailAttachmentDAOServiceImpl.java,54,54,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,60,60,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,72,72,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,85,85,selectFrom(
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,131,131,containsIgnoreCase
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,135,135,containsIgnoreCase
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,139,139,containsIgnoreCase
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,147,147,containsIgnoreCase
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/mail/MailDAOServiceImpl.java,158,158,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/payment/PaymentBatchDAOServiceImpl.java,41,41,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/payment/PaymentDAOServiceImpl.java,43,43,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/payment/PaymentDAOServiceImpl.java,49,49,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/payment/PaymentDAOServiceImpl.java,55,55,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/payment/PaymentTargetDAOServiceImpl.java,43,43,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/payment/PaymentTargetDAOServiceImpl.java,49,49,selectFrom(
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/resource/ResourceDAOServiceImpl.java,70,70,containsIgnoreCase
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/resource/ResourceDAOServiceImpl.java,77,77,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/resource/ResourceDAOServiceImpl.java,98,98,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/resource/ResourceDAOServiceImpl.java,114,114,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/robot/RobotDAOServiceImpl.java,76,76,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/robot/RobotDAOServiceImpl.java,82,82,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/robot/RobotDAOServiceImpl.java,89,89,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/robot/RobotDAOServiceImpl.java,96,96,selectFrom(
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/robot/RobotDAOServiceImpl.java,105,105,containsIgnoreCase
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/robot/RobotDAOServiceImpl.java,116,116,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,58,58,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,64,64,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,70,70,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,76,76,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,82,82,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,88,88,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,94,94,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,100,100,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/role/RoleDAOServiceImpl.java,114,114,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,75,75,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,81,81,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,87,87,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,93,93,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,100,100,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,119,119,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,137,137,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,151,151,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,167,167,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,185,185,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,204,204,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,220,220,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,265,265,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,280,280,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,295,295,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,322,322,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,363,363,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,372,372,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,378,378,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,387,387,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,393,393,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,402,402,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,430,430,TABLE.asterisk()
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,536,536,containsIgnoreCase
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,551,551,containsIgnoreCase
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,552,552,containsIgnoreCase
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeDAOServiceImpl.java,553,553,containsIgnoreCase
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeRelationDAOServiceImpl.java,43,43,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeRelationDAOServiceImpl.java,50,50,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeRelationDAOServiceImpl.java,62,62,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeRelationDAOServiceImpl.java,68,68,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/scope/ScopeRelationDAOServiceImpl.java,84,84,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/session/SessionDAOServiceImpl.java,46,46,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/session/SessionDAOServiceImpl.java,51,51,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/session/SessionDAOServiceImpl.java,55,55,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,77,77,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,83,83,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,89,89,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,95,95,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,101,101,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,107,107,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,113,113,selectFrom(
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,174,174,containsIgnoreCase
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/user/UserDAOServiceImpl.java,177,177,TABLE.asterisk()
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,70,70,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,93,93,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,124,124,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,154,154,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,182,182,selectFrom(
+rodano/rodano,Implicit Columns,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,205,208,TABLE.asterisk()
+rodano/rodano,Poor Man’s Search Engine,backend/src/main/java/ch/rodano/core/services/dao/workflow/WorkflowStatusDAOServiceImpl.java,251,251,containsIgnoreCase
+shileishmily/spring-boot-jooq-demo,ID Required,test-core/src/main/java/com/suixingpay/jooq/entity/tables/SysLog.java,60,60,createField(“ID”  väikesed tähed
+shileishmily/spring-boot-jooq-demo,ID Required,test-core/src/main/java/com/suixingpay/jooq/entity/tables/SysUser.java,60,60,createField(“ID”  väikesed tähed
+shileishmily/spring-boot-jooq-demo,Implicit Columns,test-dao/src/main/java/com/suixingpay/jooq/dao/impl/SysUserDaoImpl.java,23,23,selectFrom(
+shileishmily/spring-boot-jooq-demo,Implicit Columns,test-dao/src/main/java/com/suixingpay/jooq/dao/impl/SysUserDaoImpl.java,28,28,selectFrom(
+shileishmily/spring-boot-jooq-demo,Implicit Columns,test-dao/src/main/java/com/suixingpay/jooq/dao/impl/SysUserDaoImpl.java,33,33,selectFrom(
+Subtelny/DGCraft,Implicit Columns,Core-Plugin/core-core/src/main/java/pl/subtelny/core/account/repository/loader/AccountAnemiaLoadAction.java,49,49,select().from(
+Subtelny/DGCraft,ID Required,Generated/generated-tables/src/main/java/pl/subtelny/generated/tables/tables/Accounts.java,64,64,"createField(DSL.name(""id"")"
+Subtelny/DGCraft,ID Required,Generated/generated-tables/src/main/java/pl/subtelny/generated/tables/tables/Islanders.java,63,63,"createField(DSL.name(""id"")"
+Subtelny/DGCraft,ID Required,Generated/generated-tables/src/main/java/pl/subtelny/generated/tables/tables/Islands.java,64,64,"createField(DSL.name(""id"")"
+Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/api/membership/repository/IslandMembershipRepository.java,51,51,selectFrom(
+Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/api/membership/repository/IslandMembershipRepository.java,59,59,selectFrom(
+Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/api/repository/IslandAnemiaLoadAction.java,39,39,select().from(
+Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/islander/repository/loader/IslanderAnemiaLoadAction.java,30,30,select().from(
+Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/islander/repository/loader/IslanderAnemiaLoadAction.java,38,38,select().from(
+Subtelny/DGCraft,Poor Man’s Search Engine,Islands-Plugin/islands-module/islands-module-skyblock/src/main/java/pl/subtelny/islands/module/skyblock/repository/SkyblockIslandCoordinatesLoadAction.java,40,40,contains
+therepanic/trustwin-casino-project,ID Required,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/MessagesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/ReplenishmentsTable.java,71,71,rahaline väärtus
+therepanic/trustwin-casino-project,ID Required,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-crash-service/src/main/java/eu/panic/gamecrashservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,game-crash-service/src/main/java/eu/panic/gamecrashservice/template/repository/implement/GameRepositoryImpl.java,38,38,selectFrom(
+therepanic/trustwin-casino-project,Implicit Columns,game-crash-service/src/main/java/eu/panic/gamecrashservice/template/repository/implement/GameRepositoryImpl.java,46,46,selectFrom(
+therepanic/trustwin-casino-project,ID Required,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/MessagesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/ReplenishmentsTable.java,71,71,rahaline väärtus
+therepanic/trustwin-casino-project,ID Required,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-dice-service/src/main/java/eu/panic/gamediceservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,game-dice-service/src/main/java/eu/panic/gamediceservice/template/repository/implement/GameRepositoryImpl.java,35,35,selectFrom(
+therepanic/trustwin-casino-project,ID Required,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/MessagesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/ReplenishmentsTable.java,71,71,rahaline väärtus
+therepanic/trustwin-casino-project,Rounding Errors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/ReplenishmentsTable.java,86,86,rahaline väärtus
+therepanic/trustwin-casino-project,ID Required,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,game-jackpot-service/src/main/java/eu/panic/gamejackpotservice/template/repository/implement/GameRepositoryImpl.java,36,36,selectFrom(
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/MessagesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/MessagesTable.java,75,75,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/NotificationsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/ReplenishmentsTable.java,65,65,rahaline väärtus
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/ReplenishmentsTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/WithdrawalsTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/WithdrawalsTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-miner-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/WithdrawalsTable.java,75,75,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,game-miner-service/src/main/java/eu/panic/gameminerservice/template/repository/implement/GameRepositoryImpl.java,35,35,selectFrom(
+therepanic/trustwin-casino-project,ID Required,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/MessagesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-overgo-service/src/main/java/eu/panic/gameminerservice/generatedClasses/tables/NotificationsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/ReplenishmentsTable.java,71,71,rahaline väärtus
+therepanic/trustwin-casino-project,ID Required,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-overgo-service/src/main/java/eu/panic/gameovergoservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,game-overgo-service/src/main/java/eu/panic/gameovergoservice/template/repository/implement/GameRepositoryImpl.java,35,35,selectFrom(
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/MessagesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/MessagesTable.java,75,75,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/NotificationsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/ReplenishmentsTable.java,65,65,rahaline väärtus
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/ReplenishmentsTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/WithdrawalsTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/WithdrawalsTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,game-tower-service/src/main/java/eu/panic/gametowerservice/generatedClasses/tables/WithdrawalsTable.java,75,75,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,game-tower-service/src/main/java/eu/panic/gametowerservice/template/repository/implement/GameRepositoryImpl.java,36,36,selectFrom(
+therepanic/trustwin-casino-project,ID Required,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/GamesTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/GamesTable.java,86,86,Koefitsent
+therepanic/trustwin-casino-project,ID Required,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/ReplenishmentsTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,Rounding Errors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/ReplenishmentsTable.java,65,65,rahaline väärtus
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/ReplenishmentsTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/SignInHistoryTable.java,56,56,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,ID Required,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/UsersTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/UsersTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/UsersTable.java,80,80,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/UsersTable.java,120,120,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/UsersTable.java,160,160,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,ID Required,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/WithdrawalsTable.java,60,60,"createField(DSL.name(""id"")"
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/WithdrawalsTable.java,70,70,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/WithdrawalsTable.java,75,75,"CHECK constraint, tekstiline väärtus"
+therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/main/java/eu/panic/managementgameservice/template/repository/implement/GameRepositoryImpl.java,20,20,selectFrom(
+therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/main/java/eu/panic/managementgameservice/template/repository/implement/GameRepositoryImpl.java,27,27,selectFrom(
+therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/main/java/eu/panic/managementgameservice/template/repository/implement/ReplenishmentRepositoryImpl.java,20,20,selectFrom(
+therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/main/java/eu/panic/managementgameservice/template/repository/implement/UserRepositoryImpl.java,35,35,selectFrom(
+xnelo/filearch,ID Required,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Artifacts.java,56,56,"createField(DSL.name(""id"")"
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Artifacts.java,61,61,
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Artifacts.java,66,66,
+xnelo/filearch,ID Required,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Folders.java,56,56,"createField(DSL.name(""id"")"
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Folders.java,61,61,
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Folders.java,66,66,
+xnelo/filearch,ID Required,jooq/src/main/java/com/xnelo/filearch/jooq/tables/StoredFiles.java,56,56,"createField(DSL.name(""id"")"
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/StoredFiles.java,61,61,
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/StoredFiles.java,66,66,
+xnelo/filearch,ID Required,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Users.java,56,56,"createField(DSL.name(""id"")"
+xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Users.java,86,86,
+xnelo/filearch,Implicit Columns,common/src/main/java/com/xnelo/filearch/common/data/ArtifactRepo.java,44,44,.returningResult(DSL.asterisk())
+xnelo/filearch,Implicit Columns,common/src/main/java/com/xnelo/filearch/common/data/ArtifactRepo.java,53,53,select(DSL.asterisk)
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,45,45,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,61,61,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,72,72,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,84,84,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,93,93,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,115,115,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,143,143,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,157,157,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,171,171,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IClassDbServiceImpl.java,181,181,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IIdAuthOrderDbServiceImpl.java,42,42,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IIdAuthOrderDbServiceImpl.java,65,65,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IIdAuthOrderDbServiceImpl.java,79,79,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IIndexBannerDbServiceImpl.java,28,28,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,61,61,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,137,137,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,144,144,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,155,155,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,167,167,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,218,218,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,228,228,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,239,239,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,255,255,selectFrom(
+yangjinguang/i-share-server,Poor Man’s Search Engine,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemDbServiceImpl.java,256,256,like(‘%’ … ‘%’)
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemLendOrderDbServiceImpl.java,53,53,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemLendOrderDbServiceImpl.java,66,66,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemLendOrderDbServiceImpl.java,82,82,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IItemLendOrderDbServiceImpl.java,102,102,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IShareCommentDbServiceImpl.java,30,30,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IShareDbServiceImpl.java,31,31,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IShareDbServiceImpl.java,119,119,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IShareLikeDbServiceImpl.java,38,38,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IShareMediaDbServiceImpl.java,19,19,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IStudentDbServiceImpl.java,34,34,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IStudentDbServiceImpl.java,46,46,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IStudentDbServiceImpl.java,54,54,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IStudentDbServiceImpl.java,79,79,TABLE.fields()
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IUserDbServiceImpl.java,35,35,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IUserDbServiceImpl.java,41,41,selectFrom(
+yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IUserDbServiceImpl.java,56,56,selectFrom(
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,71,71,viide i_grade tabeli primaarvõtmele
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,76,76,puuduva väärtuse tähistamiseks 999999
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,71,71,puuduva väärtuse tähistamiseks 999999
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,66,66,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,76,76,viide i_class tabeli primaarvõtmele
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,71,71,puuduva väärtuse tähistamiseks 999999
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,71,71,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,76,76,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,91,91,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,96,96,viide i_class tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,66,66,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,71,71,viide i_item tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,76,76,viide i_class tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,81,81,viide i_student tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTag.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTag.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTagItem.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTagItem.java,66,66,viide i_item tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTagItem.java,71,71,viide i_item_tag tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,71,71,viide i_share_media tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,76,76,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,81,81,viide i_item tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,86,86,viide i_student tabeli primaarvõtmele
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,91,91,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareComment.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareComment.java,66,66,viide i_share tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareComment.java,71,71,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareLike.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareLike.java,66,66,viide i_share tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareLike.java,71,71,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,71,71,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,76,76,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,81,81,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,86,86,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,71,71,viide i_class tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,61,61,createField(“id”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,76,76,puuduva väärtuse tähistamiseks kasutusel “nullkuupäev”
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,91,91,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserClass.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserClass.java,66,66,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserClass.java,71,71,viide i_class tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserRole.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserRole.java,66,66,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,61,61,createField(“id”
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,66,66,viide i_user tabeli primaarvõtmele
+yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,71,71,viide i_student tabeli primaarvõtmele
+yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,76,76,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+ydeng11/Minance,Beware of the Unknown,src/main/java/today/ihelio/jooq/tables/Transactions.java,150,150,Should be non-nullable
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,72,72,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,79,79,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,91,91,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,102,102,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/BankService.java,29,29,returning()
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/BankService.java,45,45,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/BankService.java,52,52,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/BankService.java,61,61,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/CategoryMappingService.java,115,115,selectDistinct(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/TransactionService.java,98,98,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/TransactionService.java,105,105,select(TABLE).from(TABLE)
+ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/TransactionService.java,113,113,select(TABLE).from(TABLE)

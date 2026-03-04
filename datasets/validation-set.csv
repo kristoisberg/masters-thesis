@@ -1,0 +1,582 @@
+Project,Antipattern,File,Line from,Line to,Comment
+APSfurizon/fz-backend,Beware of the Unknown,application/src/main/java/net/furizon/backend/feature/fursuits/finder/JooqFursuitFinder.java,88,96,nullable column in NOT IN
+APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,155,160,likeIgnoreCase(% … %)
+APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,163,163,likeIgnoreCase(% … %)
+APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,170,170,likeIgnoreCase(% … %)
+APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,178,178,likeIgnoreCase(% … %)
+APSfurizon/fz-backend,Implicit Columns,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,298,298,PostgresDQL.asterisk()
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Authentications.java,77,77,Alternatiivne ID on olemas (kasutajal saab olla üks authentication)
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/EmailConfirmationRequest.java,73,73,Alternatiivne ID on olemas (authenticationil/kasutajal saab olla üks request)
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Events.java,80,80,"createField(DSL.name(""id"")"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/ExchangeConfirmationStatus.java,115,115,"Check constraint, numbriline väärtus"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Media.java,90,90,"Check constraint, numbriline väärtus"
+APSfurizon/fz-backend,Implicit Columns,jooq-common/src/main/java/net/furizon/jooq/generated/tables/MembershipCards.java,73,73,Alternatiivne ID on olemas
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/MembershipInfo.java,78,78,"createField(DSL.name(""id"")"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/MembershipInfo.java,168,168,Check constraint
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/MembershipInfo.java,183,183,asEnumDataType
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/MembershipInfo.java,198,198,asEnumDataType
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Orders.java,80,80,"createField(DSL.name(""id"") + alternatiivne ID on olemas"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Orders.java,93,93,"Check constraint, numbriline väärtus"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Orders.java,135,135,"Check constraint, numbriline väärtus"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Orders.java,175,175,"Check constraint, numbriline väärtus"
+APSfurizon/fz-backend,31 Flavors,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Orders.java,240,240,"Check constraint, numbriline väärtus"
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/ResetPasswordRequests.java,73,73,Alternatiivne ID on olemas (authenticationil/kasutajal saab olla üks request)
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Roles.java,74,74,Alternatiivne ID on olemas
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Rooms.java,73,73,Alternatiivne ID on olemas (tellimuses saab olla ainult üks ruum)
+APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Sessions.java,71,71,"createField(DSL.name(""id"")"
+APSfurizon/fz-backend,Beware of the Unknown,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Users.java,92,92,Should be non-nullable
+BluBluBlaBla/vidsummize,ID Required,src/main/java/com/vidsummize/jooq/tables/Video.java,57,57,"createField(DSL.name(""id"")"
+BluBluBlaBla/vidsummize,Beware of the Unknown,src/main/java/com/vidsummize/jooq/tables/Video.java,77,77,Should be non-nullable
+BluBluBlaBla/vidsummize,Implicit Columns,src/main/java/com/vidsummize/repositories/VideoRepositoryImpl.java,46,46,selectFrom(
+BluBluBlaBla/vidsummize,Implicit Columns,src/main/java/com/vidsummize/repositories/VideoRepositoryImpl.java,54,54,selectFrom(
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/JooqUtilities.java,221,221,likeIgnoreCase(% … %)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/access_log/AccessLogDao.java,90,90,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/actor/ActorDao.java,93,93,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/actor/ActorDao.java,100,100,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,76,76,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,99,99,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,114,114,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,151,151,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,158,158,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,167,167,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,181,181,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,193,193,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupDao.java,234,234,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupMemberDao.java,94,94,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/ApplicationDao.java,92,92,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/ApplicationDao.java,100,100,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/ApplicationDao.java,107,107,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/ApplicationDao.java,139,139,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/ApplicationDao.java,224,224,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/ApplicationDao.java,233,233,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/MariaAppSearch.java,47,47,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/MariaAppSearch.java,51,51,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/PostgresAppSearch.java,36,42,* SQL kujul
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/SqlServerAppSearch.java,62,62,TABLE.fields()
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/application/search/SqlServerAppSearch.java,71,71,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/SqlServerAppSearch.java,76,76,TABLE.fields()
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/application/search/SqlServerAppSearch.java,87,87,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/SqlServerAppSearch.java,92,92,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/application/search/SqlServerAppSearch.java,101,101,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/assessment_definition/AssessmentDefinitionDao.java,76,76,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/assessment_definition/AssessmentDefinitionDao.java,83,83,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/assessment_definition/AssessmentDefinitionDao.java,89,89,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/assessment_rating/AssessmentRatingDao.java,89,89,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/asset_cost/AssetCostDao.java,92,92,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/asset_cost/AssetCostDao.java,100,100,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/asset_cost/AssetCostDao.java,117,117,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/asset_cost/AssetCostDao.java,142,142,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationInstanceDao.java,81,81,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationInstanceDao.java,109,109,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationInstanceDao.java,136,136,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationInstanceDao.java,150,150,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationInstanceDao.java,169,169,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationRunDao.java,129,129,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationRunDao.java,139,139,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationRunDao.java,148,148,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/attestation/AttestationRunDao.java,162,162,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/authoritative_source/AuthoritativeSourceDao.java,391,391,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/bookmark/BookmarkDao.java,80,80,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/bookmark/BookmarkDao.java,89,89,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/ChangeInitiativeDao.java,76,76,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/ChangeInitiativeDao.java,95,95,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/search/MariaChangeInitiativeSearch.java,37,37,* SQL kujul
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/search/PostgresChangeInitiativeSearch.java,36,41,* SQL kujul
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/search/SqlServerChangeInitiativeSearch.java,51,51,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/search/SqlServerChangeInitiativeSearch.java,56,56,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/change_initiative/search/SqlServerChangeInitiativeSearch.java,63,63,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/changelog/ChangeLogDao.java,79,79,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/changelog/ChangeLogDao.java,93,93,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/changelog/ChangeLogDao.java,98,98,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/changelog/ChangeLogDao.java,106,106,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/changelog/ChangeLogDao.java,118,118,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/complexity/ComplexityScoreDao.java,88,88,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/complexity/ComplexityScoreDao.java,107,107,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_flow_decorator/LogicalFlowDecoratorDao.java,98,98,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_flow_decorator/LogicalFlowDecoratorDao.java,114,114,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_flow_decorator/LogicalFlowDecoratorDao.java,137,137,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_flow_decorator/LogicalFlowDecoratorDao.java,171,171,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_flow_decorator/LogicalFlowDecoratorDao.java,262,262,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_type/DataTypeDao.java,72,72,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_type/DataTypeDao.java,92,92,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_type/DataTypeDao.java,100,100,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_type_usage/DataTypeUsageDao.java,156,156,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/data_type_usage/DataTypeUsageDao.java,168,168,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/database_information/DatabaseInformationDao.java,79,79,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/database_information/DatabaseInformationDao.java,91,91,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/drill_grid/DrillGridDefinitionDao.java,94,94,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/drill_grid/DrillGridDefinitionDao.java,105,105,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/end_user_app/EndUserAppDao.java,69,69,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/end_user_app/EndUserAppDao.java,85,85,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_enum/EntityEnumDefinitionDao.java,46,46,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_enum/EntityEnumValueDao.java,46,46,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_named_note/EntityNamedNoteDao.java,71,71,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_named_note/EntityNamedNoteTypeDao.java,79,79,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_named_note/EntityNamedNoteTypeDao.java,149,149,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_relationship/EntityRelationshipDao.java,120,120,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticDao.java,73,73,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticDao.java,74,74,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticDefinitionDao.java,100,100,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticDefinitionDao.java,119,119,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticDefinitionDao.java,132,132,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticDefinitionDao.java,140,140,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticValueDao.java,122,122,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_statistic/EntityStatisticValueDao.java,139,139,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_svg_diagram/EntitySvgDiagramDao.java,50,50,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_workflow/EntityWorkflowDefinitionDao.java,38,38,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_workflow/EntityWorkflowStateDao.java,49,49,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/entity_workflow/EntityWorkflowTransitionDao.java,52,52,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/enum_value/EnumValueDao.java,62,62,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramAnnotationDao.java,86,86,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramDao.java,86,86,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramDao.java,96,96,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramDao.java,112,112,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramEntityDao.java,90,90,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramEntityDao.java,100,100,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/flow_diagram/FlowDiagramEntityDao.java,111,111,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,94,94,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,104,104,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,113,113,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,141,141,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,152,152,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,160,160,selectDistinct().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,182,182,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement/InvolvementDao.java,183,183,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement_kind/InvolvementKindDao.java,90,90,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/involvement_kind/InvolvementKindDao.java,97,97,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_data_element/LogicalDataElementDao.java,51,51,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_data_element/LogicalDataElementDao.java,59,59,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_data_element/LogicalDataElementDao.java,67,67,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_data_element/LogicalDataElementDao.java,75,75,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_data_element/search/LogicalDataElementSearchDao.java,59,59,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_data_element/search/LogicalDataElementSearchDao.java,63,63,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/logical_flow/LogicalFlowDao.java,408,408,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/MeasurableDao.java,80,80,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/MeasurableDao.java,88,88,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/MeasurableDao.java,113,113,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/MeasurableDao.java,121,121,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/MeasurableDao.java,129,129,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/MariaMeasurableSearch.java,36,36,* SQL kujul
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/PostgresMeasurableSearch.java,36,41,* SQL kujul
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/SqlServerMeasurableSearch.java,52,52,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/SqlServerMeasurableSearch.java,57,57,TABLE.fields()
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/SqlServerMeasurableSearch.java,65,65,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/SqlServerMeasurableSearch.java,70,70,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable/search/SqlServerMeasurableSearch.java,78,78,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable_category/MeasurableCategoryDao.java,65,65,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable_category/MeasurableCategoryDao.java,73,73,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/measurable_rating/MeasurableRatingDao.java,272,272,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/OrganisationalUnitDao.java,90,90,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/OrganisationalUnitDao.java,114,114,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/OrganisationalUnitDao.java,121,121,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/OrganisationalUnitDao.java,159,159,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/OrganisationalUnitDao.java,198,198,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/OrganisationalUnitDao.java,209,209,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/search/MariaOrganisationalUnitSearch.java,40,40,* SQL kujul
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/search/PostgresOrganisationalUnitSearch.java,36,41,* SQL kujul
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/search/SqlServerOrganisationalUnitSearch.java,51,51,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/search/SqlServerOrganisationalUnitSearch.java,56,56,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/orgunit/search/SqlServerOrganisationalUnitSearch.java,63,63,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,83,83,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,91,91,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,100,100,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,110,110,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,124,124,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,136,136,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,173,173,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/PersonDao.java,181,181,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/search/MariaPersonSearch.java,37,37,* SQL kujul
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/search/PostgresPersonSearch.java,37,41,* SQL kujul
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/person/search/SqlServerPersonSearch.java,57,57,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/perspective_definition/PerspectiveDefinitionDao.java,67,67,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/perspective_rating/PerspectiveRatingDao.java,102,102,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/perspective_rating/PerspectiveRatingDao.java,165,165,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowDao.java,175,175,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowDao.java,201,201,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowDao.java,222,222,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowDao.java,313,313,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowDao.java,330,330,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowDao.java,347,347,TABLE.fields()
+boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/physical_flow/PhysicalFlowSearchDao.java,99,99,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification/PhysicalSpecificationDao.java,104,104,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification/PhysicalSpecificationDao.java,120,120,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification/PhysicalSpecificationDao.java,129,129,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification/PhysicalSpecificationDao.java,146,146,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification/search/PhysicalSpecificationSearchDao.java,69,69,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_data_type/PhysicalSpecDataTypeDao.java,84,84,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_data_type/PhysicalSpecDataTypeDao.java,92,92,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_data_type/PhysicalSpecDataTypeDao.java,99,99,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_definition/PhysicalSpecDefinitionDao.java,90,90,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_definition/PhysicalSpecDefinitionDao.java,97,97,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_definition/PhysicalSpecDefinitionDao.java,104,104,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_definition/PhysicalSpecDefinitionFieldDao.java,85,85,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_definition/PhysicalSpecDefinitionFieldDao.java,92,92,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/physical_specification_definition/PhysicalSpecDefinitionSampleFileDao.java,74,74,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/rating_scheme/RatingSchemeDAO.java,86,86,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/rating_scheme/RatingSchemeDAO.java,103,103,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/rating_scheme/RatingSchemeDAO.java,112,112,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/roadmap/RoadmapDao.java,164,164,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/roadmap/RoadmapDao.java,216,216,TABLE.fieldStream()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/roadmap/RoadmapDao.java,250,250,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioAxisItemDao.java,60,60,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioAxisItemDao.java,125,125,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioDao.java,78,78,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioDao.java,87,87,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioDao.java,97,97,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioDao.java,161,163,fetchOne
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/scenario/ScenarioRatingItemDao.java,52,52,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/server_information/ServerInformationDao.java,88,88,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/server_information/ServerInformationDao.java,96,96,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/settings/SettingsDao.java,58,58,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/settings/SettingsDao.java,66,66,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/shared_preference/SharedPreferenceDao.java,57,57,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/shared_preference/SharedPreferenceDao.java,64,64,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/software_catalog/SoftwarePackageDao.java,125,125,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/software_catalog/SoftwareUsageDao.java,76,76,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/source_data_rating/SourceDataRatingDao.java,73,73,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/static_panel/StaticPanelDao.java,69,69,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/static_panel/StaticPanelDao.java,78,78,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceDao.java,98,98,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceDao.java,108,108,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceDao.java,121,121,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceDao.java,236,236,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceDao.java,247,247,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceRecipientDao.java,108,108,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceRecipientDao.java,109,109,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyInstanceRecipientDao.java,110,110,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyQuestionDao.java,140,140,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyQuestionDropdownEntryDao.java,78,78,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyQuestionResponseDao.java,97,97,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyQuestionResponseDao.java,106,106,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyQuestionResponseDao.java,138,138,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyRunDao.java,88,88,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyRunDao.java,96,96,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyRunDao.java,176,176,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyRunDao.java,186,186,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyTemplateDao.java,85,85,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/survey/SurveyTemplateDao.java,98,98,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/svg/SvgDiagramDao.java,65,65,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/tour/TourDao.java,61,61,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/user/UserPreferenceDao.java,74,74,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/user/UserPreferenceDao.java,83,83,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/user_agent_info/UserAgentInfoDao.java,87,87,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/DataExtractHarness.java,74,74,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/DataExtractHarness.java,76,76,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/DataExtractHarness.java,77,77,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/DataExtractHarness.java,78,78,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/DataExtractHarness.java,79,79,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/DataExtractHarness.java,80,80,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/EntityNameUtilitiesHarness.java,40,40,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/EntityNameUtilitiesHarness.java,53,53,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/FlowLineageHarness.java,88,88,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/FlowLineageHarness.java,94,94,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/InvolvementHarness2.java,95,95,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/LogicalFlowDecoratorRatingsServiceHarness.java,57,57,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/MSSqlImportExportExample.java,50,50,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/sample/InvolvementGenerator.java,149,149,like(‘%’ … ‘%’)
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/sample/PhysicalFlowGenerator.java,63,63,TABLE.fields()
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/sample/SurveyRunGenerator.java,100,100,selectFrom(
+boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/tools/importers/ScenarioRatingImporter.java,73,73,select().from(
+boogiespook/waltz-test,Implicit Columns,waltz-web/src/main/java/com/khartec/waltz/web/endpoints/extracts/AttestationExtractor.java,73,73,TABLE.fields()
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AccessLog.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AccessLog.java,81,81,Should be non-nullable
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Actor.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Actor.java,81,81,Should be non-nullable
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,71,71,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,76,76,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,91,91,viide organisational_unit tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,106,106,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ApplicationGroup.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ApplicationGroupEntry.java,65,65,viide application tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AssessmentDefinition.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AssessmentRating.java,70,70,viide assessment_definition tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Attestation_1_11.java,61,61,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AttestationInstance.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AttestationInstance.java,66,66,viide attestation_run tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AttestationInstanceRecipient.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AttestationInstanceRecipient.java,65,65,viide attestation_instance tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AttestationRun.java,61,61,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AuthoritativeSource.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AuthoritativeSource.java,80,80,viide application tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,66,66,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,71,71,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,81,81,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,101,101,Puuduv kuupäev tähistatud null timestampiga
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,65,65,"Viide iseenda primaarvõtmele, puustruktuur"
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,115,115,viide organisational_unit tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,115,115,"vaikeväärtus number 0, mis teeb võõrvõtme vigaseks"
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeLog.java,61,61,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DatabaseInformation.java,61,61,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataType.java,74,74,createField(“id” + alternatiivne ID olemas
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataType.java,79,79,"Viide iseenda primaarvõtmele, puustruktuur"
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataTypeUsage.java,74,74,Puuduv väärtus tähistatud tühja sõnega
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataTypeUsage.java,89,89,viide data_type tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DrillGridDefinition.java,61,61,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EndUserApplication.java,57,57,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EndUserApplication.java,87,87,viide organisational_unit tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityAlias.java,59,59,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityEnumDefinition.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityEnumValue.java,54,54,viide entity_enum_definition tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityHierarchy.java,62,62,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityNamedNote.java,70,70,viide entity_named_note_type tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityNamedNoteType.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityStatisticDefinition.java,99,99,"Viide iseenda primaarvõtmele, puustruktuur"
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityStatisticDefinition.java,104,104,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityStatisticValue.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityStatisticValue.java,66,66,viide entity_statistic_definition tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntitySvgDiagram.java,60,60,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityWorkflowDefinition.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityWorkflowState.java,54,54,viide entity_workflow_definition tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/EntityWorkflowTransition.java,54,54,viide entity_workflow_definition tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/FlowDiagram.java,62,62,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/FlowDiagramAnnotation.java,64,64,viide flow_diagram tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/FlowDiagramEntity.java,59,59,viide flow_diagram tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Involvement.java,77,77,viide involvement_kind tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/InvolvementKind.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/InvolvementKind.java,76,76,Should be non-nullable
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/LogicalDataElement.java,60,60,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/LogicalFlow.java,86,86,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/LogicalFlowDecorator.java,60,60,viide logical_flow tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,66,66,"Viide iseenda primaarvõtmele, puustruktuur"
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,76,76,viide measurable_category tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,96,96,Should be non-nullable
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableCategory.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableCategory.java,81,81,Should be non-nullable
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableRating.java,71,71,viide measurable tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/OrganisationalUnit.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/OrganisationalUnit.java,75,75,"Viide iseenda primaarvõtmele, puustruktuur"
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,60,60,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,80,80,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,85,85,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,95,95,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,100,100,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,105,105,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,110,110,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,115,115,viide organisational_unit tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PersonHierarchy.java,69,69,Puuduv väärtus tähistatud “võimatult suure” väärtusega
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveDefinition.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveDefinition.java,85,85,viide rating_scheme tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveRating.java,75,75,Should be non-nullable
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,66,66,viide physical_specification tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,106,106,viide logical_flow tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,111,111,viide physical_spec_defn tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDataType.java,60,60,viide physical_specification tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDataType.java,65,65,viide data_type tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefn.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefn.java,66,66,viide physical_specification tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefnField.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefnField.java,66,66,viide physical_spec_defn tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefnField.java,101,101,viide logical_data_element tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefnSampleFile.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecDefnSampleFile.java,65,65,viide physical_spec_defn tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalSpecification.java,61,61,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Process.java,52,52,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Process.java,57,57,"Viide iseenda primaarvõtmele, puustruktuur"
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/RatingScheme.java,60,60,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/RatingSchemeItem.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/RatingSchemeItem.java,65,65,viide rating_scheme tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Roadmap.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Roadmap.java,81,81,viide rating_scheme tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Scenario.java,62,62,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Scenario.java,82,82,viide roadmap tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ScenarioAxisItem.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ScenarioAxisItem.java,70,70,viide scenario tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ScenarioRatingItem.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ScenarioRatingItem.java,66,66,viide scenario tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ServerInformation.java,61,61,createField(“id”
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ServerInformation.java,101,101,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SoftwarePackage.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SoftwareUsage.java,52,52,viide application tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SoftwareUsage.java,57,57,viide software_package tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SourceDataRating.java,85,85,Should be non-nullable
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/StaticPanel.java,60,60,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstance.java,62,62,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstance.java,67,67,viide survey_run tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstance.java,102,102,Viide iseenda primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstanceRecipient.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstanceRecipient.java,65,65,viide survey_instance tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstanceRecipient.java,70,70,viide person tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,65,65,viide survey_template tabeli primaarvõtmele
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,80,80,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,100,100,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionDropdownEntry.java,60,60,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionDropdownEntry.java,65,65,viide survey_question tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionResponse.java,62,62,viide survey_instance tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionResponse.java,67,67,viide survey_question tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionResponse.java,72,72,viide person tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyRun.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyRun.java,66,66,viide survey_template tabeli primaarvõtmele
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyRun.java,116,116,viide person tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyTemplate.java,61,61,createField(“id”
+boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyTemplate.java,81,81,viide person tabeli primaarvõtmele
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SvgDiagram.java,60,60,createField(“id”
+boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/UserAgentInfo.java,61,61,createField(“id”
+catsloveme/telegram-bot,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/domain/jooq/tables/Chat.java,51,52,"createField(DSL.name(""id"") suured tähed"
+catsloveme/telegram-bot,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/domain/jooq/tables/Links.java,60,61,"createField(DSL.name(""id"") suured tähed"
+catsloveme/telegram-bot,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,70,70,TABLE.fields()
+catsloveme/telegram-bot,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,79,79,TABLE.fields()
+catsloveme/telegram-bot,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,86,86,TABLE.fields()
+devstronomy/nasa-data-scraper,ID Required,src/main/java/com/devstronomy/jooq/generated/tables/Planet.java,63,63,createField(“id”
+devstronomy/nasa-data-scraper,ID Required,src/main/java/com/devstronomy/jooq/generated/tables/Satellite.java,63,63,createField(“id”
+DiSSCo/dissco-core-annotation-processing-service,ID Required,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/Annotation.java,63,63,"createField(DSL.name(""id"")"
+DiSSCo/dissco-core-annotation-processing-service,31 Flavors,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/Annotation.java,133,133,SQLDataType.VARCHAR.asEnumDataType
+DiSSCo/dissco-core-annotation-processing-service,ID Required,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/AnnotationBatchRecord.java,57,57,"createField(DSL.name(""id"")"
+DiSSCo/dissco-core-annotation-processing-service,ID Required,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/DigitalSpecimen.java,57,57,"createField(DSL.name(""id"")"
+DiSSCo/dissco-core-annotation-processing-service,31 Flavors,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/MasJobRecord.java,65,65,SQLDataType.VARCHAR.nullable(false).asEnumDataType
+DiSSCo/dissco-core-annotation-processing-service,31 Flavors,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/MasJobRecord.java,100,100,SQLDataType.VARCHAR.asEnumDataType
+DiSSCo/dissco-core-annotation-processing-service,31 Flavors,src/main/java/eu/dissco/annotationprocessingservice/database/jooq/tables/MasJobRecord.java,110,110,SQLDataType.VARCHAR.asEnumDataType
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/main/java/eu/dissco/annotationprocessingservice/repository/AnnotationRepository.java,40,40,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/main/java/eu/dissco/annotationprocessingservice/repository/AnnotationRepository.java,48,48,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/main/java/eu/dissco/annotationprocessingservice/repository/DigitalSpecimenRepository.java,33,33,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/test/java/eu/dissco/annotationprocessingservice/repository/AnnotationBatchRecordRepositoryIT.java,45,45,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/test/java/eu/dissco/annotationprocessingservice/repository/AnnotationBatchRecordRepositoryIT.java,78,78,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/test/java/eu/dissco/annotationprocessingservice/repository/AnnotationBatchRecordRepositoryIT.java,97,97,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/test/java/eu/dissco/annotationprocessingservice/repository/AnnotationRepositoryIT.java,207,207,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/test/java/eu/dissco/annotationprocessingservice/repository/AnnotationRepositoryIT.java,224,224,TABLE.asterisk()
+DiSSCo/dissco-core-annotation-processing-service,Implicit Columns,src/test/java/eu/dissco/annotationprocessingservice/repository/AnnotationRepositoryIT.java,232,232,TABLE.asterisk()
+dndanoff/spring-boot-unit-integration-test-example,ID Required,generated/src/main/java/jooq/com/danoff/demo/db/tables/Employee.java,62,62,createField(“ID” 
+dndanoff/spring-boot-unit-integration-test-example,Implicit Columns,src/main/java/com/danoff/demo/repository/EmployeeRepo.java,28,28,select().from(
+ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,144,144,selectFrom(
+ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,279,279,selectFrom(
+ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,297,297,selectFrom(
+ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,316,316,selectFrom(
+ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,432,432,selectFrom(
+ebi-gene-expression-group/annotare2,ID Required,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/jooq/tables/DataFiles.java,56,56,"createField(DSL.name(""id"")"
+ebi-gene-expression-group/annotare2,ID Required,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/jooq/tables/Experiments.java,56,56,"createField(DSL.name(""id"")"
+ebi-gene-expression-group/annotare2,ID Required,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/jooq/tables/Roles.java,54,54,"createField(DSL.name(""id"")"
+ebi-gene-expression-group/annotare2,ID Required,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/jooq/tables/Spreadsheets.java,56,56,"createField(DSL.name(""id"")"
+ebi-gene-expression-group/annotare2,ID Required,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/jooq/tables/Users.java,55,55,"createField(DSL.name(""id"")"
+hpple/revolut-backend-test,Beware of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Accounts.java,70,70,Should be non-nullable
+hpple/revolut-backend-test,Beware of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Accounts.java,75,75,Should be non-nullable
+hpple/revolut-backend-test,Beware of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Transfers.java,80,80,Should be non-nullable
+hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,41,41,selectFrom(
+hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,49,49,selectFrom(
+hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,65,65,returning
+hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,81,81,TABLE.fields()
+hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/TransferService.java,39,39,selectFrom(
+hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/TransferService.java,142,142,returning
+jiangtj/jc-platform,Implicit Columns,micro-sql-jooq/src/main/java/com/jiangtj/platform/sql/jooq/PageUtils.java,69,69,select(TABLE)
+jiangtj/jc-platform,ID Required,micro-sql-jooq/src/test/java/com/jiangtj/platform/sql/jooq/jooq/tables/SystemOperateRecord.java,47,48,"createField(DSL.name(""id"")"
+jiangtj/jc-platform,ID Required,micro-sql-jooq/src/test/java/com/jiangtj/platform/sql/jooq/jooq/tables/SystemUser.java,43,43,"createField(DSL.name(""id"")"
+jiangtj/jc-platform,Implicit Columns,system-server/src/main/java/com/jiangtj/platform/system/UserRoleService.java,25,25,selectFrom(
+jiangtj/jc-platform,Implicit Columns,system-server/src/main/java/com/jiangtj/platform/system/UserService.java,44,44,selectFrom(
+jiangtj/jc-platform,Implicit Columns,system-server/src/main/java/com/jiangtj/platform/system/UserService.java,60,60,dao.fetchOneById
+jiangtj/jc-platform,Implicit Columns,system-server/src/main/java/com/jiangtj/platform/system/UserService.java,67,67,selectFrom(
+jiangtj/jc-platform,Poor Man’s Search Engine,system-server/src/main/java/com/jiangtj/platform/system/UserService.java,116,116,LIKE(… %)
+jiangtj/jc-platform,Implicit Columns,system-server/src/main/java/com/jiangtj/platform/system/UserService.java,124,124,selectFrom(
+jiangtj/jc-platform,ID Required,system-server/src/main/java/com/jiangtj/platform/system/jooq/tables/SystemOperateRecord.java,61,61,"createField(DSL.name(""id"")"
+jiangtj/jc-platform,ID Required,system-server/src/main/java/com/jiangtj/platform/system/jooq/tables/SystemUser.java,56,56,"createField(DSL.name(""id"")"
+jiangtj/jc-platform,Implicit Columns,system-server/src/test/java/com/jiangtj/platform/system/UserRoleTest.java,35,35,selectFrom(
+juanhaugaard/H2-sakila,31 Flavors,jooq-generated-sakila/src/main/java/org/tayrona/sakila/data/tables/Film.java,126,126,asEnumDataType
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/AddressGenerator.java,66,66,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/AddressGenerator.java,72,72,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/AddressGenerator.java,132,132,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/AddressGenerator.java,138,138,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/FilmGenerator.java,60,60,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/FilmGenerator.java,64,64,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/FilmGenerator.java,71,71,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/FilmGenerator.java,102,102,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/FilmGenerator.java,294,294,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/FilmGenerator.java,303,303,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/StoreGenerator.java,41,41,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/StoreGenerator.java,56,56,selectFrom(
+juanhaugaard/H2-sakila,Implicit Columns,sakila-data-generator/src/main/java/org/tayrona/sakila/data/generators/StoreGenerator.java,106,106,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,ID Required,scrapper/src/main/java/edu/java/api/domain/jooq/tables/Chat.java,67,67,"createField(DSL.name(""id"") suured tähed"
+Macbeth-Klm/Tinkoff-java-course-2024,ID Required,scrapper/src/main/java/edu/java/api/domain/jooq/tables/Link.java,71,71,"createField(DSL.name(""id"") suured tähed"
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqChatLinkRepository.java,38,38,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqChatLinkRepository.java,60,60,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqChatRepository.java,35,35,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqChatRepository.java,41,41,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqLinkRepository.java,58,58,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqLinkRepository.java,69,69,selectFrom(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqLinkRepository.java,78,78,select().from(
+Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqLinkRepository.java,91,91,selectFrom(
+MahjongRepository/YagiMotel,ID Required,src/main/java/org/yagi/motel/kernel/model/dsl/tables/State.java,54,54,"createField(DSL.name(""id"")"
+MahjongRepository/YagiMotel,Beware of the Unknown,src/main/java/org/yagi/motel/kernel/model/dsl/tables/State.java,59,59,Should be non-nullable
+MahjongRepository/YagiMotel,Implicit Columns,src/main/java/org/yagi/motel/kernel/repository/StateRepository.java,52,52,select().from(
+puzink/Wallet,Implicit Columns,SpringJpaJooq/src/main/java/org/wallet/dao/WalletDao.java,27,27,returningResult(TABLE)
+puzink/Wallet,Implicit Columns,SpringJpaJooq/src/main/java/org/wallet/dao/WalletDao.java,37,37,returningResult(TABLE)
+puzink/Wallet,Implicit Columns,SpringJpaJooq/src/test/java/org/wallet/liquibase/DatabaseMetaDaoImpl.java,25,25,select().from(
+ralscha/attic,Implicit Columns,sqrl/demo-server/src/main/java/ch/rasc/sqrldemo/config/AppSqrlIdentityService.java,26,26,selectFrom(
+ralscha/attic,Implicit Columns,sqrl/demo-server/src/main/java/ch/rasc/sqrldemo/config/AppSqrlIdentityService.java,36,36,TABLE.asterisk()
+ralscha/attic,Implicit Columns,sqrl/demo-server/src/main/java/ch/rasc/sqrldemo/config/AppSqrlIdentityService.java,59,59,selectFrom(
+ralscha/attic,ID Required,sqrl/demo-server/src/main/java/ch/rasc/sqrldemo/db/tables/AppUser.java,56,57,"createField(DSL.name(""id"") suured tähed"
+ralscha/attic,Implicit Columns,travellog/server/src/main/java/ch/rasc/travellog/controller/AdminController.java,43,43,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/main/java/ch/rasc/travellog/controller/AuthController.java,73,73,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/main/java/ch/rasc/travellog/controller/ProfileController.java,232,232,selectFrom(
+ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/AppSession.java,58,59,"createField(DSL.name(""id"")"
+ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/AppUser.java,59,60,"createField(DSL.name(""id"")"
+ralscha/attic,31 Flavors,travellog/server/src/main/java/ch/rasc/travellog/db/tables/AppUser.java,87,88,"CHECK constraint, tekstiline väärtus"
+ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,60,61,"createField(DSL.name(""id"")"
+ralscha/attic,Beware of the Unknown,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,107,111,puuduvat aega tähistatakse “nullkuupäevaga”
+ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/LogPhoto.java,60,61,"createField(DSL.name(""id"")"
+ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Travel.java,59,60,"createField(DSL.name(""id"")"
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,34,34,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,44,44,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,61,61,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,72,72,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,91,91,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,102,102,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,123,123,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,136,136,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/CleanupJobTest.java,161,161,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/ProfileServiceTest.java,57,57,selectFrom(
+ralscha/attic,Implicit Columns,travellog/server/src/test/java/ch/rasc/travellog/UtilService.java,69,69,selectFrom(
+ralscha/blog2020,Implicit Columns,hashupgrade/jooq/src/main/java/ch/rasc/hashupgrade/AuthController.java,41,41,selectFrom(
+ralscha/blog2020,ID Required,hashupgrade/jooq/src/main/java/ch/rasc/hashupgrade/db/tables/AppUser.java,56,57,"createField(DSL.name(""id"")"
+SleepwalkerPasha/egorov_pa_project,ID Required,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/domain/jooq/tables/Chat.java,60,60,"createField(DSL.name(""id"")"
+SleepwalkerPasha/egorov_pa_project,ID Required,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/domain/jooq/tables/Link.java,70,70,"createField(DSL.name(""id"")"
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,104,104,select(TABLE).from(TABLE)
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,113,113,select(TABLE).from(TABLE)
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,122,122,select(TABLE).from(TABLE)
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqLinkRepository.java,130,130,select(TABLE).from(TABLE)
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqTgChatRepository.java,46,46,select(TABLE).from(TABLE)
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqTgChatRepository.java,57,57,select().from(
+SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/repository/jooq/JooqTgChatRepository.java,71,71,select().from(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,656,656,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,697,697,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,737,737,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1079,1079,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1178,1178,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1228,1228,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1354,1354,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1402,1402,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1486,1486,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1615,1615,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1659,1659,selectFrom(
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,1731,1731,selectFrom(
+tapis-project/tapis-notifications,Poor Man’s Search Engine,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,2321,2321,LIKE tundmatu sisendiga
+tapis-project/tapis-notifications,Poor Man’s Search Engine,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,2322,2322,NOT LIKE tundmatu sisendiga
+tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,2445,2445,selectFrom(
+tapis-project/tapis-notifications,Beware of the Unknown,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/gen/jooq/tables/Subscriptions.java,126,126,puuduva väärtuse tähistamiseks kasutusel -1
+therepanic/lapayment-crypto-pay-system,ID Required,src/main/java/com/example/jooq/model/tables/Conclusions.java,56,56,"createField(DSL.name(""id"")"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Conclusions.java,66,66,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,ID Required,src/main/java/com/example/jooq/model/tables/Payments.java,56,56,"createField(DSL.name(""id"")"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Payments.java,71,71,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Payments.java,76,76,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Payments.java,81,81,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Payments.java,86,86,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Payments.java,91,91,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,ID Required,src/main/java/com/example/jooq/model/tables/Userfactory.java,56,56,"createField(DSL.name(""id"")"
+therepanic/lapayment-crypto-pay-system,ID Required,src/main/java/com/example/jooq/model/tables/Users.java,56,56,"createField(DSL.name(""id"")"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Users.java,71,71,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Users.java,76,76,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Users.java,81,81,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Users.java,86,86,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/ConclusionRepositoryImpl.java,54,54,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/ConclusionRepositoryImpl.java,59,59,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/PaymentRepositoryImpl.java,48,48,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/PaymentRepositoryImpl.java,57,57,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/UserFactoryRepositoryImpl.java,20,20,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/UserFactoryRepositoryImpl.java,28,28,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/UserFactoryRepositoryImpl.java,36,36,selectFrom(
+therepanic/lapayment-crypto-pay-system,Implicit Columns,src/main/java/ru/panic/lapayment/template/repository/impl/UserRepositoryImpl.java,21,21,selectFrom(
+wuhunyu/jooq-transaction,ID Required,src/main/java/top/wuhunyu/jooq/transaction/codegen/tables/TUser.java,53,53,"createField(DSL.name(""id"")"
+wuhunyu/jooq-transaction,Beware of the Unknown,src/main/java/top/wuhunyu/jooq/transaction/codegen/tables/TUser.java,58,58,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+wuhunyu/jooq-transaction,Implicit Columns,src/main/java/top/wuhunyu/jooq/transaction/service/UserService4Jooq.java,37,37,DAO.fetchOneById
