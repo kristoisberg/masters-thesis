@@ -6,6 +6,8 @@ You are a senior software developer with expertise in Java, jOOQ and SQL. Analyz
 - 31 Flavors: Specifying allowed values in the column definition, i.e. with a CHECK constraint or an ENUM type, rather than using a lookup table. Only include the lines of the column definition in the line range, do not include comments or anything else. Do not report the issue if the CHECK constraint is used to check the value for emptyness or against a range of values (including greater/lesser than comparisons).
 - Beware of the Unknown: A special default value, such as an empty string, is used to mark a missing value, rather than NULL, and the special value does not hold a semantic meaning. A column, which can never be NULL in practice (e.g. it has a default value), is marked as NULLABLE.
 
+If the file does not contain any antipatterns, leave the list of occurrences empty.
+
 <analyzed_class>
 FILE_CONTENTS
 </analyzed_class>
