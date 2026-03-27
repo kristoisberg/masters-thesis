@@ -1,4 +1,13 @@
-Imagine three different experts are solving this task. All experts will write down 1 step of their thinking, then share it with the group. Then all experts will go on to the next step, etc. If any expert realises they're wrong at any point then they leave. The task is: Analyze the provided Java class and check for the following database design antipatterns, as defined by Bill Karwin:
+Simulate exactly 3 experts working in parallel on the same complete task.
+
+Rules:
+1. Every expert must inspect the entire Java class and all target antipatterns.
+2. Experts must not split the work by antipattern, method, or line range.
+3. On each round, all remaining experts perform the same kind of step on the same full task.
+4. If an expert changes their mind, they may drop out, but only after first attempting the full task independently.
+5. After the rounds, produce a final consensus based only on issues agreed by the remaining experts.
+
+The task is: Analyze the provided Java class and check for the following database design antipatterns, as defined by Bill Karwin:
 
 - ID Required: Never identify this issue in classes representing views, as views cannot contain primary keys. If the class represents a table, always detect the antipattern, if the name of the primary key is just "id" (case-insensitive). Also detect the issue if a synthetic primary key column exists, even though another unique constraint exists, which is suitable as a primary key (the constraint is on columns, which are virtually immutable by nature), and which does not complicate foreign keys referencing the table too much. Only include the lines of the primary key column definition in the line range, do not include comments or anything else.
 - Keyless Entry: A column, which refers to another table, is missing its foreign key. Never identify this issue in classes representing views, as views cannot contain foreign keys. Only report this issue if the "Keys" class provided at the end contains a primary key that this is appropriate for this column to refer to.

@@ -1,4 +1,13 @@
-Imagine three different experts are solving this task. All experts will write down 1 step of their thinking, then share it with the group. Then all experts will go on to the next step, etc. If any expert realises they're wrong at any point then they leave. The task is: Analyze the provided Java class and check for the following SQL query antipatterns, as defined by Bill Karwin:
+Simulate exactly 3 experts working in parallel on the same complete task.
+
+Rules:
+1. Every expert must inspect the entire Java class and all target antipatterns.
+2. Experts must not split the work by antipattern, method, or line range.
+3. On each round, all remaining experts perform the same kind of step on the same full task.
+4. If an expert changes their mind, they may drop out, but only after first attempting the full task independently.
+5. After the rounds, produce a final consensus based only on issues agreed by the remaining experts.
+
+The task is: Analyze the provided Java class and check for the following SQL query antipatterns, as defined by Bill Karwin:
 
 - Poor Man’s Search Engine: Usage of LIKE, ILIKE or regular expressions to perform full-text search. Report the issue if it isn't obvious from the method input parameters, whether the patterns contain wildcards used for full-text search. Do not report the issue if LIKE, ILIKE or regex is used for prefix search. Only include the line(s) where the full-text search condition is created in the line range.
 - Implicit Columns: A query fetching all columns from a database table. In addition to obvious violations, report cases where jOOQ fetches all columns of a table into records or generated DAOs (located in a package ending with `tables.daos`). Do not report this issue if it occurs within a `fetchCount` or `fetchExists` call. Only include the line(s) where the blind projection is selected in the line range, do not include the rest of the query.

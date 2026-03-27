@@ -27,11 +27,11 @@ KEYS_CONTENTS
 </input>
 <output>
 {
-    "antipatternName": "ID Required",
-    "linesRangeStart": 62,
-    "linesRangeEnd": 62,
-    "codeFragment": "public final TableField<CityRecord, Integer> ID = createField("ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");"
-    "reasoning": "antipattern - the primary key is called ID"
+"antipatternName": "ID Required",
+"linesRangeStart": 62,
+"linesRangeEnd": 62,
+"codeFragment": "public final TableField<CityRecord, Integer> ID = createField("ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");"
+"reasoning": "antipattern - the primary key is called ID"
 }
 </output>
 </example>
@@ -51,7 +51,7 @@ KEYS_CONTENTS
 ...
 @Override
 public List<UniqueKey<PersonRecord>> getKeys() {
-    return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_IDENTIFICATION_CODE, Keys.KEY_PERSON_PRIMARY);
+return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_IDENTIFICATION_CODE, Keys.KEY_PERSON_PRIMARY);
 }
 ...
 Keys.java:
@@ -86,7 +86,7 @@ public static final UniqueKey<FileRecord> KEY_PERSON_PRIMARY = Internal.createUn
 ...
 @Override
 public List<UniqueKey<PersonRecord>> getKeys() {
-    return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_NAME, Keys.KEY_PERSON_PRIMARY);
+return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_NAME, Keys.KEY_PERSON_PRIMARY);
 }
 ...
 Keys.java:
@@ -125,7 +125,7 @@ public static final UniqueKey<FileRecord> KEY_PERSON_PRIMARY = Internal.createUn
 ...
 @Override
 public List<UniqueKey<PersonRecord>> getKeys() {
-    return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_PRIMARY, Keys.KEY_PERSON_NAME_DOB_UNIQUE);
+return Arrays.<UniqueKey<PersonRecord>>asList(Keys.KEY_PERSON_PRIMARY, Keys.KEY_PERSON_NAME_DOB_UNIQUE);
 }
 ...
 Keys.java:
@@ -256,9 +256,9 @@ Keys.java:
 ...
 126: @Override
 127: public List<Check<PastoRecord>> getChecks() {
-128:     return Arrays.asList(
-129:         Internal.createCheck(this, DSL.name(""), "tipo in ('colazione', 'pranzo', 'cena', 'spuntino')", true)
-130:     );
+128: return Arrays.asList(
+129: Internal.createCheck(this, DSL.name(""), "tipo in ('colazione', 'pranzo', 'cena', 'spuntino')", true)
+130: );
 131: }
 ...
 </input>
@@ -288,10 +288,10 @@ Keys.java:
 ...
 215: @Override
 216: public List<Check<DragonRecord>> getChecks() {
-217:    return Arrays.asList(
-218:        Internal.createCheck(this, DSL.name("dragon_age_check"), "((age > 0))", true),
-219:        Internal.createCheck(this, DSL.name("dragon_name_check"), "(((name)::text <> ''::text))", true)
-220:    );
+217: return Arrays.asList(
+218: Internal.createCheck(this, DSL.name("dragon_age_check"), "((age > 0))", true),
+219: Internal.createCheck(this, DSL.name("dragon_name_check"), "(((name)::text <> ''::text))", true)
+220: );
 221: }
 ...
 </input>

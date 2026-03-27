@@ -15,17 +15,17 @@ FILE_CONTENTS
 ...
 20: @Transactional(readOnly = true)
 21: public List<String> getTagSuggestionsForImage(String category, String tag, UUID imageId) {
-22:    UUID repoId = getRepoId(imageId);
+22: UUID repoId = getRepoId(imageId);
 23:
-24:    return
-25:            dsl.select(Tables.IMAGE_TAGS.TAG)
-26:                    .from(Tables.IMAGE_TAGS)
-27:                    .where(Tables.IMAGE_TAGS.REPOSITORY_ID.eq(repoId))
-28:                    .and(Tables.IMAGE_TAGS.TAG.likeIgnoreCase("%"+tag+"%"))
-29:                    .and(Tables.IMAGE_TAGS.TAG_CATEGORY.likeIgnoreCase("%"+category+"%"))
-30:                    .and(Tables.IMAGE_TAGS.IMAGE_ID.notEqual(imageId))
-31:                    .limit(5)
-32:                    .fetch(Tables.IMAGE_TAGS.TAG);
+24: return
+25: dsl.select(Tables.IMAGE_TAGS.TAG)
+26: .from(Tables.IMAGE_TAGS)
+27: .where(Tables.IMAGE_TAGS.REPOSITORY_ID.eq(repoId))
+28: .and(Tables.IMAGE_TAGS.TAG.likeIgnoreCase("%"+tag+"%"))
+29: .and(Tables.IMAGE_TAGS.TAG_CATEGORY.likeIgnoreCase("%"+category+"%"))
+30: .and(Tables.IMAGE_TAGS.IMAGE_ID.notEqual(imageId))
+31: .limit(5)
+32: .fetch(Tables.IMAGE_TAGS.TAG);
 33: }
 ...
 </input>
@@ -52,17 +52,17 @@ FILE_CONTENTS
 ...
 20: @Transactional(readOnly = true)
 21: public List<String> getTagSuggestionsForImage(String category, String tag, UUID imageId) {
-22:    UUID repoId = getRepoId(imageId);
+22: UUID repoId = getRepoId(imageId);
 23:
-24:    return
-25:            dsl.select(Tables.IMAGE_TAGS.TAG)
-26:                    .from(Tables.IMAGE_TAGS)
-27:                    .where(Tables.IMAGE_TAGS.REPOSITORY_ID.eq(repoId))
-28:                    .and(Tables.IMAGE_TAGS.TAG.likeIgnoreCase(tag))
-29:                    .and(Tables.IMAGE_TAGS.TAG_CATEGORY.likeIgnoreCase(category))
-30:                    .and(Tables.IMAGE_TAGS.IMAGE_ID.notEqual(imageId))
-31:                    .limit(5)
-32:                    .fetch(Tables.IMAGE_TAGS.TAG);
+24: return
+25: dsl.select(Tables.IMAGE_TAGS.TAG)
+26: .from(Tables.IMAGE_TAGS)
+27: .where(Tables.IMAGE_TAGS.REPOSITORY_ID.eq(repoId))
+28: .and(Tables.IMAGE_TAGS.TAG.likeIgnoreCase(tag))
+29: .and(Tables.IMAGE_TAGS.TAG_CATEGORY.likeIgnoreCase(category))
+30: .and(Tables.IMAGE_TAGS.IMAGE_ID.notEqual(imageId))
+31: .limit(5)
+32: .fetch(Tables.IMAGE_TAGS.TAG);
 33: }
 ...
 </input>
@@ -87,8 +87,8 @@ FILE_CONTENTS
 <input>
 62: @Override
 63: public List<Link> findByIdIn(List<Long> ids) {
-64:     return context
-65:         .select().from(LINK).where(LINK.ID.in(ids)).fetchInto(Link.class);
+64: return context
+65: .select().from(LINK).where(LINK.ID.in(ids)).fetchInto(Link.class);
 66: }
 </input>
 <output>
@@ -105,13 +105,13 @@ FILE_CONTENTS
 <example>
 <input>
 65: private Void preValidateParams(ReplicationParam.Duplicate duplicate) {
-66:     boolean exists = dslContext.fetchExists(dslContext.selectFrom(IMAGE).where(IMAGE.ID.eq(duplicate.imageId())));
+66: boolean exists = dslContext.fetchExists(dslContext.selectFrom(IMAGE).where(IMAGE.ID.eq(duplicate.imageId())));
 67: 
-68:     if (!exists) {
-69:         throw new ImageReplicationUserException("Image with ID " + duplicate.imageId() + " does not exist");
-70:     }
+68: if (!exists) {
+69: throw new ImageReplicationUserException("Image with ID " + duplicate.imageId() + " does not exist");
+70: }
 71: 
-72:     return null;
+72: return null;
 73: }
 </input>
 <output>
@@ -128,9 +128,9 @@ private final OnboardingDocumentsDao documentsDao;
 ...
 47: @Override
 48: public List<DocumentDto> getDocuments() {
-49:     return documentsDao.findAll().stream()
-50:             .map(it -> DocumentDto.of(it.getKey(), it.getFilename()))
-51:             .toList();
+49: return documentsDao.findAll().stream()
+50: .map(it -> DocumentDto.of(it.getKey(), it.getFilename()))
+51: .toList();
 52: }
 ...
 </input>
@@ -154,9 +154,9 @@ private final OnboardingDocumentsDao documentsDao;
 ...
 47: @Override
 48: public List<DocumentDto> getDocuments() {
-49:     return documentsDao.findAll().stream()
-50:             .map(it -> DocumentDto.of(it.getKey(), it.getFilename()))
-51:             .toList();
+49: return documentsDao.findAll().stream()
+50: .map(it -> DocumentDto.of(it.getKey(), it.getFilename()))
+51: .toList();
 52: }
 ...
 </input>
@@ -169,16 +169,16 @@ private final OnboardingDocumentsDao documentsDao;
 <input>
 ...
 34: public Author afficherAuteur(Integer id){
-35:      return dslContext.selectFrom(AUTHOR).where(AUTHOR.ID.eq(id)).fetchSingleInto(Author.class);
+35: return dslContext.selectFrom(AUTHOR).where(AUTHOR.ID.eq(id)).fetchSingleInto(Author.class);
 36: }
 ...
 50: public void modifierAuteur(AuthorVo author){
-51:     Author _author = this.afficherAuteur(author.getId().intValue());
+51: Author _author = this.afficherAuteur(author.getId().intValue());
 52:
-53:     dslContext.update(AUTHOR)
-54:             .set(AUTHOR.FIRST_NAME,author.getFirstName())
-55:             .set(AUTHOR.LAST_NAME, author.getLastName())
-56:             .where(AUTHOR.ID.eq(author.getId().intValue())).execute();
+53: dslContext.update(AUTHOR)
+54: .set(AUTHOR.FIRST_NAME,author.getFirstName())
+55: .set(AUTHOR.LAST_NAME, author.getLastName())
+56: .where(AUTHOR.ID.eq(author.getId().intValue())).execute();
 57: }
 ...
 </input>
@@ -191,11 +191,11 @@ private final OnboardingDocumentsDao documentsDao;
 <input>
 ...
 72: private Condition getIdCondition(UUID id) {
-73:     if (id == null) {
-74:         return TASK.TASK_TYPE_ID.eq(TASK.TASK_TYPE_ID); // 1==1
-75:     } else {
-76:         return TASK.TASK_TYPE_ID.eq(id);
-77:     }
+73: if (id == null) {
+74: return TASK.TASK_TYPE_ID.eq(TASK.TASK_TYPE_ID); // 1==1
+75: } else {
+76: return TASK.TASK_TYPE_ID.eq(id);
+77: }
 78: }
 ...
 </input>
