@@ -1,0 +1,57 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+TheLQ_forum-scraper,Keyless Entry,downloader/src/main/java/sh/xana/forum/server/db/tables/Dataset.java,41,47,"public final TableField<DatasetRecord, UUID> PAGEID =
+    createField(
+        DSL.name(""pageId""),
+        SQLDataType.BINARY(16).nullable(false),
+        this,
+        """",
+        new UuidConverter());",The 'pageId' column appears to reference the Pages table (based on KEY_PAGES_PRIMARY in the Keys class) but lacks a foreign key constraint. Add a foreign key constraint referencing Pages.PAGEID to ensure referential integrity.
+TheLQ_forum-scraper,Keyless Entry,downloader/src/main/java/sh/xana/forum/server/db/tables/Forums.java,51,57,"public final TableField<ForumsRecord, UUID> PARENTFORUMID =
+    createField(
+        DSL.name(""parentForumId""),
+        SQLDataType.BINARY(16).nullable(false).defaultValue(DSL.inline(""0x"", SQLDataType.BINARY)),
+        this,
+        """",
+        new UuidConverter());",The 'parentForumId' column appears to reference the Forums table itself (a self-referential relationship for parent forums) but lacks a foreign key constraint. Add a foreign key constraint referencing the Forums table's primary key to ensure referential integrity.
+TheLQ_forum-scraper,Keyless Entry,downloader/src/main/java/sh/xana/forum/server/db/tables/Pageredirects.java,45,51,"public final TableField<PageredirectsRecord, UUID> PAGEID =
+    createField(
+        DSL.name(""pageId""),
+        SQLDataType.BINARY(16).nullable(false),
+        this,
+        """",
+        new UuidConverter());","The PAGEID column appears to reference the Pages table (based on naming convention and UUID type matching Pages.PAGEID), but there is no foreign key constraint defined. Add a foreign key constraint referencing KEY_PAGES_PRIMARY to ensure referential integrity."
+TheLQ_forum-scraper,Keyless Entry,downloader/src/main/java/sh/xana/forum/server/db/tables/Pages.java,59,61,"public final TableField<PagesRecord, UUID> SOURCEPAGEID =
+    createField(DSL.name(""sourcePageId""), SQLDataType.BINARY(16), this, """", new UuidConverter());","The 'sourcePageId' column appears to reference the Pages table (likely a self-reference to another page), but lacks a foreign key constraint. Add a foreign key constraint referencing Keys.KEY_PAGES_PRIMARY to ensure referential integrity."
+TheLQ_forum-scraper,Keyless Entry,downloader/src/main/java/sh/xana/forum/server/db/tables/Posts.java,41,47,"public final TableField<PostsRecord, UUID> POSTID =
+    createField(
+        DSL.name(""postId""),
+        SQLDataType.BINARY(16).nullable(false),
+        this,
+        """",
+        new UuidConverter());","The 'postId' column appears to be a UUID that could reference another table (like Pages), but there is no foreign key constraint defined for it. Consider adding a foreign key constraint to maintain referential integrity if this column references another table's primary key."
+TheLQ_forum-scraper,ID Required,downloader/src/main/java/sh/xana/forum/server/db/tables/Sites.java,48,54,"public final TableField<SitesRecord, UUID> SITEID =
+    createField(
+        DSL.name(""siteId""),
+        SQLDataType.BINARY(16).nullable(false),
+        this,
+        """",
+        new UuidConverter());","The table has a synthetic primary key 'siteId' even though it has natural unique constraints on 'siteUrl' and 'domain' that could serve as primary keys. Consider using 'siteUrl' or 'domain' as the primary key if they are stable and immutable, or rename 'siteId' to something more descriptive like 'site_uuid'."
+TheLQ_forum-scraper,Keyless Entry,downloader/src/main/java/sh/xana/forum/server/db/tables/Topics.java,56,63,"public final TableField<TopicsRecord, UUID> FIRSTPAGEID =
+    createField(
+        DSL.name(""firstPageId""),
+        SQLDataType.BINARY(16).nullable(false).defaultValue(DSL.inline(""0x"", SQLDataType.BINARY)),
+        this,
+        """",
+        new UuidConverter());","The 'firstPageId' column appears to reference the Pages table (based on KEY_PAGES_PRIMARY in the Keys class) but lacks a foreign key constraint, which could lead to orphaned records or invalid references. Add a foreign key constraint referencing Pages.PAGEID to ensure referential integrity."
+TheLQ_forum-scraper,Implicit Columns,downloader/src/main/java/sh/xana/forum/server/dbutil/DatabaseStorage.java,261,262,"context
+                .select()
+                .from(PAGES)","Using select() without specifying columns fetches all columns from the PAGES table into PagesRecord, which retrieves unnecessary data and impacts performance. Specify only the required columns explicitly, such as select(PAGES.PAGEID, PAGES.PAGEURL, ...)."
+TheLQ_forum-scraper,Implicit Columns,downloader/src/main/java/sh/xana/forum/server/dbutil/DatabaseStorage.java,284,285,"context
+        .select()
+        .from(PAGES)","Using select() without specifying columns fetches all columns from the PAGES table, which may retrieve more data than needed. Explicitly list only the columns required for error reporting."
+TheLQ_forum-scraper,Implicit Columns,downloader/src/main/java/sh/xana/forum/server/dbutil/DatabaseStorage.java,298,298,context.select().from(SITES).where(conditions).fetchInto(SITES),Using select() without specifying columns fetches all columns from the SITES table. Specify only the columns you need to improve query performance and reduce memory usage.
+TheLQ_forum-scraper,Implicit Columns,downloader/src/main/java/sh/xana/forum/server/dbutil/DatabaseStorage.java,307,307,context.select(field).from(PAGES).where(conditions).fetchInto(PagesRecord.class),"When 'field' collection is empty (as called from getPages on line 302), this fetches all columns from PAGES table. Consider requiring at least one field or using an explicit column list."
+TheLQ_forum-scraper,Implicit Columns,downloader/src/main/java/sh/xana/forum/server/dbutil/DatabaseStorage.java,367,367,context.select().from(PAGEREDIRECTS).where(conditions).fetchInto(PAGEREDIRECTS),Using select() without specifying columns fetches all columns from the PAGEREDIRECTS table. Explicitly specify only the columns needed to reduce data transfer and improve performance.
+TheLQ_forum-scraper,Implicit Columns,downloader/src/main/java/sh/xana/forum/server/dbutil/DatabaseStorage.java,572,573,"context
+        .select()
+        .from(Dataset.DATASET)",Using select() without specifying columns fetches all columns from the DATASET table. Specify only the required columns explicitly to improve query efficiency.

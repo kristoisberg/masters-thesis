@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+altusea_wpg,Keyless Entry,src/main/java/com/example/wpg/db/tables/TOperationLog.java,59,59,"public final TableField<OperationLogRecord, String> OPERATOR = createField(DSL.name(""operator""), SQLDataType.VARCHAR(20), this, """");","The 'operator' column appears to reference the 'operator' table (which has a primary key 'OPERATOR_PKEY'), but no foreign key constraint is defined. Add a foreign key constraint referencing the 'operator' table to ensure referential integrity."

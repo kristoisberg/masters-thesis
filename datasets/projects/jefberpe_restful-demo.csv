@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+jefberpe_restful-demo,ID Required,src/main/java/com/demo/demo1/model/jooq/tables/Author.java,54,54,"public final TableField<AuthorRecord, UUID> ID = createField(""id"", org.jooq.impl.SQLDataType.UUID.nullable(false), this, """");",The primary key column is generically named 'id' instead of a more descriptive name like 'author_id'. Consider renaming the column to 'author_id' to make it self-documenting and avoid ambiguity when joining tables.

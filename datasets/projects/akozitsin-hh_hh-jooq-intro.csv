@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+akozitsin-hh_hh-jooq-intro,Implicit Columns,service/src/test/java/ru/hh/jooq/service/SelectTest.java,17,17,dslContext.selectFrom(ARTIST),"Using selectFrom(ARTIST) fetches all columns from the ARTIST table, which can lead to unnecessary data transfer and performance issues. Replace with an explicit column selection like dslContext.select(ARTIST.ARTIST_ID, ARTIST.NAME).from(ARTIST) to fetch only the required columns."

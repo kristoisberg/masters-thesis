@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+lin-mt_spring-boot,ID Required,jooq/src/main/java/cn/linmt/jooq/generate/tables/TableBook.java,56,56,"public final TableField<BookRecord, Long> T_ID = createField(DSL.name(""id""), SQLDataType.BIGINT.nullable(false), this, ""主键ID"");",The primary key column is generically named 'id' instead of a more descriptive name like 'book_id'. Consider renaming the primary key to 'book_id' to make it self-documenting and to avoid ambiguity when joining tables.

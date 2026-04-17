@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+derabbink_sws2,ID Required,sws2-persistence/src/main/java/com/abbink/sws2/persistence/generated/jooq/tables/Greeting.java,56,56,"public final TableField<GreetingRecord, Long> ID = createField(""id"", org.jooq.impl.SQLDataType.BIGINT.nullable(false).identity(true), this, """");",The primary key column is generically named 'id' instead of a more descriptive name like 'greeting_id'. Consider renaming the column to 'greeting_id' to make it self-documenting and avoid ambiguity in queries with joins.

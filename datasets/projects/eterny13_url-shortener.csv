@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+eterny13_url-shortener,Implicit Columns,src/main/java/com/example/url_shortener/datasource/url/UrlTransformationTableMapper.java,30,30,dsl.selectFrom(URLTRANSFORMATION),"Using `selectFrom` fetches all columns from the URLTRANSFORMATION table, even though only `originalurl` and `shorturl` are used. Replace with an explicit `select(URLTRANSFORMATION.ORIGINALURL, URLTRANSFORMATION.SHORTURL).from(URLTRANSFORMATION)` to fetch only the required columns."

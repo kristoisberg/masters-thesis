@@ -1,0 +1,4 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+sylvan-tang_auro,ID Required,java/auro-persistence/src/main/java/com/sylvan/auro/persistence/jooq/tables/GlobalLock.java,46,48,"public final TableField<GlobalLockRecord, Integer> ID =
+    createField(
+        ""id"", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, ""自增 ID"");","The table uses a generic auto-increment 'id' column as the primary key, but there's already a unique constraint on the 'key' column (KEY_GLOBAL_LOCK_IDX_KEY) which represents the lock identifier and is a natural candidate for the primary key. Consider using the 'key' column as the primary key instead of the synthetic 'id' column."

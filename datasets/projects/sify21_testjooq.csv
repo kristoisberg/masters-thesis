@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+sify21_testjooq,ID Required,src/main/java/com/test/db/tables/Person.java,60,60,"public final TableField<PersonRecord, Long> ID = createField(DSL.name(""id""), SQLDataType.BIGINT.nullable(false).identity(true), this, """");",The table uses a generic 'id' column as the primary key when a natural key already exists via the unique constraint on 'name' (PERSON_NAME_KEY). Consider using 'name' as the primary key or renaming the synthetic key to something more descriptive like 'person_id'.

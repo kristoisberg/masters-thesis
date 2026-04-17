@@ -1,0 +1,10 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+ekruptsov_jooq-retrofit-crud-poc,Implicit Columns,src/main/java/org/poc/jooq_retrofit/repository/CheckoutDao.java,28,28,jooq.selectFrom(CHECKOUT),"Using `selectFrom(CHECKOUT)` fetches all columns from the CHECKOUT table, which may retrieve unnecessary data and reduce query performance. Consider explicitly selecting only the required columns using `select(CHECKOUT.ID, CHECKOUT.DESCRIPTION, ...).from(CHECKOUT)`."
+ekruptsov_jooq-retrofit-crud-poc,ID Required,src/main/jooq/org/poc/jooq_retrofit/repository/jooq/tables/Checkout.java,45,52,"public final TableField<CheckoutRecord, UUID> ID =
+    createField(
+        DSL.name(""id""),
+        SQLDataType.UUID
+            .nullable(false)
+            .defaultValue(DSL.field(""gen_random_uuid()"", SQLDataType.UUID)),
+        this,
+        """");","The primary key column is named just 'id', which is a generic name that doesn't convey any meaning about the table it belongs to. Consider renaming it to 'checkout_id' to make it more descriptive and to avoid ambiguity in queries with joins."

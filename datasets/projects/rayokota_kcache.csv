@@ -1,0 +1,3 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+rayokota_kcache,Implicit Columns,kcache-rdbms/src/main/java/io/kcache/rdbms/RdbmsCache.java,217,217,KvRecord row = dsl().selectFrom(KV),"Using selectFrom(KV) fetches all columns from the KV table into a KvRecord, but only the KV_VALUE column is needed. Consider using select(KV.KV_VALUE).from(KV) to fetch only the required column."
+rayokota_kcache,Implicit Columns,kcache-rdbms/src/main/java/io/kcache/rdbms/RdbmsCache.java,267,267,SelectWhereStep<KvRecord> selectWhere = dsl().selectFrom(KV);,"Using selectFrom(KV) fetches all columns from the KV table into KvRecord objects. Consider using select(KV.KV_KEY, KV.KV_VALUE).from(KV) to explicitly specify the columns needed."

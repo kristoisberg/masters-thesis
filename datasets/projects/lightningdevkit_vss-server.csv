@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+lightningdevkit_vss-server,Implicit Columns,java/app/src/main/java/org/vss/impl/postgres/PostgresBackendImpl.java,53,53,VssDbRecord vssDbRecord = context.selectFrom(VSS_DB),"Using `selectFrom(VSS_DB)` fetches all columns from the VSS_DB table, even though only `key`, `value`, and `version` fields are used. Consider using `context.select(VSS_DB.KEY, VSS_DB.VALUE, VSS_DB.VERSION).from(VSS_DB)` to explicitly select only the required columns."

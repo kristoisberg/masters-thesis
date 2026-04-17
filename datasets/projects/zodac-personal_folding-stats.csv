@@ -1,0 +1,50 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+zodac-personal_folding-stats,ID Required,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/gen/tables/RetiredUserStats.java,66,66,"public final TableField<RetiredUserStatsRecord, Integer> RETIRED_USER_ID = createField(DSL.name(""retired_user_id""), SQLDataType.INTEGER.nullable(false).identity(true), this, """");",The table has a synthetic auto-increment primary key 'retired_user_id' even though there's already a unique constraint on 'user_id' (RETIRED_USER_STATS_USER_ID_KEY) which could serve as a natural primary key. Consider using 'user_id' as the primary key instead of introducing a surrogate key.
+zodac-personal_folding-stats,Beware of the Unknown,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/gen/tables/SystemUsers.java,65,65,"public final TableField<SystemUsersRecord, String[]> ROLES = createField(DSL.name(""roles""), SQLDataType.CLOB.array().defaultValue(DSL.field(DSL.raw(""'{}'::text[]""), SQLDataType.CLOB.array())), this, """");","The ROLES column has a default value of an empty array but is marked as NULLABLE, which means it can never be NULL in practice since new records will get the default empty array. Consider making this column NOT NULL since it has a meaningful default value."
+zodac-personal_folding-stats,ID Required,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/gen/tables/Teams.java,66,66,"public final TableField<TeamsRecord, Integer> TEAM_ID = createField(DSL.name(""team_id""), SQLDataType.INTEGER.nullable(false).identity(true), this, """");","The table has a synthetic auto-increment primary key (TEAM_ID) even though TEAM_NAME has a unique constraint and could serve as a natural primary key. Consider using TEAM_NAME as the primary key if team names are stable and immutable, or rename TEAM_ID to something more descriptive like TEAMS_ID."
+zodac-personal_folding-stats,Beware of the Unknown,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/gen/tables/UserChanges.java,71,71,"public final TableField<UserChangesRecord, LocalDateTime> CREATED_UTC_TIMESTAMP = createField(DSL.name(""created_utc_timestamp""), SQLDataType.LOCALDATETIME(6), this, """");","The CREATED_UTC_TIMESTAMP column is marked as NULLABLE but likely should never be NULL since it represents when the record was created. Consider adding a NOT NULL constraint with a default value of the current timestamp, or mark it as nullable(false)."
+zodac-personal_folding-stats,Beware of the Unknown,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/gen/tables/UserChanges.java,76,76,"public final TableField<UserChangesRecord, LocalDateTime> UPDATED_UTC_TIMESTAMP = createField(DSL.name(""updated_utc_timestamp""), SQLDataType.LOCALDATETIME(6), this, """");","The UPDATED_UTC_TIMESTAMP column is marked as NULLABLE but likely should never be NULL since it represents when the record was last updated. Consider adding a NOT NULL constraint with a default value of the current timestamp, or mark it as nullable(false)."
+zodac-personal_folding-stats,Beware of the Unknown,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/gen/tables/Users.java,116,116,"public final TableField<UsersRecord, Boolean> IS_CAPTAIN = createField(DSL.name(""is_captain""), SQLDataType.BOOLEAN.defaultValue(DSL.field(DSL.raw(""false""), SQLDataType.BOOLEAN)), this, """");","The column 'is_captain' has a default value of 'false' but is marked as NULLABLE, meaning it can never be NULL in practice since new rows will get the default value. Consider making this column NOT NULL to accurately reflect its intended usage."
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,137,139,"final var query = queryContext
+    .select()
+    .from(HARDWARE)","Using `select()` without specifying columns fetches all columns from the HARDWARE table, which can retrieve unnecessary data and hurt performance. Explicitly list only the required columns, e.g., `.select(HARDWARE.HARDWARE_ID, HARDWARE.HARDWARE_NAME, ...)`."
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,155,157,"final var query = queryContext
+    .select()
+    .from(HARDWARE)",Using `select()` without specifying columns fetches all columns from the HARDWARE table. Specify only the columns needed for the Hardware object construction.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,224,226,"final var query = queryContext
+    .select()
+    .from(TEAMS)",Using `select()` without specifying columns fetches all columns from the TEAMS table. Explicitly list only the required columns to improve query efficiency.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,241,243,"final var query = queryContext
+    .select()
+    .from(TEAMS)",Using `select()` without specifying columns fetches all columns from the TEAMS table. Specify only the columns needed for the Team object construction.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,329,331,"final var query = queryContext
+    .select()
+    .from(USERS)","Using `select()` without specifying columns fetches all columns from USERS, HARDWARE, and TEAMS tables due to the joins. Explicitly list only the required columns from each table."
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,349,351,"final var query = queryContext
+    .select()
+    .from(USERS)","Using `select()` without specifying columns fetches all columns from USERS, HARDWARE, and TEAMS tables due to the joins. Specify only the columns needed for User object construction."
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,445,447,"final var query = queryContext
+    .select()
+    .from(USER_CHANGES)",Using `select()` without specifying columns fetches all columns from the USER_CHANGES table. Explicitly list only the required columns.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,466,468,"final var query = queryContext
+    .select()
+    .from(USER_CHANGES)",Using `select()` without specifying columns fetches all columns from the USER_CHANGES table. Specify only the columns needed for UserChange object construction.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,485,488,"final var query = queryContext
+    .select()
+    .from(USER_CHANGES)
+    .where(USER_CHANGES.USER_CHANGE_ID.equal(userChangeId))",Using `select()` without specifying columns fetches all columns from the USER_CHANGES table. Explicitly list only the required columns.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,870,872,"final var query = queryContext
+    .select()
+    .from(USER_TC_STATS_HOURLY)",Using `select()` without specifying columns fetches all columns from the USER_TC_STATS_HOURLY table. Specify only the columns needed for UserTcStats object construction.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,921,923,"final var query = queryContext
+    .select()
+    .from(USER_INITIAL_STATS)",Using `select()` without specifying columns fetches all columns from the USER_INITIAL_STATS table. Explicitly list only the required columns.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,962,964,"final var query = queryContext
+    .select()
+    .from(USER_TOTAL_STATS)",Using `select()` without specifying columns fetches all columns from the USER_TOTAL_STATS table. Specify only the columns needed for UserStats object construction.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,1112,1114,"final var query = queryContext
+    .select()
+    .from(RETIRED_USER_STATS)",Using `select()` without specifying columns fetches all columns from the RETIRED_USER_STATS table. Explicitly list only the required columns.
+zodac-personal_folding-stats,Implicit Columns,folding-stats-jar/src/main/java/net/zodac/folding/db/postgres/PostgresDbManager.java,1192,1194,"queryContext
+    .select()
+    .from(SYSTEM_USERS)",Using `select()` without specifying columns in the subquery fetches all columns from the SYSTEM_USERS table. Specify only the USER_PASSWORD_HASH column needed for the crypt function.

@@ -1,0 +1,3 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+Daniil-Vl_link-tracker,ID Required,scrapper/src/main/java/edu/java/domain/jooq/generated/tables/Link.java,67,68,"public final TableField<LinkRecord, Long> ID =
+    createField(DSL.name(""ID""), SQLDataType.BIGINT.nullable(false).identity(true), this, """");","The table uses a generic 'ID' column as the primary key, but there's already a unique constraint on the 'URL' column (CONSTRAINT_23), which is a natural key suitable for identifying links. Consider using 'URL' as the primary key or renaming 'ID' to something more descriptive like 'link_id'."

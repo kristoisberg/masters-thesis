@@ -1,0 +1,31 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/AlbumService.java,40,40,.selectFrom(ALBUM),"Using selectFrom(ALBUM) fetches all columns from the ALBUM table, but only a subset of fields may be needed for AlbumListDTO. Consider using an explicit select() with only the required columns."
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/AlbumService.java,63,64,".returningResult()
+.fetchOneInto(Album.class)",Using returningResult() without specifying columns returns all columns from the table. Consider using returningResult() with explicit column arguments or returning() with specific fields needed for AlbumDetailsDTO.
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/AlbumService.java,76,76,.selectFrom(ALBUM),"Using selectFrom(ALBUM) fetches all columns from the ALBUM table. Consider using an explicit select() with only the columns needed for AlbumDetailsDTO (id, name, description, createdOn, tags, thumbnailId)."
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/AlbumService.java,147,147,.select(IMAGE.asterisk()),Using IMAGE.asterisk() fetches all columns from the IMAGE table. Consider selecting only the specific columns required by the ImageDetailsDTO to improve query performance.
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/image/ImageService.java,57,57,.selectFrom(IMAGE),"Using selectFrom(IMAGE) fetches all columns from the IMAGE table, which may retrieve unnecessary data. Consider using select() with only the specific columns needed for the Image class."
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/image/ImageService.java,86,86,.selectFrom(IMAGE),Using selectFrom(IMAGE) fetches all columns from the IMAGE table when only fields needed for ImageListDTO may be required. Consider selecting only the specific columns needed for the conversion.
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/image/ImageService.java,205,205,.returningResult(),Using returningResult() without arguments returns all columns from the IMAGE table. Consider using returningResult() with only the specific columns needed for the ImageDetailsDTO conversion.
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/SearchService.java,26,26,.selectFrom(IMAGE),"Using selectFrom(IMAGE) fetches all columns from the IMAGE table, which may retrieve unnecessary data and impact performance. Consider explicitly selecting only the required columns using .select(IMAGE.ID, IMAGE.NAME, ...).from(IMAGE) instead."
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/UserService.java,124,124,return dsl.selectFrom(USER).where(USER.ID.eq(id)).fetchOneInto(User.class);,"Using `selectFrom(USER)` fetches all columns from the USER table, which can retrieve unnecessary data and impact performance. Consider explicitly selecting only the required columns, e.g., `dsl.select(USER.ID, USER.USERNAME, ...).from(USER)`."
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/UserService.java,130,130,.selectFrom(USER),Using `selectFrom(USER)` fetches all columns from the USER table when only specific fields may be needed. Consider explicitly selecting only the required columns to improve query efficiency.
+GyrosOfWar_imagehive,Implicit Columns,backend/src/main/java/com/github/gyrosofwar/imagehive/service/UserService.java,151,151,.selectFrom(USER),Using `selectFrom(USER)` fetches all columns from the USER table for listing users. Consider explicitly selecting only the columns needed for the user list display to reduce data transfer.
+GyrosOfWar_imagehive,ID Required,backend/src/main/java/com/github/gyrosofwar/imagehive/sql/tables/Album.java,56,61,"public final TableField<AlbumRecord, Long> ID = createField(
+    DSL.name(""id""),
+    SQLDataType.BIGINT.nullable(false).identity(true),
+    this,
+    """"
+);",The primary key column is generically named 'id' instead of a more descriptive name like 'album_id'. Rename the column to 'album_id' to make it self-documenting and avoid ambiguity in queries with multiple tables.
+GyrosOfWar_imagehive,ID Required,backend/src/main/java/com/github/gyrosofwar/imagehive/sql/tables/Image.java,56,61,"public final TableField<ImageRecord, UUID> ID = createField(
+    DSL.name(""id""),
+    SQLDataType.UUID.nullable(false),
+    this,
+    """"
+);",The primary key column is generically named 'id' instead of a more descriptive name like 'image_id'. Consider renaming the column to 'image_id' to make it self-documenting and avoid ambiguity when joining tables.
+GyrosOfWar_imagehive,ID Required,backend/src/main/java/com/github/gyrosofwar/imagehive/sql/tables/User.java,54,59,"public final TableField<UserRecord, Long> ID = createField(
+    DSL.name(""id""),
+    SQLDataType.BIGINT.nullable(false).identity(true),
+    this,
+    """"
+);",The primary key column is generically named 'id' instead of a more descriptive name like 'user_id'. Consider renaming the column to 'user_id' to make it self-documenting and to avoid ambiguity when joining tables.

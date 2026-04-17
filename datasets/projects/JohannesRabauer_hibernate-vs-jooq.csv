@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+JohannesRabauer_hibernate-vs-jooq,Implicit Columns,backend-jooq/src/main/java/dev/rabauer/hibernate_vs_jooq/backend_jooq/db/repositories/CustomerRepository.java,21,21,return dsl.selectFrom(CUSTOMER),"Using selectFrom(CUSTOMER) fetches all columns from the CUSTOMER table, which may retrieve unnecessary data and impact performance. Consider explicitly selecting only the required columns using dsl.select(CUSTOMER.CUSTOMER_ID, CUSTOMER.FIRST_NAME, ...).from(CUSTOMER)."

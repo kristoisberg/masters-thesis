@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+beargiles_youtube-dojo,Implicit Columns,persistence/persistence-jooq-kata/src/main/java/com/coyotesong/dojo/youtube/repository/jooq/CommonTableExpressionForList.java,77,77,"this.listField = selectFrom(cte).asMultiset().as(name(cteName, listFieldName));",Using `selectFrom(cte)` fetches all columns from the CTE without explicitly specifying which columns are needed. Consider using `select(specificFields).from(cte)` to explicitly list only the required columns.

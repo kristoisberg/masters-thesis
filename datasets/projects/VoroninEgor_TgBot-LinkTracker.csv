@@ -1,0 +1,11 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+VoroninEgor_TgBot-LinkTracker,ID Required,scrapper/src/main/java/edu/java/jooq/tables/Links.java,67,68,"public final TableField<LinksRecord, Long> ID =
+    createField(DSL.name(""id""), SQLDataType.BIGINT.nullable(false).identity(true), this, """");","The table has a synthetic primary key named 'ID' even though there's already a unique constraint on the 'URL' column (CONSTRAINT_45), which could serve as a natural primary key. Consider using the URL as the primary key if it's truly unique and immutable, or rename the ID column to something more descriptive like 'link_id'."
+VoroninEgor_TgBot-LinkTracker,Beware of the Unknown,scrapper/src/main/java/edu/java/jooq/tables/Links.java,79,84,"public final TableField<LinksRecord, LocalDateTime> LAST_CHECK = createField(DSL.name(""last_check""),
+    SQLDataType.LOCALDATETIME(6)
+        .defaultValue(DSL.field(DSL.raw(""'1970-01-01 00:00:00'""), SQLDataType.LOCALDATETIME)),
+    this,
+    """"
+);","The LAST_CHECK column uses a magic date value ('1970-01-01 00:00:00') as a default to represent 'never checked', rather than using NULL. This Unix epoch date has no semantic meaning in this context and could lead to confusion. Consider making the column nullable and using NULL to represent links that have never been checked."
+VoroninEgor_TgBot-LinkTracker,ID Required,scrapper/src/main/java/edu/java/jooq/tables/Tgchats.java,65,66,"public final TableField<TgchatsRecord, Long> ID =
+    createField(DSL.name(""id""), SQLDataType.BIGINT.nullable(false).identity(true), this, """");","The primary key column is named just 'id' which is a generic, non-descriptive name that doesn't convey the table context. Consider renaming it to 'tgchat_id' to make it more meaningful and to avoid ambiguity in queries with joins."

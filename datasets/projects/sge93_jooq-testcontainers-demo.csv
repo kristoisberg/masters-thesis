@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+sge93_jooq-testcontainers-demo,Implicit Columns,src/main/java/com/espectro93/jooqdemo/BookRepository.java,22,22,dslContext.selectFrom(BOOKS),"Using selectFrom(BOOKS) fetches all columns from the BOOKS table, which can retrieve unnecessary data and impact performance. Consider using select() with only the specific columns needed, e.g., dslContext.select(BOOKS.ID, BOOKS.NAME, BOOKS.CREATION_DATE, BOOKS.AUTHOR, BOOKS.CONTENT).from(BOOKS)."

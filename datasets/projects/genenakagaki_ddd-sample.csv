@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+genenakagaki_ddd-sample,Implicit Columns,query/src/main/java/com/genenakagaki/checklist/query/user/UserAuthenticationQueryServiceImpl.java,20,20,dsl.select().from(USER),"Using `select()` without specifying columns fetches all columns from the USER table, even though only `userId`, `username`, and `encodedPassword` are needed. Replace with `dsl.select(USER.USER_ID, USER.USERNAME, USER.ENCODED_PASSWORD)` to fetch only the required columns."

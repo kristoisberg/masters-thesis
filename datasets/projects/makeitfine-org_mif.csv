@@ -1,0 +1,4 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+makeitfine-org_mif,ID Required,yaypay/src/main/java/com/stingion/yaypay/data/model/tables/Book.java,52,53,"public final TableField<BookRecord, Integer> ID = createField(DSL.name(""id""), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true),
+        this, """");",The primary key column is generically named 'id' instead of a more descriptive name like 'book_id'. Consider renaming the column to 'book_id' to make it self-documenting and avoid ambiguity when joining tables.
+makeitfine-org_mif,Implicit Columns,yaypay/src/main/java/com/stingion/yaypay/data/service/BookService.java,24,24,.selectFrom(Tables.BOOK),"Using selectFrom() fetches all columns from the BOOK table, which may retrieve unnecessary data and impact performance. Consider using select() with only the specific columns needed, such as context.select(Tables.BOOK.TITLE, Tables.BOOK.AUTHOR).from(Tables.BOOK)."

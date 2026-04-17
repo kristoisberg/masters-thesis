@@ -1,0 +1,2 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+raissabeccarelli_UniBite,Keyless Entry,unibite/src/main/java/generated/tables/Piatti.java,76,76,"public final TableField<PiattiRecord, Integer> TIPOPORTATA = createField(DSL.name(""tipoPortata""), SQLDataType.INTEGER.nullable(false), this, """");",The 'tipoPortata' column appears to reference a type of dish/course but lacks a foreign key constraint to a lookup table. Consider creating a 'TipoPortata' table with a primary key and adding a foreign key constraint from this column to that table.

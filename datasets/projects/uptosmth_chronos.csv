@@ -1,0 +1,15 @@
+Project,Antipattern,File,Line from,Line to,Code fragment,Explanation
+uptosmth_chronos,ID Required,src/main/java/com/uptosmth/chronos/db/tables/Activity.java,45,47,"public final TableField<ActivityRecord, Integer> ID =
+ createField(
+ DSL.name(""id""), SQLDataType.INTEGER.nullable(false).identity(true), this, """");","The table uses a generic 'id' column as primary key while a natural unique key already exists on the 'uuid' column (SQLITE_AUTOINDEX_ACTIVITY_1). Consider using 'uuid' as the primary key since it's already unique and immutable, or rename 'id' to something more descriptive like 'activity_id'."
+uptosmth_chronos,ID Required,src/main/java/com/uptosmth/chronos/db/tables/BrowserActivity.java,43,44,"public final TableField<BrowserActivityRecord, Integer> ID =
+ createField(DSL.name(""id""), SQLDataType.INTEGER.nullable(false), this, """");",The primary key column is generically named 'id' instead of a more descriptive name like 'browser_activity_id'. Consider renaming the column to include the table name or a meaningful identifier that clarifies what entity this ID represents.
+uptosmth_chronos,ID Required,src/main/java/com/uptosmth/chronos/db/tables/EditorActivity.java,43,44,"public final TableField<EditorActivityRecord, Integer> ID =
+ createField(DSL.name(""id""), SQLDataType.INTEGER.nullable(false), this, """");","The primary key column is generically named 'id' instead of a more descriptive name like 'editor_activity_id'. Consider renaming the column to something more meaningful that identifies what entity it represents, which improves clarity in queries involving joins."
+uptosmth_chronos,ID Required,src/main/java/com/uptosmth/chronos/db/tables/Heartbeat.java,45,47,"public final TableField<HeartbeatRecord, Integer> ID =
+ createField(
+ DSL.name(""id""), SQLDataType.INTEGER.nullable(false).identity(true), this, """");",The table uses a generic 'id' column as the primary key when the 'uuid' column already exists as a natural unique identifier. Consider using 'uuid' as the primary key or renaming the synthetic key to something more descriptive like 'heartbeat_id'.
+uptosmth_chronos,ID Required,src/main/java/com/uptosmth/chronos/db/tables/MeetingActivity.java,43,44,"public final TableField<MeetingActivityRecord, Integer> ID =
+ createField(DSL.name(""id""), SQLDataType.INTEGER.nullable(false), this, """");","The primary key is named just 'id' which is a generic, non-descriptive name that doesn't convey the table context. Consider renaming it to 'meeting_activity_id' to make it more meaningful and to avoid ambiguity in queries with joins."
+uptosmth_chronos,ID Required,src/main/java/com/uptosmth/chronos/db/tables/WindowActivity.java,43,44,"public final TableField<WindowActivityRecord, Integer> ID =
+    createField(DSL.name(""id""), SQLDataType.INTEGER.nullable(false), this, """");","The primary key column is generically named 'id' instead of a more descriptive name like 'window_activity_id'. Consider renaming the column to include the table name (e.g., 'window_activity_id') to make foreign key references more self-documenting and avoid ambiguity in joins."
