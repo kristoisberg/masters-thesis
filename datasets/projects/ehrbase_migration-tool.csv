@@ -54,7 +54,7 @@ ehrbase_migration-tool,31 Flavors,service/src/main/java/org/ehrbase/migration/ex
  .asEnumDataType(org.ehrbase.migration.exporter.v0.jooq.pg.enums.ContributionChangeType.class),
  this,
  """");","The CHANGE_TYPE column uses an ENUM type to restrict allowed values, which makes it difficult to add or modify values without altering the schema. Consider creating a separate lookup table for contribution change types that can be referenced via a foreign key."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/AuditDetails.java,91,95,"public final TableField<AuditDetailsRecord, Timestamp> TIME_COMMITTED = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/AuditDetails.java,91,95,"public final TableField<AuditDetailsRecord, Timestamp> TIME_COMMITTED = createField(
  DSL.name(""time_committed""),
  SQLDataType.TIMESTAMP(6).defaultValue(DSL.field(DSL.raw(""now()""), SQLDataType.TIMESTAMP)),
  this,
@@ -64,12 +64,12 @@ ehrbase_migration-tool,ID Required,service/src/main/java/org/ehrbase/migration/e
  SQLDataType.UUID.nullable(false).defaultValue(DSL.field(DSL.raw(""uuid_generate_v4()""), SQLDataType.UUID)),
  this,
  """");","The primary key column is named just 'id', which is a generic name that doesn't convey meaning about the entity it identifies. Consider renaming it to 'composition_id' to make it more descriptive and avoid ambiguity in queries with joins."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/CompositionHistory.java,163,167,"public final TableField<CompositionHistoryRecord, Short> SYS_TENANT = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/CompositionHistory.java,163,167,"public final TableField<CompositionHistoryRecord, Short> SYS_TENANT = createField(
         DSL.name(""sys_tenant""),
         SQLDataType.SMALLINT.defaultValue(DSL.field(DSL.raw(""1""), SQLDataType.SMALLINT)),
         this,
         """");","The SYS_TENANT column has a default value but is implicitly NULLABLE, which means it can never be NULL in practice due to the default. Consider marking this column as NOT NULL to prevent inconsistent data states."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/CompoXref.java,88,92,"public final TableField<CompoXrefRecord, Short> SYS_TENANT = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/CompoXref.java,88,92,"public final TableField<CompoXrefRecord, Short> SYS_TENANT = createField(
  DSL.name(""sys_tenant""),
  SQLDataType.SMALLINT.defaultValue(DSL.field(DSL.raw(""1""), SQLDataType.SMALLINT)),
  this,
@@ -115,7 +115,7 @@ ehrbase_migration-tool,31 Flavors,service/src/main/java/org/ehrbase/migration/ex
  SQLDataType.VARCHAR.asEnumDataType(org.ehrbase.migration.exporter.v0.jooq.pg.enums.EntryType.class),
  this,
  """");","The ITEM_TYPE column uses an ENUM type (EntryType) to restrict allowed values, which makes adding or removing valid values difficult and requires schema changes. Consider using a separate lookup table to store entry types, allowing easier maintenance and modification of allowed values."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/EntryHistory.java,168,172,"public final TableField<EntryHistoryRecord, Short> SYS_TENANT = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/EntryHistory.java,168,172,"public final TableField<EntryHistoryRecord, Short> SYS_TENANT = createField(
  DSL.name(""sys_tenant""),
  SQLDataType.SMALLINT.defaultValue(DSL.field(DSL.raw(""1""), SQLDataType.SMALLINT)),
  this,
@@ -125,12 +125,12 @@ ehrbase_migration-tool,ID Required,service/src/main/java/org/ehrbase/migration/e
  SQLDataType.UUID.nullable(false).defaultValue(DSL.field(DSL.raw(""uuid_generate_v4()""), SQLDataType.UUID)),
  this,
  """");",The primary key column is generically named 'id' instead of a more descriptive name like 'event_context_id'. Consider renaming the column to include the table name for better clarity when joining tables and to avoid ambiguity in queries.
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/EventContextHistory.java,155,159,"public final TableField<EventContextHistoryRecord, Short> SYS_TENANT = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/EventContextHistory.java,155,159,"public final TableField<EventContextHistoryRecord, Short> SYS_TENANT = createField(
  DSL.name(""sys_tenant""),
  SQLDataType.SMALLINT.defaultValue(DSL.field(DSL.raw(""1""), SQLDataType.SMALLINT)),
  this,
  """");","The SYS_TENANT column has a default value but is marked as NULLABLE, which is inconsistent since a column with a default value should typically be NOT NULL. Consider adding .nullable(false) to the column definition to prevent NULL values."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/Identifier.java,100,104,"public final TableField<IdentifierRecord, Short> SYS_TENANT = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/Identifier.java,100,104,"public final TableField<IdentifierRecord, Short> SYS_TENANT = createField(
         DSL.name(""sys_tenant""),
         SQLDataType.SMALLINT.defaultValue(DSL.field(DSL.raw(""1""), SQLDataType.SMALLINT)),
         this,
@@ -140,7 +140,7 @@ DSL.name(""id""),
 SQLDataType.UUID.nullable(false).defaultValue(DSL.field(DSL.raw(""uuid_generate_v4()""), SQLDataType.UUID)),
 this,
 """");","The primary key column is named just 'id', which is a generic name that doesn't convey meaning about the entity it identifies. Consider renaming it to 'participation_id' to make it more descriptive and avoid ambiguity in queries with joins."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/ParticipationHistory.java,151,155,"public final TableField<ParticipationHistoryRecord, Short> SYS_TENANT = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/ParticipationHistory.java,151,155,"public final TableField<ParticipationHistoryRecord, Short> SYS_TENANT = createField(
         DSL.name(""sys_tenant""),
         SQLDataType.SMALLINT.defaultValue(DSL.field(DSL.raw(""1""), SQLDataType.SMALLINT)),
         this,
@@ -189,12 +189,12 @@ ehrbase_migration-tool,Keyless Entry,service/src/main/java/org/ehrbase/migration
         createField(DSL.name(""attestation_ref""), SQLDataType.UUID, this, """");","The ATTESTATION_REF column appears to reference the AttestationRef table (based on ATTESTATION_REF_PKEY existing in Keys and STATUS__STATUS_ATTESTATION_REF_FKEY pattern) but lacks a foreign key constraint. Consider adding a foreign key constraint referencing the attestation_ref table's primary key (REF, SYS_TENANT)."
 ehrbase_migration-tool,Keyless Entry,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/StatusHistory.java,141,142,"public final TableField<StatusHistoryRecord, UUID> IN_CONTRIBUTION =
         createField(DSL.name(""in_contribution""), SQLDataType.UUID.nullable(false), this, """");","The IN_CONTRIBUTION column appears to reference the Contribution table (based on CONTRIBUTION_PKEY existing in Keys and STATUS__STATUS_IN_CONTRIBUTION_FKEY pattern) but lacks a foreign key constraint. Consider adding a foreign key constraint referencing the contribution table's primary key (ID, SYS_TENANT)."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/StoredQuery.java,99,103,"public final TableField<StoredQueryRecord, Timestamp> CREATION_DATE = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/StoredQuery.java,99,103,"public final TableField<StoredQueryRecord, Timestamp> CREATION_DATE = createField(
 DSL.name(""creation_date""),
 SQLDataType.TIMESTAMP(6).defaultValue(DSL.field(DSL.raw(""CURRENT_TIMESTAMP""), SQLDataType.TIMESTAMP)),
 this,
 """");","The CREATION_DATE column has a default value but is marked as NULLABLE, which is inconsistent since it will always have a value in practice. Consider adding .nullable(false) to the column definition to enforce this constraint."
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/StoredQuery.java,108,112,"public final TableField<StoredQueryRecord, String> TYPE = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/exporter/v0/jooq/pg/tables/StoredQuery.java,108,112,"public final TableField<StoredQueryRecord, String> TYPE = createField(
 DSL.name(""type""),
 SQLDataType.VARCHAR.defaultValue(DSL.field(DSL.raw(""'AQL'::character varying""), SQLDataType.VARCHAR)),
 this,
@@ -239,7 +239,7 @@ ehrbase_migration-tool,ID Required,service/src/main/java/org/ehrbase/migration/i
         SQLDataType.UUID.nullable(false).defaultValue(DSL.field(DSL.raw(""uuid_generate_v4()""), SQLDataType.UUID)),
         this,
         """");",The primary key is named just 'id' which is a generic name that doesn't convey meaning about the entity it identifies. Consider renaming it to 'plugin_id' to make it more descriptive and avoid ambiguity in queries with joins.
-ehrbase_migration-tool,Beware of the Unknown,service/src/main/java/org/ehrbase/migration/importer/v4/jooq/pg/tables/StoredQuery.java,94,98,"public final TableField<StoredQueryRecord, String> TYPE = createField(
+ehrbase_migration-tool,Fear of the Unknown,service/src/main/java/org/ehrbase/migration/importer/v4/jooq/pg/tables/StoredQuery.java,94,98,"public final TableField<StoredQueryRecord, String> TYPE = createField(
  DSL.name(""type""),
  SQLDataType.VARCHAR.defaultValue(DSL.field(DSL.raw(""'AQL'::character varying""), SQLDataType.VARCHAR)),
  this,

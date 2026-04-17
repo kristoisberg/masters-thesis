@@ -34,18 +34,18 @@ SleepwalkerPasha/egorov_pa_project,Implicit Columns,scrapper/src/main/java/ru/ti
 Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/api/repository/IslandAnemiaLoadAction.java,39,39,select().from(TABLE)
 Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/islander/repository/loader/IslanderAnemiaLoadAction.java,30,30,select().from(TABLE)
 Subtelny/DGCraft,Implicit Columns,Islands-Plugin/islands-core/src/main/java/pl/subtelny/islands/islander/repository/loader/IslanderAnemiaLoadAction.java,38,38,select().from(TABLE)
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,62,62,tühi string nullitava väärtuse asemel
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,67,67,tühi string nullitava väärtuse asemel
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,62,62,tühi string nullitava väärtuse asemel
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,67,67,tühi string nullitava väärtuse asemel
 aytdm/study,31 Flavors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,72,72,asEnumDataType
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,77,77,tühi string nullitava väärtuse asemel
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,77,77,tühi string nullitava väärtuse asemel
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,82,82,pindala
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,97,97,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,102,102,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,107,107,statistiline väärtus
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,112,112,tühi string nullitava väärtuse asemel
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,117,117,tühi string nullitava väärtuse asemel
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,112,112,tühi string nullitava väärtuse asemel
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,117,117,tühi string nullitava väärtuse asemel
 aytdm/study,Keyless Entry,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,127,127,viide city tabeli primaarvõtmele
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,132,132,tühi string nullitava väärtuse asemel
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,132,132,tühi string nullitava väärtuse asemel
 balazskrizsan/stackjudge_aws_java,Implicit Columns,src/main/java/com/kbalazsworks/stackjudge_aws/s3/repositories/RemoteFileRepository.java,34,34,returningResult()
 balazskrizsan/stackjudge_aws_java,Implicit Columns,src/main/java/com/kbalazsworks/stackjudge_aws/s3/repositories/RemoteFileRepository.java,42,42,selectFrom(TABLE)
 boogiespook/waltz-test,Implicit Columns,waltz-data/src/main/java/com/khartec/waltz/data/app_group/AppGroupMemberDao.java,94,94,TABLE.fields()
@@ -144,7 +144,7 @@ therepanic/trustwin-casino-project,ID Required,management-game-service/src/main/
 therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/WithdrawalsTable.java,70,70,CHECK constraint väärtuste nimekirjaga
 therepanic/trustwin-casino-project,31 Flavors,management-game-service/src/main/java/eu/panic/managementgameservice/generatedClasses/tables/WithdrawalsTable.java,75,75,CHECK constraint väärtuste nimekirjaga
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,61,61,"createField(""id"""
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,66,66,tühi string nullitava väärtuse asemel
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,66,66,tühi string nullitava väärtuse asemel
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,61,61,"createField(""id"""
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,66,66,tühi string nullitava väärtuse asemel
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,66,66,tühi string nullitava väärtuse asemel
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,71,71,viide i_class tabeli primaarvõtmele

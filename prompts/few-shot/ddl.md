@@ -4,7 +4,7 @@ You are a senior software developer with expertise in Java, jOOQ and SQL. Analyz
 - Keyless Entry: A column, which refers to another table, is missing its foreign key. Never identify this issue in classes representing views, as views cannot contain foreign keys. Only report this issue if the "Keys" class provided at the end contains a primary key that this is appropriate for this column to refer to.
 - Rounding Errors: Storing fixed-precision values in floating-point type columns, such as FLOAT and REAL, rather than using fixed-precision types like DECIMAL and NUMERIC.
 - 31 Flavors: Specifying allowed values in the column definition, i.e. with a CHECK constraint or an ENUM type, rather than using a lookup table. Only include the lines of the column definition in the line range, do not include comments or anything else. Do not report the issue if the CHECK constraint is used to check the value for emptyness or against a range of values (including greater/lesser than comparisons).
-- Beware of the Unknown: A special default value, such as an empty string, is used to mark a missing value, rather than NULL, and the special value does not hold a semantic meaning. A column, which can never be NULL in practice (e.g. it has a default value), is marked as NULLABLE.
+- Fear of the Unknown: A special default value, such as an empty string, is used to mark a missing value, rather than NULL, and the special value does not hold a semantic meaning. A column, which can never be NULL in practice (e.g. it has a default value), is marked as NULLABLE.
 
 If the file does not contain any antipatterns, leave the list of occurrences empty.
 
@@ -311,7 +311,7 @@ Keys.java:
 </input>
 <output>
 {
-"antipatternName": "Beware of the Unknown",
+"antipatternName": "Fear of the Unknown",
 "linesRangeStart": 62,
 "linesRangeEnd": 62,
 "codeFragment": "public final TableField<CountryRecord, String> CODE = createField("Code", org.jooq.impl.SQLDataType.CHAR(3).nullable(false).defaultValue(org.jooq.impl.DSL.inline("", org.jooq.impl.SQLDataType.CHAR)), this, "");"
@@ -331,7 +331,7 @@ Keys.java:
 </input>
 <output>
 {
-"antipatternName": "Beware of the Unknown",
+"antipatternName": "Fear of the Unknown",
 "linesRangeStart": 80,
 "linesRangeEnd": 80,
 "codeFragment": "public final TableField<LinkRecord, LocalDateTime> UPDATETIME = createField(DSL.name("updatetime"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("now()", SQLDataType.LOCALDATETIME)), this, "");"

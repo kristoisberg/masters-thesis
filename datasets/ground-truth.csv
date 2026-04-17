@@ -31,7 +31,7 @@ alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/spri
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/DepartmentEmployee.java,91,91,Viide user tabeli primaarvõtmele
 alvin-qh/study-java,ID Required,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,61,61,"createField(DSL.name(""id"") suured tähed"
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,66,66,Viide org tabeli primaarvõtmele
-alvin-qh/study-java,Beware of the Unknown,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+alvin-qh/study-java,Fear of the Unknown,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,96,96,Viide user tabeli primaarvõtmele
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,101,101,Viide user tabeli primaarvõtmele
 alvin-qh/study-java,ID Required,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Org.java,59,59,"createField(DSL.name(""id"") suured tähed"
@@ -90,7 +90,7 @@ anyamilichenko/soa,Implicit Columns,src/main/java/dragon/adapter/jdbc/DragonDAO.
 anyamilichenko/soa,Implicit Columns,src/main/java/dragonHead/adapter/jdbc/DragonHeadDAO.java,29,29,.returning()
 anyamilichenko/soa,Implicit Columns,src/main/java/dragonHead/adapter/jdbc/DragonHeadDAO.java,38,38,.returning()
 anyamilichenko/soa,Implicit Columns,src/main/java/dragonHead/adapter/jdbc/DragonHeadDAO.java,44,44,.selectFrom()
-APSfurizon/fz-backend,Beware of the Unknown,application/src/main/java/net/furizon/backend/feature/fursuits/finder/JooqFursuitFinder.java,88,96,nullable column in NOT IN
+APSfurizon/fz-backend,Fear of the Unknown,application/src/main/java/net/furizon/backend/feature/fursuits/finder/JooqFursuitFinder.java,88,96,nullable column in NOT IN
 APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,155,160,likeIgnoreCase(% … %)
 APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,163,163,likeIgnoreCase(% … %)
 APSfurizon/fz-backend,Poor Man’s Search Engine,application/src/main/java/net/furizon/backend/feature/user/finder/JooqUserFinder.java,170,170,likeIgnoreCase(% … %)
@@ -116,32 +116,32 @@ APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/gen
 APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Roles.java,74,74,Alternatiivne ID on olemas
 APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Rooms.java,73,73,Alternatiivne ID on olemas (tellimuses saab olla ainult üks ruum)
 APSfurizon/fz-backend,ID Required,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Sessions.java,71,71,"createField(DSL.name(""id"")"
-APSfurizon/fz-backend,Beware of the Unknown,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Users.java,92,92,Should be non-nullable
+APSfurizon/fz-backend,Fear of the Unknown,jooq-common/src/main/java/net/furizon/jooq/generated/tables/Users.java,92,92,Should be non-nullable
 auliardana/Java-orm-jooq,ID Required,src/main/java/org/example/generated_sources/tables/Mahasiswa.java,56,56,"createField(DSL.name(""id"")"
 aytdm/study,ID Required,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,62,62,createField(“ID” 
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,72,72,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,72,72,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,31 Flavors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,72,72,asEnumDataType
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,82,82,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,97,97,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,102,102,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,107,107,statistiline väärtus
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,112,112,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,112,112,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,Keyless Entry,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,127,127,viide city tabeli primaarvõtmele
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,117,117,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,132,132,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,117,117,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,132,132,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,31 Flavors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,72,72,asEnumDataType
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,77,77,Protsent
 aytdm/study,Implicit Columns,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/repository/CityRepository.java,31,31,select().from(
 aytdm/study,Implicit Columns,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/repository/CountryRepository.java,19,19,select().from(
 balazskrizsan/stackjudge_aws_java,ID Required,src/main/java/com/kbalazsworks/stackjudge_aws/db/tables/RemoteFiles.java,54,54,"createField(DSL.name(""id"")"
-balazskrizsan/stackjudge_aws_java,Beware of the Unknown,src/main/java/com/kbalazsworks/stackjudge_aws/db/tables/RemoteFiles.java,54,54,Should be non-nullable
+balazskrizsan/stackjudge_aws_java,Fear of the Unknown,src/main/java/com/kbalazsworks/stackjudge_aws/db/tables/RemoteFiles.java,54,54,Should be non-nullable
 balazskrizsan/stackjudge_aws_java,Phantom Files,src/main/java/com/kbalazsworks/stackjudge_aws/db/tables/RemoteFiles.java,59,59,Laetakse üles samas protsessis
 balazskrizsan/stackjudge_aws_java,Implicit Columns,src/main/java/com/kbalazsworks/stackjudge_aws/s3/repositories/RemoteFileRepository.java,34,34,returningResult()
 balazskrizsan/stackjudge_aws_java,Implicit Columns,src/main/java/com/kbalazsworks/stackjudge_aws/s3/repositories/RemoteFileRepository.java,42,42,selectFrom(
@@ -156,7 +156,7 @@ Blackdread/rest-filter,ID Required,src/test/java/org/blackdread/lib/restfilter/d
 Blackdread/rest-filter,Keyless Entry,src/test/java/org/blackdread/lib/restfilter/demo/jooq/tables/ChildEntity.java,137,137,viide parent_entity tabeli primaarvõtmele
 Blackdread/rest-filter,ID Required,src/test/java/org/blackdread/lib/restfilter/demo/jooq/tables/ParentEntity.java,87,87,createField(“ID” suured tähed
 BluBluBlaBla/vidsummize,ID Required,src/main/java/com/vidsummize/jooq/tables/Video.java,57,57,"createField(DSL.name(""id"")"
-BluBluBlaBla/vidsummize,Beware of the Unknown,src/main/java/com/vidsummize/jooq/tables/Video.java,77,77,Should be non-nullable
+BluBluBlaBla/vidsummize,Fear of the Unknown,src/main/java/com/vidsummize/jooq/tables/Video.java,77,77,Should be non-nullable
 BluBluBlaBla/vidsummize,Implicit Columns,src/main/java/com/vidsummize/repositories/VideoRepositoryImpl.java,46,46,selectFrom(
 BluBluBlaBla/vidsummize,Implicit Columns,src/main/java/com/vidsummize/repositories/VideoRepositoryImpl.java,54,54,selectFrom(
 boogiespook/waltz-test,Poor Man’s Search Engine,waltz-data/src/main/java/com/khartec/waltz/data/JooqUtilities.java,221,221,likeIgnoreCase(% … %)
@@ -410,14 +410,14 @@ boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/wal
 boogiespook/waltz-test,Implicit Columns,waltz-jobs/src/main/java/com/khartec/waltz/jobs/tools/importers/ScenarioRatingImporter.java,73,73,select().from(
 boogiespook/waltz-test,Implicit Columns,waltz-web/src/main/java/com/khartec/waltz/web/endpoints/extracts/AttestationExtractor.java,73,73,TABLE.fields()
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AccessLog.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AccessLog.java,81,81,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AccessLog.java,81,81,Should be non-nullable
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Actor.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Actor.java,81,81,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Actor.java,81,81,Should be non-nullable
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,71,71,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,76,76,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,71,71,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,76,76,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,91,91,viide organisational_unit tabeli primaarvõtmele
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,106,106,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Application.java,106,106,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ApplicationGroup.java,61,61,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ApplicationGroupEntry.java,65,65,viide application tabeli primaarvõtmele
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AssessmentDefinition.java,61,61,createField(“id”
@@ -438,16 +438,16 @@ boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/co
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AuthoritativeSource.java,65,75,parent_kind + parent_id
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/AuthoritativeSource.java,80,80,viide application tabeli primaarvõtmele
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,66,66,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,71,71,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,81,81,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,66,66,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,71,71,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,81,81,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,86,91,parent_kind + parent_id
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,101,101,Puuduv kuupäev tähistatud null timestampiga
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Bookmark.java,101,101,Puuduv kuupäev tähistatud null timestampiga
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,60,60,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,65,65,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Naive Trees,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,65,65,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,115,115,viide organisational_unit tabeli primaarvõtmele
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,115,115,"vaikeväärtus number 0, mis teeb võõrvõtme vigaseks"
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeInitiative.java,115,115,"vaikeväärtus number 0, mis teeb võõrvõtme vigaseks"
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeLog.java,61,61,createField(“id”
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ChangeLog.java,66,71,parent_kind + parent_id
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ComplexityScore.java,60,65,entity_kind + entity_id
@@ -456,7 +456,7 @@ boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/co
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataType.java,79,79,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Naive Trees,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataType.java,79,79,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataTypeUsage.java,59,64,entity_kind + entity_id
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataTypeUsage.java,74,74,Puuduv väärtus tähistatud tühja sõnega
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataTypeUsage.java,74,74,Puuduv väärtus tähistatud tühja sõnega
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DataTypeUsage.java,89,89,viide data_type tabeli primaarvõtmele
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DrillGridDefinition.java,61,61,createField(“id”
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/DrillGridDefinition.java,71,76,x_entity_kind + x_entity_id
@@ -497,7 +497,7 @@ boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-so
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Involvement.java,57,62,entity_kind + entity_id
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Involvement.java,77,77,viide involvement_kind tabeli primaarvõtmele
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/InvolvementKind.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/InvolvementKind.java,76,76,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/InvolvementKind.java,76,76,Should be non-nullable
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/LogicalDataElement.java,60,60,createField(“id”
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/LogicalFlow.java,86,86,createField(“id”
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/LogicalFlow.java,61,66,source_entity_kind + source_entity_id
@@ -508,28 +508,28 @@ boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/co
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,66,66,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Naive Trees,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,66,66,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,76,76,viide measurable_category tabeli primaarvõtmele
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,96,96,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Measurable.java,96,96,Should be non-nullable
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableCategory.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableCategory.java,81,81,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableCategory.java,81,81,Should be non-nullable
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableRating.java,61,66,entity_kind + entity_id
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/MeasurableRating.java,71,71,viide measurable tabeli primaarvõtmele
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/OrganisationalUnit.java,60,60,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/OrganisationalUnit.java,75,75,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,Naive Trees,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/OrganisationalUnit.java,75,75,"Viide iseenda primaarvõtmele, puustruktuur"
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,60,60,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,80,80,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,85,85,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,80,80,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,85,85,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,Naive Trees,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,95,95,"Viide iseenda employee_id väljale, mis pole primaarvõti"
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,95,95,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,100,100,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,105,105,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,110,110,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,95,95,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,100,100,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,105,105,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,110,110,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/Person.java,115,115,viide organisational_unit tabeli primaarvõtmele
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PersonHierarchy.java,69,69,Puuduv väärtus tähistatud “võimatult suure” väärtusega
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PersonHierarchy.java,69,69,Puuduv väärtus tähistatud “võimatult suure” väärtusega
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveDefinition.java,60,60,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveDefinition.java,85,85,viide rating_scheme tabeli primaarvõtmele
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveRating.java,60,65,entity_kind + entity_id
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveRating.java,75,75,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PerspectiveRating.java,75,75,Should be non-nullable
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,61,61,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,66,66,viide physical_specification tabeli primaarvõtmele
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/PhysicalFlow.java,106,106,viide logical_flow tabeli primaarvõtmele
@@ -567,11 +567,11 @@ boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-so
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ScenarioRatingItem.java,86,91,row_kind + row_id
 boogiespook/waltz-test,Polymorphic Associations,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ScenarioRatingItem.java,96,101,column_kind + column_id
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ServerInformation.java,61,61,createField(“id”
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ServerInformation.java,101,101,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/ServerInformation.java,101,101,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SoftwarePackage.java,60,60,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SoftwareUsage.java,52,52,viide application tabeli primaarvõtmele
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SoftwareUsage.java,57,57,viide software_package tabeli primaarvõtmele
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SourceDataRating.java,85,85,Should be non-nullable
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SourceDataRating.java,85,85,Should be non-nullable
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/StaticPanel.java,60,60,createField(“id”
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstance.java,62,62,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstance.java,67,67,viide survey_run tabeli primaarvõtmele
@@ -582,8 +582,8 @@ boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyInstanceRecipient.java,70,70,viide person tabeli primaarvõtmele
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,60,60,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,65,65,viide survey_template tabeli primaarvõtmele
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,80,80,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
-boogiespook/waltz-test,Beware of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,100,100,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,80,80,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
+boogiespook/waltz-test,Fear of the Unknown,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestion.java,100,100,Rakendus kohtleb välja mitte-nullitavana (vaikeväärtus rakenduse tasandil)
 boogiespook/waltz-test,ID Required,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionDropdownEntry.java,60,60,createField(“id”
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionDropdownEntry.java,65,65,viide survey_question tabeli primaarvõtmele
 boogiespook/waltz-test,Keyless Entry,waltz-schema/target/generated-sources/jooq/com/khartec/waltz/schema/tables/SurveyQuestionResponse.java,62,62,viide survey_instance tabeli primaarvõtmele
@@ -667,8 +667,8 @@ DrBrother/notification-system,Implicit Columns,scrapper/src/main/java/ru/tinkoff
 DrBrother/notification-system,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/dao/jooq/JooqSubscriptionDAOImpl.java,40,40,select(TABLE).from(TABLE)
 DrBrother/notification-system,ID Required,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Chat.java,66,66,"createField(DSL.name(""id"")"
 DrBrother/notification-system,ID Required,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,70,70,"createField(DSL.name(""id"")"
-DrBrother/notification-system,Beware of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,80,80,Should be non-nullable
-DrBrother/notification-system,Beware of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,85,85,Should be non-nullable
+DrBrother/notification-system,Fear of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,80,80,Should be non-nullable
+DrBrother/notification-system,Fear of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,85,85,Should be non-nullable
 ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,144,144,selectFrom(
 ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,279,279,selectFrom(
 ebi-gene-expression-group/annotare2,Implicit Columns,app/integration/ae-subs-tracking/src/main/java/uk/ac/ebi/fg/annotare2/autosubs/SubsTracking.java,297,297,selectFrom(
@@ -685,7 +685,7 @@ Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jo
 Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Chat.java,69,70,"createField(DSL.name(""id"")"
 Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Link.java,75,76,"createField(DSL.name(""id"")"
 Efler/telegram-scrapper-bot,ID Required,jooqcodegen/src/main/java/edu/eflerrr/jooqcodegen/generated/tables/Tracking.java,72,73,"createField(DSL.name(""id"")"
-Efler/telegram-scrapper-bot,Beware of the Unknown,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,49,49,"Puudumist tähistatakse UTC nullajaga, põhjustab teatud kohtades keerulisemat loogikat"
+Efler/telegram-scrapper-bot,Fear of the Unknown,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,49,49,"Puudumist tähistatakse UTC nullajaga, põhjustab teatud kohtades keerulisemat loogikat"
 Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,73,73,selectFrom(
 Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkService.java,106,106,selectFrom(
 Efler/telegram-scrapper-bot,Implicit Columns,scrapper/src/main/java/edu/eflerrr/scrapper/service/jooq/JooqLinkUpdateService.java,190,190,selectFrom(
@@ -701,9 +701,9 @@ Hellblazer/quantum-db,Implicit Columns,qdb-postgres/src/main/java/io/quantumdb/c
 Hixon10/spring-boot-security,ID Required,src/generated/jooq/ru/hixon/microservice/tables/Users.java,61,61,createField(“id”
 Hixon10/spring-boot-security,Implicit Columns,src/main/java/ru/hixon/microservice/repository/UserRepository.java,28,28,selectFrom(
 Hixon10/spring-boot-security,Readable Passwords,﻿src/test/java/ru/hixon/microservice/UserRepositoryTest.java,25,31,
-hpple/revolut-backend-test,Beware of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Accounts.java,70,70,Should be non-nullable
-hpple/revolut-backend-test,Beware of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Accounts.java,75,75,Should be non-nullable
-hpple/revolut-backend-test,Beware of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Transfers.java,80,80,Should be non-nullable
+hpple/revolut-backend-test,Fear of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Accounts.java,70,70,Should be non-nullable
+hpple/revolut-backend-test,Fear of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Accounts.java,75,75,Should be non-nullable
+hpple/revolut-backend-test,Fear of the Unknown,src/main/java/revolut/backendtest/persistence/jooq/codegen/tables/Transfers.java,80,80,Should be non-nullable
 hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,41,41,selectFrom(
 hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,49,49,selectFrom(
 hpple/revolut-backend-test,Implicit Columns,src/main/java/revolut/backendtest/service/AccountService.java,65,65,returning
@@ -716,7 +716,7 @@ jasontran320/texera_compose,Keyless Entry,core/amber/src/main/scala/edu/uci/ics/
 jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/User.java,81,81,asEnumDataType
 jasontran320/texera_compose,Entity-Attribute-Value,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/UserConfig.java,54,64,"Kasutaja ID, võti, väärtus"
 jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/UserFileAccess.java,65,65,asEnumDataType
-jasontran320/texera_compose,Beware of the Unknown,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/WorkflowExecutions.java,91,91,Should be non-nullable
+jasontran320/texera_compose,Fear of the Unknown,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/WorkflowExecutions.java,91,91,Should be non-nullable
 jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/WorkflowUserAccess.java,65,65,asEnumDataType
 jasontran320/texera_compose,Phantom Files,core/archive/old-engine/dataflow/src/main/java/edu/uci/ics/texera/dataflow/jooq/generated/tables/File.java,75,75,Faili ja viite elutsükkel on ühine (UserFileResource klass)
 jasontran320/texera_compose,Implicit Columns,core/archive/old-engine/web/src/main/java/edu/uci/ics/texera/web/resource/WorkflowResource.java,62,62,DAO.fetchOneByWid
@@ -740,8 +740,8 @@ jiangtj/jc-platform,Implicit Columns,system-server/src/test/java/com/jiangtj/pla
 jiangtj/jc-platform,Readable Passwords,system-server/src/test/java/com/jiangtj/platform/system/UserTest.java,116,116,Testis salvestatakse parool loetaval kujul
 jiangtj/jc-platform,Readable Passwords,system-server/src/test/java/com/jiangtj/platform/system/UserTest.java,136,138,Testis salvestatakse parool loetaval kujul
 jOOQ/demo,Metadata Tribbles,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/Public.java,236,266,"7 samasisulist tabelit, suuremas osas eraldatud aja järgi, saaks asendada partitsioneerimisega"
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,124,124,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,124,124,Should be non-nullable
 jOOQ/demo,31 Flavors,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,124,124,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/FilmList.java,84,84,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/NicerButSlowerFilmList.java,84,84,asEnumDataType
@@ -778,12 +778,12 @@ jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/d
 jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,46,46,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,59,59,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,72,72,selectFrom(
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
 jOOQ/demo,Metadata Tribbles,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/Public.java,237,267,"7 samasisulist tabelit, suuremas osas eraldatud aja järgi, saaks asendada partitsioneerimisega"
 jOOQ/demo,Standard Operating Procedures,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/Triggers.java,29,29,"trigger, mis kutsub välja EXECUTE FUNCTION"
 jOOQ/demo,Standard Operating Procedures,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/Triggers.java,34,34,"trigger, mis kutsub välja EXECUTE FUNCTION"
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,126,126,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,126,126,Should be non-nullable
 jOOQ/demo,31 Flavors,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,126,126,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/FilmList.java,84,84,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/NicerButSlowerFilmList.java,84,84,asEnumDataType
@@ -821,7 +821,7 @@ jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/d
 jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,46,46,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,59,59,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,72,72,selectFrom(
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
 jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-h2/src/main/java/org/jooq/mcve/java/h2/tables/Test.java,55,55,"createField(DSL.name(""id"") suured tähed"
 jOOQ/jOOQ-mcve,Implicit Columns,jOOQ-mcve-java-h2/src/test/java/org/jooq/mcve/test/java/h2/JavaTest.java,45,45,fetchOne
 jOOQ/jOOQ-mcve,ID Required,jOOQ-mcve-java-mariadb/src/main/java/org/jooq/mcve/java/mariadb/tables/Test.java,55,55,"createField(DSL.name(""id"")"
@@ -929,7 +929,7 @@ Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu
 Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqLinkRepository.java,78,78,select().from(
 Macbeth-Klm/Tinkoff-java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/api/domain/repository/jooq/JooqLinkRepository.java,91,91,selectFrom(
 MahjongRepository/YagiMotel,ID Required,src/main/java/org/yagi/motel/kernel/model/dsl/tables/State.java,54,54,"createField(DSL.name(""id"")"
-MahjongRepository/YagiMotel,Beware of the Unknown,src/main/java/org/yagi/motel/kernel/model/dsl/tables/State.java,59,59,Should be non-nullable
+MahjongRepository/YagiMotel,Fear of the Unknown,src/main/java/org/yagi/motel/kernel/model/dsl/tables/State.java,59,59,Should be non-nullable
 MahjongRepository/YagiMotel,Implicit Columns,src/main/java/org/yagi/motel/kernel/repository/StateRepository.java,52,52,select().from(
 matuolis/vehicle-marketplace-be,ID Required,src/main/java/org/example/generated/jooq/tables/Categories.java,60,60,"createField(DSL.name(""id"")"
 matuolis/vehicle-marketplace-be,ID Required,src/main/java/org/example/generated/jooq/tables/Comments.java,60,60,"createField(DSL.name(""id"")"
@@ -975,10 +975,10 @@ Ne1loff/OnboardingPlatform,Implicit Columns,src/main/java/com/example/onboarding
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/GitRepository.java,61,61,"createField(DSL.name(""id"")"
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/Link.java,60,60,"createField(DSL.name(""id"")"
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/StackoverflowQuestion.java,61,61,"createField(DSL.name(""id"")"
-NevinTure/java-course-2024,Beware of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/StackoverflowQuestion.java,86,86,Should be non-nullable
+NevinTure/java-course-2024,Fear of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/StackoverflowQuestion.java,86,86,Should be non-nullable
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,58,58,"createField(DSL.name(""id"")"
 NevinTure/java-course-2024,31 Flavors,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,63,63,SQLDataType.VARCHAR.asEnumDataType
-NevinTure/java-course-2024,Beware of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,63,63,Should be non-nullable
+NevinTure/java-course-2024,Fear of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,63,63,Should be non-nullable
 NevinTure/java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/repositories/jooq/JooqChatLinkRepository.java,55,55,select().from(
 NevinTure/java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/repositories/jooq/JooqChatRepository.java,56,56,select().from(
 NevinTure/java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/repositories/jooq/JooqLinkRepository.java,32,32,select().from(
@@ -1024,7 +1024,7 @@ ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/ta
 ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/AppUser.java,59,60,"createField(DSL.name(""id"")"
 ralscha/attic,31 Flavors,travellog/server/src/main/java/ch/rasc/travellog/db/tables/AppUser.java,87,88,"CHECK constraint, tekstiline väärtus"
 ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,60,61,"createField(DSL.name(""id"")"
-ralscha/attic,Beware of the Unknown,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,107,111,puuduvat aega tähistatakse “nullkuupäevaga”
+ralscha/attic,Fear of the Unknown,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,107,111,puuduvat aega tähistatakse “nullkuupäevaga”
 ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/LogPhoto.java,60,61,"createField(DSL.name(""id"")"
 ralscha/attic,Phantom Files,travellog/server/src/main/java/ch/rasc/travellog/db/tables/LogPhoto.java,129,130,"Viite elutsükkel on sama, mis failil"
 ralscha/attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Travel.java,59,60,"createField(DSL.name(""id"")"
@@ -1066,14 +1066,14 @@ rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables
 rodano/rodano,Jaywalking,backend/src/main/java/ch/rodano/core/model/jooq/tables/Mail.java,122,122,"Mitu meili saajat, komaga eraldatud"
 rodano/rodano,Rounding Errors,backend/src/main/java/ch/rodano/core/model/jooq/tables/PaymentTarget.java,97,97,rahaline väärtus
 rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Resource.java,68,68,Alternatiivne ID on olemas
-rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Resource.java,118,118,Should be non-nullable
+rodano/rodano,Fear of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Resource.java,118,118,Should be non-nullable
 rodano/rodano,Phantom Files,backend/src/main/java/ch/rodano/core/model/jooq/tables/Resource.java,123,123,"Faili hallatakse rakenduse poolt, eluiga sama välja elueaga"
 rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,78,78,Alternatiivne ID on olemas
-rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,93,93,Should be non-nullable
-rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,108,108,Should be non-nullable
+rodano/rodano,Fear of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,93,93,Should be non-nullable
+rodano/rodano,Fear of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/Robot.java,108,108,Should be non-nullable
 rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,68,68,Alternatiivne ID on olemas
-rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,108,108,Should be non-nullable
-rodano/rodano,Beware of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,123,123,Should be non-nullable
+rodano/rodano,Fear of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,108,108,Should be non-nullable
+rodano/rodano,Fear of the Unknown,backend/src/main/java/ch/rodano/core/model/jooq/tables/RobotAudit.java,123,123,Should be non-nullable
 rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/Scope.java,77,77,Alternatiivne ID on olemas
 rodano/rodano,ID Required,backend/src/main/java/ch/rodano/core/model/jooq/tables/ScopeAudit.java,71,71,Alternatiivne ID on olemas
 rodano/rodano,Jaywalking,backend/src/main/java/ch/rodano/core/model/jooq/tables/User.java,156,156,"Mitu eelnevat parooli, komaga eraldatud"
@@ -1288,7 +1288,7 @@ tapis-project/tapis-notifications,Poor Man’s Search Engine,tapis-notifications
 tapis-project/tapis-notifications,Poor Man’s Search Engine,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,2322,2322,NOT LIKE tundmatu sisendiga
 tapis-project/tapis-notifications,Implicit Columns,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/dao/NotificationsDaoImpl.java,2445,2445,selectFrom(
 tapis-project/tapis-notifications,Multicolumn Attributes,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/gen/jooq/tables/Subscriptions.java,96,111,mitu filtrit eri väljadel
-tapis-project/tapis-notifications,Beware of the Unknown,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/gen/jooq/tables/Subscriptions.java,126,126,puuduva väärtuse tähistamiseks kasutusel -1
+tapis-project/tapis-notifications,Fear of the Unknown,tapis-notificationslib/src/main/java/edu/utexas/tacc/tapis/notifications/gen/jooq/tables/Subscriptions.java,126,126,puuduva väärtuse tähistamiseks kasutusel -1
 therepanic/lapayment-crypto-pay-system,ID Required,src/main/java/com/example/jooq/model/tables/Conclusions.java,56,56,"createField(DSL.name(""id"")"
 therepanic/lapayment-crypto-pay-system,Rounding Errors,src/main/java/com/example/jooq/model/tables/Conclusions.java,66,66,"Krüptoraha rahaline väärtus, levinud plokiahelatel max 18 komakohta, sobib NUMERIC jaoks igas andmebaasis"
 therepanic/lapayment-crypto-pay-system,ID Required,src/main/java/com/example/jooq/model/tables/Payments.java,56,56,"createField(DSL.name(""id"")"
@@ -1420,7 +1420,7 @@ therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/
 therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/main/java/eu/panic/managementgameservice/template/repository/implement/ReplenishmentRepositoryImpl.java,20,20,selectFrom(
 therepanic/trustwin-casino-project,Implicit Columns,management-game-service/src/main/java/eu/panic/managementgameservice/template/repository/implement/UserRepositoryImpl.java,35,35,selectFrom(
 wuhunyu/jooq-transaction,ID Required,src/main/java/top/wuhunyu/jooq/transaction/codegen/tables/TUser.java,53,53,"createField(DSL.name(""id"")"
-wuhunyu/jooq-transaction,Beware of the Unknown,src/main/java/top/wuhunyu/jooq/transaction/codegen/tables/TUser.java,58,58,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+wuhunyu/jooq-transaction,Fear of the Unknown,src/main/java/top/wuhunyu/jooq/transaction/codegen/tables/TUser.java,58,58,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 wuhunyu/jooq-transaction,Implicit Columns,src/main/java/top/wuhunyu/jooq/transaction/service/UserService4Jooq.java,37,37,DAO.fetchOneById
 xnelo/filearch,ID Required,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Artifacts.java,56,56,"createField(DSL.name(""id"")"
 xnelo/filearch,Keyless Entry,jooq/src/main/java/com/xnelo/filearch/jooq/tables/Artifacts.java,61,61,
@@ -1479,26 +1479,26 @@ yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishar
 yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IUserDbServiceImpl.java,41,41,selectFrom(
 yangjinguang/i-share-server,Implicit Columns,src/main/java/com/pingyueryou/ishare/dbservice/impl/IUserDbServiceImpl.java,56,56,selectFrom(
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,71,71,viide i_grade tabeli primaarvõtmele
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,76,76,puuduva väärtuse tähistamiseks 999999
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IClass.java,76,76,puuduva väärtuse tähistamiseks 999999
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,71,71,puuduva väärtuse tähistamiseks 999999
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IGrade.java,71,71,puuduva väärtuse tähistamiseks 999999
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,61,61,createField(“id”
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,66,66,viide i_user tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,76,76,viide i_class tabeli primaarvõtmele
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIdAuthOrder.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,71,71,puuduva väärtuse tähistamiseks 999999
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IIndexBanner.java,71,71,puuduva väärtuse tähistamiseks 999999
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,71,71,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,76,76,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,71,71,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,76,76,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,91,91,viide i_user tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItem.java,96,96,viide i_class tabeli primaarvõtmele
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,61,61,createField(“id”
@@ -1507,17 +1507,17 @@ yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/j
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,76,76,viide i_class tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemLendOrder.java,81,81,viide i_student tabeli primaarvõtmele
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTag.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTag.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTag.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTagItem.java,61,61,createField(“id”
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTagItem.java,66,66,viide i_item tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IItemTagItem.java,71,71,viide i_item_tag tabeli primaarvõtmele
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,71,71,viide i_share_media tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,76,76,viide i_user tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,81,81,viide i_item tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,86,86,viide i_student tabeli primaarvõtmele
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,91,91,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShare.java,91,91,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareComment.java,61,61,createField(“id”
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareComment.java,66,66,viide i_share tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareComment.java,71,71,viide i_user tabeli primaarvõtmele
@@ -1525,20 +1525,20 @@ yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/joo
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareLike.java,66,66,viide i_share tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareLike.java,71,71,viide i_user tabeli primaarvõtmele
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,71,71,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,76,76,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,81,81,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,86,86,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,71,71,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,76,76,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,81,81,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IShareMedia.java,86,86,"puuduva väärtuse tähistamiseks kasutusel väärtus 0, millel on äriliselt teine tähendus"
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,66,66,"puuduva väärtuse tähistamiseks kasutusel tühi sõne, kuigi rakenduse tasandil on validatsioonid"
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IStudent.java,71,71,viide i_class tabeli primaarvõtmele
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,61,61,createField(“id”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,76,76,puuduva väärtuse tähistamiseks kasutusel “nullkuupäev”
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,91,91,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,66,66,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,76,76,puuduva väärtuse tähistamiseks kasutusel “nullkuupäev”
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,81,81,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUser.java,91,91,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserClass.java,61,61,createField(“id”
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserClass.java,66,66,viide i_user tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserClass.java,71,71,viide i_class tabeli primaarvõtmele
@@ -1547,8 +1547,8 @@ yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/j
 yangjinguang/i-share-server,ID Required,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,61,61,createField(“id”
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,66,66,viide i_user tabeli primaarvõtmele
 yangjinguang/i-share-server,Keyless Entry,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,71,71,viide i_student tabeli primaarvõtmele
-yangjinguang/i-share-server,Beware of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,76,76,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-ydeng11/Minance,Beware of the Unknown,src/main/java/today/ihelio/jooq/tables/Transactions.java,150,150,Should be non-nullable
+yangjinguang/i-share-server,Fear of the Unknown,src/main/java/com/pingyueryou/ishare/jooq/tables/IUserStudent.java,76,76,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+ydeng11/Minance,Fear of the Unknown,src/main/java/today/ihelio/jooq/tables/Transactions.java,150,150,Should be non-nullable
 ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,72,72,select(TABLE).from(TABLE)
 ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,79,79,select(TABLE).from(TABLE)
 ydeng11/Minance,Implicit Columns,src/main/java/today/ihelio/minance/service/AccountService.java,91,91,select(TABLE).from(TABLE)

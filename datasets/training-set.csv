@@ -28,7 +28,7 @@ alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/spri
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/DepartmentEmployee.java,91,91,Viide user tabeli primaarvõtmele
 alvin-qh/study-java,ID Required,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,61,61,"createField(DSL.name(""id"") suured tähed"
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,66,66,Viide org tabeli primaarvõtmele
-alvin-qh/study-java,Beware of the Unknown,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+alvin-qh/study-java,Fear of the Unknown,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,86,86,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,96,96,Viide user tabeli primaarvõtmele
 alvin-qh/study-java,Keyless Entry,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Employee.java,101,101,Viide user tabeli primaarvõtmele
 alvin-qh/study-java,ID Required,springboot/jooq/src/jooq/java/alvin/study/springboot/jooq/infra/model/public_/tables/Org.java,59,59,"createField(DSL.name(""id"") suured tähed"
@@ -70,23 +70,23 @@ anyamilichenko/soa,Implicit Columns,src/main/java/dragonHead/adapter/jdbc/Dragon
 anyamilichenko/soa,Implicit Columns,src/main/java/dragonHead/adapter/jdbc/DragonHeadDAO.java,44,44,.selectFrom()
 auliardana/Java-orm-jooq,ID Required,src/main/java/org/example/generated_sources/tables/Mahasiswa.java,56,56,"createField(DSL.name(""id"")"
 aytdm/study,ID Required,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,62,62,createField(“ID” 
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,72,72,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,72,72,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/City.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,31 Flavors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,72,72,asEnumDataType
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,77,77,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,82,82,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,97,97,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,102,102,statistiline väärtus
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,107,107,statistiline väärtus
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,112,112,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,112,112,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,Keyless Entry,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,127,127,viide city tabeli primaarvõtmele
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,117,117,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,132,132,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
-aytdm/study,Beware of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,117,117,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Country.java,132,132,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,62,62,puuduva väärtuse tähistamiseks kasutusel tühi sõne
+aytdm/study,Fear of the Unknown,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,67,67,puuduva väärtuse tähistamiseks kasutusel tühi sõne
 aytdm/study,31 Flavors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,72,72,asEnumDataType
 aytdm/study,Rounding Errors,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/db/world/tables/Countrylanguage.java,77,77,Protsent
 aytdm/study,Implicit Columns,005_springboot-jooq/src/main/java/com/aytdm/springbootjooq/domain/repository/CityRepository.java,31,31,select().from(
@@ -134,8 +134,8 @@ DrBrother/notification-system,Implicit Columns,scrapper/src/main/java/ru/tinkoff
 DrBrother/notification-system,Implicit Columns,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/dao/jooq/JooqSubscriptionDAOImpl.java,40,40,select(TABLE).from(TABLE)
 DrBrother/notification-system,ID Required,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Chat.java,66,66,"createField(DSL.name(""id"")"
 DrBrother/notification-system,ID Required,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,70,70,"createField(DSL.name(""id"")"
-DrBrother/notification-system,Beware of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,80,80,Should be non-nullable
-DrBrother/notification-system,Beware of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,85,85,Should be non-nullable
+DrBrother/notification-system,Fear of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,80,80,Should be non-nullable
+DrBrother/notification-system,Fear of the Unknown,scrapper/src/main/java/ru/tinkoff/edu/java/scrapper/entity/jooq/tables/Link.java,85,85,Should be non-nullable
 Hellblazer/quantum-db,ID Required,qdb-core/src/main/java/com/apollo/qdb/quantumdbSchema/tables/Changesets.java,53,53,"createField(DSL.name(""id"") suured tähed + version_id sobiks primaarvõtmeks"
 Hellblazer/quantum-db,ID Required,qdb-core/src/main/java/com/apollo/qdb/quantumdbSchema/tables/ColumnMappings.java,53,53,"createField(DSL.name(""id"") suured tähed + source + target kombinatsioon sobiks primaarvõtmeks"
 Hellblazer/quantum-db,ID Required,qdb-core/src/main/java/com/apollo/qdb/quantumdbSchema/tables/Synchronizers.java,53,53,"createField(DSL.name(""id"") suured tähed + source + target kombinatsioon sobiks primaarvõtmeks"
@@ -147,13 +147,13 @@ jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/tex
 jasontran320/texera_compose,Keyless Entry,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/PublicProject.java,59,59,viide user tabeli primaarvõtmele
 jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/User.java,81,81,asEnumDataType
 jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/UserFileAccess.java,65,65,asEnumDataType
-jasontran320/texera_compose,Beware of the Unknown,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/WorkflowExecutions.java,91,91,Should be non-nullable
+jasontran320/texera_compose,Fear of the Unknown,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/WorkflowExecutions.java,91,91,Should be non-nullable
 jasontran320/texera_compose,31 Flavors,core/amber/src/main/scala/edu/uci/ics/texera/web/model/jooq/generated/tables/WorkflowUserAccess.java,65,65,asEnumDataType
 jasontran320/texera_compose,Implicit Columns,core/archive/old-engine/web/src/main/java/edu/uci/ics/texera/web/resource/WorkflowResource.java,62,62,DAO.fetchOneByWid
 jasontran320/texera_compose,Implicit Columns,core/archive/old-engine/web/src/main/java/edu/uci/ics/texera/web/resource/WorkflowResource.java,96,96,TABLE.fields()
 jasontran320/texera_compose,Implicit Columns,core/archive/old-engine/web/src/main/java/edu/uci/ics/texera/web/resource/WorkflowResource.java,116,116,DAO.fetchOneByWid
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,124,124,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,124,124,Should be non-nullable
 jOOQ/demo,31 Flavors,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,124,124,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/FilmList.java,84,84,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-oss/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/NicerButSlowerFilmList.java,84,84,asEnumDataType
@@ -185,9 +185,9 @@ jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/d
 jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,46,46,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,59,59,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,72,72,selectFrom(
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,126,126,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-oss/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Customer.java,115,115,Should be non-nullable
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,126,126,Should be non-nullable
 jOOQ/demo,31 Flavors,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/Film.java,126,126,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/FilmList.java,84,84,asEnumDataType
 jOOQ/demo,31 Flavors,jOOQ-demo-pro/jOOQ-demo-java/src/main/java/org/jooq/demo/java/db/tables/NicerButSlowerFilmList.java,84,84,asEnumDataType
@@ -220,7 +220,7 @@ jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/d
 jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,46,46,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,59,59,selectFrom(
 jOOQ/demo,Implicit Columns,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,72,72,selectFrom(
-jOOQ/demo,Beware of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
+jOOQ/demo,Fear of the Unknown,jOOQ-demo-pro/jOOQ-demo-java/src/test/java/org/jooq/demo/java/Demo16Diagnostics.java,74,74,intentionally supplying null to equality comparison
 kamil-sita/labelle,Poor Man’s Search Engine,core-common/src/main/java/place/sita/labelle/datasource/impl/jooq/binding/JooqFilteringVisitor.java,116,116,LIKE tundmatu sisendiga
 kamil-sita/labelle,Implicit Columns,core/src/main/java/place/sita/labelle/core/repository/inrepository/image/replication/ImageReplication.java,129,129,selectFrom(
 kamil-sita/labelle,Implicit Columns,core/src/main/java/place/sita/labelle/core/repository/inrepository/image/replication/ImageReplication.java,157,157,selectFrom(
@@ -297,10 +297,10 @@ Ne1loff/OnboardingPlatform,Implicit Columns,src/main/java/com/example/onboarding
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/GitRepository.java,61,61,"createField(DSL.name(""id"")"
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/Link.java,60,60,"createField(DSL.name(""id"")"
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/StackoverflowQuestion.java,61,61,"createField(DSL.name(""id"")"
-NevinTure/java-course-2024,Beware of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/StackoverflowQuestion.java,86,86,Should be non-nullable
+NevinTure/java-course-2024,Fear of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/StackoverflowQuestion.java,86,86,Should be non-nullable
 NevinTure/java-course-2024,ID Required,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,58,58,"createField(DSL.name(""id"")"
 NevinTure/java-course-2024,31 Flavors,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,63,63,SQLDataType.VARCHAR.asEnumDataType
-NevinTure/java-course-2024,Beware of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,63,63,Should be non-nullable
+NevinTure/java-course-2024,Fear of the Unknown,scrapper/src/main/java/edu/java/scrapper/model/jooq/tables/TgChat.java,63,63,Should be non-nullable
 NevinTure/java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/repositories/jooq/JooqChatLinkRepository.java,55,55,select().from(
 NevinTure/java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/repositories/jooq/JooqChatRepository.java,56,56,select().from(
 NevinTure/java-course-2024,Implicit Columns,scrapper/src/main/java/edu/java/scrapper/repositories/jooq/JooqLinkRepository.java,32,32,select().from(

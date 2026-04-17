@@ -14,7 +14,7 @@ ralscha_attic,31 Flavors,travellog/server/src/main/java/ch/rasc/travellog/db/tab
  DSL.name(""authority""), SQLDataType.VARCHAR(10).nullable(false), this, """");","The 'authority' column uses a CHECK constraint to restrict values to 'USER' and 'ADMIN', which makes it difficult to add new authority types without modifying the schema. Consider creating a separate 'authority' lookup table and referencing it with a foreign key."
 ralscha_attic,ID Required,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,60,61,"public final TableField<LogRecord, Long> ID = createField(DSL.name(""id""),
  SQLDataType.BIGINT.nullable(false).identity(true), this, """");",The primary key column is generically named 'id' instead of a more descriptive name like 'log_id'. Consider renaming the column to 'log_id' to make it self-documenting and avoid ambiguity when joining tables.
-ralscha_attic,Beware of the Unknown,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,107,111,"public final TableField<LogRecord, LocalDateTime> UPDATED = createField(
+ralscha_attic,Fear of the Unknown,travellog/server/src/main/java/ch/rasc/travellog/db/tables/Log.java,107,111,"public final TableField<LogRecord, LocalDateTime> UPDATED = createField(
  DSL.name(""updated""),
  SQLDataType.LOCALDATETIME(0).nullable(false).defaultValue(
  DSL.field(""'0000-00-00 00:00:00'"", SQLDataType.LOCALDATETIME)),

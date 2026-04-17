@@ -3,19 +3,19 @@ Ayazkins_Java-Tinkoff-sem-2,ID Required,scrapper/src/main/java/edu/java/domain/j
     createField(DSL.name(""ID""), SQLDataType.BIGINT.nullable(false), this, """");",The primary key column is generically named 'ID' instead of a more descriptive name like 'chat_id'. Consider renaming the column to 'chat_id' to make it self-documenting and avoid ambiguity when joining tables.
 Ayazkins_Java-Tinkoff-sem-2,ID Required,scrapper/src/main/java/edu/java/domain/jooq/tables/ChatLink.java,66,67,"public final TableField<ChatLinkRecord, Long> ID =
     createField(DSL.name(""ID""), SQLDataType.BIGINT.nullable(false).identity(true), this, """");","This junction table has a synthetic 'ID' primary key even though a natural composite key (CHAT_ID, LINK_ID) already exists as a unique constraint (CONSTRAINT_8682), which would serve as a suitable primary key. Consider removing the synthetic ID column and using the composite unique constraint on (CHAT_ID, LINK_ID) as the primary key instead."
-Ayazkins_Java-Tinkoff-sem-2,Beware of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/ChatLink.java,72,73,"public final TableField<ChatLinkRecord, Long> CHAT_ID =
+Ayazkins_Java-Tinkoff-sem-2,Fear of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/ChatLink.java,72,73,"public final TableField<ChatLinkRecord, Long> CHAT_ID =
     createField(DSL.name(""CHAT_ID""), SQLDataType.BIGINT, this, """");","The CHAT_ID column is nullable but represents a foreign key reference to the CHAT table, which should never be NULL in a junction table that establishes relationships. Mark this column as NOT NULL to enforce referential integrity."
-Ayazkins_Java-Tinkoff-sem-2,Beware of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/ChatLink.java,78,79,"public final TableField<ChatLinkRecord, Long> LINK_ID =
+Ayazkins_Java-Tinkoff-sem-2,Fear of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/ChatLink.java,78,79,"public final TableField<ChatLinkRecord, Long> LINK_ID =
     createField(DSL.name(""LINK_ID""), SQLDataType.BIGINT, this, """");","The LINK_ID column is nullable but represents a foreign key reference to the LINK table, which should never be NULL in a junction table that establishes relationships. Mark this column as NOT NULL to enforce referential integrity."
 Ayazkins_Java-Tinkoff-sem-2,ID Required,scrapper/src/main/java/edu/java/domain/jooq/tables/Link.java,67,68,"public final TableField<LinkRecord, Long> ID =
     createField(DSL.name(""ID""), SQLDataType.BIGINT.nullable(false).identity(true), this, """");","The table uses a generic 'ID' column as the primary key, but there's already a unique constraint on the 'URL' column (CONSTRAINT_23) which is a natural key suitable for identifying links. Consider using 'URL' as the primary key or renaming the synthetic key to something more descriptive like 'link_id'."
-Ayazkins_Java-Tinkoff-sem-2,Beware of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/Link.java,79,84,"public final TableField<LinkRecord, OffsetDateTime> LAST_CHECKED = createField(DSL.name(""LAST_CHECKED""),
+Ayazkins_Java-Tinkoff-sem-2,Fear of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/Link.java,79,84,"public final TableField<LinkRecord, OffsetDateTime> LAST_CHECKED = createField(DSL.name(""LAST_CHECKED""),
     SQLDataType.TIMESTAMPWITHTIMEZONE(6)
         .defaultValue(DSL.field(DSL.raw(""CURRENT_TIMESTAMP""), SQLDataType.TIMESTAMPWITHTIMEZONE)),
     this,
     """"
 );","The 'LAST_CHECKED' column has a default value but is marked as NULLABLE, which can lead to ambiguity between 'never checked' (NULL) and 'checked at default time'. Consider making the column NOT NULL since it has a default value, or remove the default if NULL has a specific semantic meaning."
-Ayazkins_Java-Tinkoff-sem-2,Beware of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/Link.java,89,94,"public final TableField<LinkRecord, OffsetDateTime> LAST_UPDATED = createField(DSL.name(""LAST_UPDATED""),
+Ayazkins_Java-Tinkoff-sem-2,Fear of the Unknown,scrapper/src/main/java/edu/java/domain/jooq/tables/Link.java,89,94,"public final TableField<LinkRecord, OffsetDateTime> LAST_UPDATED = createField(DSL.name(""LAST_UPDATED""),
     SQLDataType.TIMESTAMPWITHTIMEZONE(6)
         .defaultValue(DSL.field(DSL.raw(""CURRENT_TIMESTAMP""), SQLDataType.TIMESTAMPWITHTIMEZONE)),
     this,
