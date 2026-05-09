@@ -1,0 +1,336 @@
+\documentclass{article}
+\usepackage[UKenglish]{babel}
+\usepackage{csquotes}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\lstdefinestyle{sql}{
+    language=SQL,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    identifierstyle=\color{black},
+    breaklines=true,
+    frame=single,
+    framesep=5pt,
+    framerule=0.5pt,
+    tabsize=4,
+    showstringspaces=false,
+    captionpos=b,
+    upquote=true
+}
+
+\lstdefinestyle{java}{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{green!60!black}\itshape,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4,
+    frame=single,
+    framerule=0.5pt,
+    framesep=5pt,
+    captionpos=b,
+    morekeywords={var}
+}
+
+\lstdefinestyle{search}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4,
+    frame=single,
+    framerule=0.5pt,
+    framesep=5pt,
+    captionpos=b
+}
+
+\lstdefinestyle{json}{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4,
+    frame=single,
+    framerule=0.5pt,
+    framesep=5pt,
+    captionpos=b,
+    morekeywords={var}
+}
+
+\addbibresource{sample.bib}
+
+\title{Detection of SQL Antipatterns in jOOQ Database Access Code Using Large Language Models
+    \newline\newline
+    \large{Master's thesis problem statement}
+}
+\author{
+  Kristo Isberg
+  \and
+  Erki Eessaar\\
+  \small{Supervisor}
+}
+
+\begin{document}
+\maketitle
+
+\section{Background}
+
+In this section, we introduce several concepts related to the topic of the thesis. In Section \ref{sec:sqlAntipatterns} we describe the history of SQL antipatterns and their potential impact on software systems. In Section \ref{sec:jooq} we introduce the Java database access library jOOQ Object Oriented Querying (jOOQ). Finally, in Section \ref{sec:staticAnalysis} we explore different methods of antipattern detection using static analysis, both in the context of SQL antipatterns and in broader terms.
+
+\subsection{SQL Antipatterns}\label{sec:sqlAntipatterns}
+
+SQL (Structured Query Language) antipatterns refer to frequently occurring, counterproductive solutions in database schema design or query construction that initially appear effective but ultimately result in poor performance, maintainability challenges, or compromised data integrity. The term “antipattern” was coined by Koenig in 1995 \cite[p. 46]{koenig1995patterns} and is generally used to describe common solutions to recurring problems that prove to be ineffective and have negative consequences in the long term \cites[p. 1]{karwin2023sql}[p. 4]{ambler1998process}[p. 6]{brown1998antipatterns}. 
+
+A related term, “code smell”, was coined by Beck and Fowler in 1999 \cite[Ch. 3]{fowler2019refactoring}. The term is used to describe characteristics of source code that hint towards the use of bad practices in the code \cite[pp. 71–72]{fowler2019refactoring}. In the context of this thesis, we consider the terms “antipattern” and “code smell” as rough equivalents, as many works on SQL antipatterns and code smells use these terms interchangeably, and their detection methods are generally very similar.
+
+SQL antipatterns were first described by Karwin in a book originally published in 2010 \cite{karwin2023sql}, which details “the most frequent missteps software developers naively make while using SQL” \cite[p. 1]{karwin2023sql}. Since the publication of the book by Karwin, now considered seminal work on the subject \cite[p. 336]{muse2020prevalence}, researchers and industry professionals alike have produced numerous other collections and taxonomies of SQL antipatterns, both general \cites{alshemaimri2021survey}{10.1007/978-3-031-09070-7_26}{10.1007/978-3-031-35311-6_51}{factor2014sql} and database vendor specific \cite{angelakos2025PostgreSQL}. SQL antipatterns can have a negative impact on various characteristics of affected systems, such as performance, maintainability, portability, and data integrity \cite[p. 4]{alshemaimri2021survey}.
+
+As an example, the “Implicit Columns” antipattern \cite[Ch. 19]{karwin2023sql} occurs when a \lstinline{SELECT} statement does not specify the columns that are necessary to be selected but rather selects them all using the \lstinline{*} wildcard. This degrades the maintainability of the affected system, as several database table operations (such as dropping a column) can change the ordinal positions of columns in the table. If code dependent on previously correct ordinal positions selects its data using the \lstinline{*} wildcard after the table layout has changed, it will receive columns in altered ordinal positions, resulting in faulty behaviour.
+
+Furthermore, the antipattern hinders performance, as unneeded columns must be processed by the database management system (DBMS) and the corresponding data is transferred to the affected system. This claim was confirmed by \textcite[p. 60]{lyu2019quantifying}, who studied the performance impact of SQL antipatterns in the context of local SQLite databases of Android applications. They found that on average, fixing the antipattern reduced the runtime of affected queries by 27\%, and their energy consumption by 29\%.
+
+The antipattern can also occur in the form of an \lstinline{INSERT} statement, which does not specify the list of columns to which the inserted values should be assigned, but depends on the implicit column order of the table \cite[Ch. 19]{karwin2023sql}. An example of an SQL query containing the “Implicit Columns” antipattern is shown in Listing \ref{fig:implicitColumnsSql}.
+
+\noindent\begin{minipage}{\textwidth}
+    \begin{lstlisting}[
+        style=sql, 
+        caption={A query written in SQL containing the “Implicit Columns” antipattern \protect{\cite[Ch. 19]{karwin2023sql}}}, 
+        label={fig:implicitColumnsSql}
+    ]
+SELECT * FROM employee WHERE name = 'Jack'
+    \end{lstlisting}
+\end{minipage}
+
+\subsection{jOOQ}\label{sec:jooq}
+
+jOOQ Object Oriented Querying (jOOQ)\footnote{\hyperlink{https://www.jooq.org/}{https://www.jooq.org/}} is an open-source Java library that aims to simplify and enhance the way developers interact with SQL databases. Rather than abstracting away SQL (like Object-Relational Mapping (ORM) frameworks such as Hibernate\footnote{\hyperlink{https://hibernate.org/orm/}{https://hibernate.org/orm/}} do), jOOQ integrates SQL into Java as an embedded domain-specific language (DSL) \cite{jooq2025sql}. jOOQ allows developers to build SQL queries using its DSL and execute them, leveraging code generation for enhanced type safety and Integrated Development Environment (IDE) support \cite{jooq2025codegen}. Their code generator reverse-engineers an existing database schema into a set of Java classes that model numerous database objects, such as tables, sequences, stored procedures, and user-defined types \cite{jooq2025codegen}. For situations where building SQL queries with jOOQ is not preferred, jOOQ allows executing plain SQL statements using Java Database Connectivity (JDBC), acting as an object-oriented convenience wrapper for the rather low-level JDBC API \cite{jooq2025execution}.
+
+A query written using the jOOQ DSL containing the “Implicit Columns” antipattern \cite[Ch. 19]{karwin2023sql}, equivalent to the SQL query in Listing \ref{fig:implicitColumnsSql}, is shown in Listing \ref{fig:implicitColumnsJooq}.
+
+\noindent\begin{minipage}{\textwidth}
+    \begin{lstlisting}[
+        style=java, 
+        caption={A query written in jOOQ containing the “Implicit Columns” antipattern \protect{\cite[Ch. 19]{karwin2023sql}}}, 
+        label={fig:implicitColumnsJooq}
+    ]
+var employee = dslContext.select(DSL.asterisk())
+    .from(EMPLOYEE)
+    .where(EMPLOYEE.NAME.eq("Jack"))
+    .fetchOne();
+    \end{lstlisting}
+\end{minipage}
+
+The approach jOOQ takes to integrate SQL into Java makes it a popular choice for performing complex database interactions. It is one of the most widely used methods for interacting with databases in Java projects, having more than 6,500 stars on GitHub as of October 2025 \cite{jooq2025repo}, and being widely adopted in industrial software \cite{jooq2025customers}. It is widely used both as the sole database interaction method and with an ORM such as Hibernate, to perform the most complex and critical database interactions, which ORMs struggle to perform efficiently, if they can perform them at all \cite[p. 423]{mihalcea2016high}.
+
+\subsection{Static Analysis for Antipattern Detection}\label{sec:staticAnalysis}
+
+Historically, the detection of antipatterns and code smells has been the domain of traditional static analysis methods, which take metrics-based and rule-based approaches, represented by tools such as SonarQube\footnote{\hyperlink{https://www.sonarsource.com/products/sonarqube/}{https://www.sonarsource.com/products/sonarqube/}} and PMD\footnote{\hyperlink{https://pmd.github.io/}{https://pmd.github.io/}}. 
+
+In metrics-based approaches, code smells are detected based on threshold values on software metrics, such as lines of code, complexity, and coupling. For example, a class with high complexity, low cohesion, and any direct access to foreign data could be identified as the “God Class”, also known as “Blob” code smell \cites[Ch. 3.3]{Riel1996-tv}[pp. 73–84]{brown1998antipatterns}[p. 355]{DBLP:conf/icsm/Marinescu04}.
+
+In rule-based approaches, code smells are detected by searching the Abstract Syntax Tree (AST) of the source code for suspicious patterns. For example, a class, which has a procedural name and a very high number of lines of code, has no parameters, uses global variables, and uses neither inheritance nor polymorphism, could be identified as the “Spaghetti Code” smell \cite[pp. 119–137]{brown1998antipatterns}, combining rule- and metrics-based approaches \cite[p. 27]{DBLP:journals/tse/MohaGDM10}.
+
+Although static analysis tools that use traditional methods have been effective in detecting code smells and antipatterns to an extent, they suffer from notable limitations due to the rigidity of the underlying methods. The metric- and pattern-based tools lack contextual awareness, making them prone to high false positive rates, often reporting issues, which are not actual problems upon human review, which reduces the practical usability of these tools and developers' confidence in them.
+
+To overcome the limitations of rigid thresholds and patterns, researchers have explored Machine Learning (ML) techniques for code smell detection. Rather than defining fixed thresholds or patterns, these approaches learn from data, such as human-annotated datasets of smelly and clean code. While recent approaches based on Deep Learning show promising results in terms of detection accuracy \cite[pp. 3492–3494]{DBLP:journals/cluster/MalhotraJK23}, traditional techniques remain prominent in real-world scenarios.
+
+More recently, with the rapid evolution of large language models (LLMs), they are being increasingly used to detect problematic patterns in code. LLMs have repeatedly shown advanced semantic understanding and contextual awareness in software engineering tasks \cite{DBLP:journals/corr/abs-2107-03374,DBLP:journals/corr/abs-2306-03091}. Commercial tools such as CodeRabbit\footnote{\hyperlink{https://www.coderabbit.ai/}{https://www.coderabbit.ai/}} are widely used to detect issues during code reviews, and various research has indicated that LLMs can detect code quality issues with reasonable accuracy \cites{DBLP:conf/sbes/GomesSMP25}{blaauwendraad2025evaluating}{sadik2025benchmarking}{DBLP:conf/esem/SilvaSMAV24}. Most relevantly to our work, \textcite[p. 410]{de2025effectiveness} found that both small and large language models are reasonably capable of detecting bad smells in PL/SQL code. It should be noted that the models used in many of these studies are considered outdated or deprecated by now, and repeating these studies with recent models would likely demonstrate improved performance.
+
+\section{Motivation}
+
+\textcite{muse2020prevalence} studied the prevalence of SQL antipatterns in data-intensive Java software systems and found that SQL antipatterns are prevalent in all studied application domains. They also found that compared to traditional code smells \cite[Ch. 3]{fowler2019refactoring}, SQL antipatterns tend to remain unfixed for a longer period and are more likely to persist throughout the lifetime of the software. They suggested that the reason for this could be developers' lack of awareness of SQL antipatterns and their downsides, or the comparatively low priority of the task of fixing antipatterns.
+
+Both of these reasons could be attributed to the lack of SQL antipattern detection tools, which could bring attention to the occurrences of SQL antipatterns upon their introduction. To the best of our knowledge, there currently exist two static analysis tools capable of detecting SQL antipatterns in Java code. 
+
+The first tool, \emph{DbDeo}\footnote{\hyperlink{https://github.com/tushartushar/DbDeo}{https://github.com/tushartushar/DbDeo}}, was presented by \textcite{sharma2018smelly} and is capable of detecting nine schema-related antipatterns in SQL statements embedded in numerous programming languages. They employ regular expressions to extract SQL statements from code written in a host language. The extracted SQL statements are parsed and converted into a model of the statement, which is then analysed by their smell detector. In their accuracy assessment, \emph{DbDeo} demonstrated a low rate of false positives, all of which they attributed to errors during the extraction and parsing phases.
+
+The second tool was presented by \textcite{nagy2017static} and is capable of detecting four of the query-related antipatterns described by \textcite{karwin2023sql}. Their tool uses intra-procedural string resolution to extract SQL statements from Java code, which are then parsed using a fault-tolerant SQL parser, capable of handling SQL statements with incomplete sections due to extraction errors. The tool can be accessed using a command-line interface or the \emph{SQLInspect} plug-in for the Eclipse IDE \cite{nagy2017static} \cite{nagy2018sqlinspect}.
+
+As the recommended method of constructing SQL statements with jOOQ is to use its DSL with code generation \cite{jooq2025withgen}, most statements in projects using jOOQ are not in the form of plain SQL and the SQL is generated dynamically at runtime. Since both of the mentioned tools are designed to work with plain SQL statements, which must be present within the source code, they are incapable of detecting most SQL antipatterns in such projects. Considering the high potential negative impact of SQL antipatterns \cites[p. 4]{alshemaimri2021survey}{lyu2019quantifying} and their wide prevalence in data-intensive software systems \cite{lyu2019quantifying}, we see the need for research around SQL antipatterns in jOOQ.
+
+\section{Research Goal}
+
+The primary goal of this research is the development of an LLM-based static analysis tool for detecting SQL antipatterns in database access code using jOOQ. These results can be used by developers using jOOQ to detect SQL antipatterns in their codebases, as well as tool developers looking to build tools around this topic.
+
+We focus our research on LLM-based static analysis, rather than alternatives, because of their advanced understanding of code semantics and context, which is highly desirable. Some SQL antipatterns are highly context-specific, and detecting them in jOOQ may require analysing multiple files and having an understanding of the relationships between them. The jOOQ API is also broad, and the dynamic nature of it means that SQL antipatterns can occur in many variations, making traditional static analysis even more ineffective. To the best of our knowledge, we are the first to approach LLM-based antipattern/code smell detection as a localisation task, rather than a pure classification task, and to evaluate it as such.
+
+Our secondary goal is to study the prevalence of SQL antipatterns in code that uses jOOQ and the specific manifestations of these antipatterns. These results can be used by developers who use jOOQ to gain awareness of antipattern-prone jOOQ APIs, aiding them in “Avoiding the Pitfalls of Database Programming” \cite{karwin2023sql}. Furthermore, these results can be used as input by the jOOQ maintainers to improve the documentation of such APIs or deprecate them in favour of safer alternatives.
+
+\begin{itemize}
+    \item \textbf{RQ1:} How do different LLMs compare in identifying SQL antipatterns in Java code using jOOQ for database access?
+    \item \textbf{RQ2:} How do different prompting strategies affect LLMs' accuracy in identifying SQL antipatterns in Java code using jOOQ for database access?
+    \item \textbf{RQ3:} How accurate is the developed LLM-based tool in detecting SQL antipatterns in Java code using jOOQ for database access?
+    \item \textbf{RQ4:} What are the occurrence patterns of SQL antipatterns in Java code using jOOQ for database access?
+    \item \textbf{RQ5:} Which jOOQ API methods are most frequently associated with SQL antipattern occurrences?
+\end{itemize}
+
+\section{Research Design}
+
+This research follows the principles of Design Science Research \cite{hevner2004design}. The primary design artefact produced by this research is an LLM-based SQL antipattern detection tool for jOOQ (an instantiation \cite[p. 258]{march1995design}).
+
+Additionally, we produce a human-labelled dataset of SQL antipattern occurrences in Java code using jOOQ. Moreover, we perform a large-scale analysis of the prevalence of SQL antipatterns in about 1,000 existing Java software projects using jOOQ.
+
+The research process is divided into five steps. In Section \ref{sec:mining}, we mine software repositories for Java projects using jOOQ. In Section \ref{sec:groundTruth}, we establish ground truth for the development and validation of our tool. In Section \ref{sec:experiments}, we perform a series of experiments to decide on a model and prompting strategy to be used in our tool. In Section \ref{sec:development}, we develop and evaluate the developed tool. Finally, in Section \ref{sec:projectAnalysis}, we perform a large-scale analysis regarding the occurrence patterns of SQL antipatterns in Java projects using jOOQ.
+
+\subsection{Repository Mining}\label{sec:mining}
+
+We begin by mining software repositories for projects, used later for evaluation and analysis. We aim to collect as many projects as possible within reason, matching the following criteria:
+\begin{itemize}
+    \item contains Java code using jOOQ for database access,
+    \item stores jOOQ generated classes as part of the source code, rather than treating them as derived artefacts, which are not checked into version control \cite{jooq2025code}.
+\end{itemize}
+
+To achieve this goal, we utilise the GitHub code search API \cite{githubSearchApi}, using it to search for projects using jOOQ. The GitHub search API has a hard limit of 1,000 results for each search term \cite{githubSearchApi}, which requires us to minimise the number of duplicated results for each search term. For example, this means that we cannot search for import statements for jOOQ classes within Java files, as a few large projects could saturate the result list by themselves.
+
+To find the largest number of unique projects possible, we limit our search to the manifest files of projects, looking for statements, which declare a dependency on jOOQ for the project. We limit the search to the manifest file formats of the two most popular build tools for Java \cite{stackOverflowSurvey}: Maven\footnote{\hyperlink{https://maven.apache.org/}{https://maven.apache.org/}} (e.g. \lstinline{pom.xml}) and Gradle\footnote{\hyperlink{https://gradle.org/}{https://gradle.org/}} (e.g. \lstinline{build.gradle} and \lstinline{build.gradle.kts}). We design the search terms to be as specific as possible to keep the number of results below 1,000 where possible. For some of the search terms, we cannot prevent the limit of 1,000 from being exceeded, in which case we retrieve the 1,000 results that were indexed by the GitHub search infrastructure the most recently, omitting the oldest and most inactive projects.
+
+We further filter the gathered repositories by verifying that the two previously set criteria are met by making sure that the repositories contain jOOQ generated classes as well as other Java files with references to jOOQ classes. We expect the final number of projects to be near 1,000.
+
+We will use a subset of the gathered repositories to establish ground truth in Section \ref{sec:groundTruth}. We will later use the entire collection of repositories to perform a large-scale project analysis in Section \ref{sec:projectAnalysis}.
+
+\subsection{Establishment of Ground Truth}\label{sec:groundTruth}
+
+To validate the accuracy of our developed tools, we require a source of ground truth. As SQL antipatterns in jOOQ are an unexplored area, to the best of our knowledge, there are no publicly available datasets of SQL antipatterns in jOOQ available. Furthermore, there are no examples available in the scientific literature on how SQL antipatterns may occur in jOOQ, and the examples are also scarce elsewhere. For example, a remark in the jOOQ manual \cite{jooq2025select} shows that the “Implicit Columns” antipattern \cite[Ch. 19]{karwin2023sql} can occur in jOOQ in unexpected ways. Therefore, examples of antipatterns in plain SQL cannot be solely relied upon to detect SQL antipatterns in jOOQ.
+
+To establish the ground truth, we manually annotate a subset of the projects gathered in Section \ref{sec:mining}. Although the exact number of annotated projects depends on the number of projects in total, we annotate a random subset of projects, which we expect to contain 5–10\% of total Java source files containing references to jOOQ APIs, hence possibly containing SQL antipatterns.
+
+Based on prior experience with jOOQ and awareness of SQL antipatterns, we carefully annotate found antipattern occurrences in the code. We establish firm guidelines for annotations to ensure consistency regarding semantics of antipatterns and line spans of antipattern occurrences. We employ a two-annotator setup, where the first annotator (the student) annotates the entire subset of projects and the second annotator (the supervisor) verifies a subset of the annotations, consisting of annotations considered borderline by the first annotator, and random annotations. We assess inter-annotation agreement on antipattern presence using Cohen's kappa, and agreement on the line spans of antipatterns using Intersection over Union (IoU).
+
+Although more extensive catalogues of SQL antipatterns have been produced, we limit our efforts to the antipatterns defined by \textcite{karwin2023sql}, which is considered a seminal work on the subject \cite[p. 336]{muse2020prevalence} and have the most data available for comparison. We exclude antipatterns, which are undetectable solely from database access code, such as “Pseudokey Neat-Freak” \cite[Ch. 22]{karwin2023sql} and “Diplomatic Immunity” \cite[Ch. 24]{karwin2023sql}, which are rooted in organisational culture.
+
+We divide the set of annotated projects into development, validation, and test sets. We will use the development set for iterative prompt refinement in Section \ref{sec:experiments}, the validation set for benchmarking models and prompting strategies in Section \ref{sec:experimentsQuantitative}, and the test set for evaluating our developed tool in Section \ref{sec:developmentQuantitative}.
+
+\subsection{Experimental Setup}\label{sec:experiments}
+
+To select the most suitable combination of an LLM and a prompting strategy for our antipattern detection tool, we perform a series of experiments. 
+
+\subsubsection{Selecting Models}
+
+First, we select a number of language models for our experiments, based on criteria selected to aid us in the development and analysis process, while keeping the selection of models diverse. In particular, we look for the following characteristics in the models:
+
+\begin{itemize}
+    \item \textbf{Architectural diversity:} We want to include models with a diverse set of characteristics, such as different model sizes and reasoning vs. non-reasoning models.
+    \item \textbf{Performance:} For a given architecture, the model should demonstrate near-state-of-the-art performance on public benchmarks \cite{artificialAnalysis}.
+    \item \textbf{Cost of use:} As we intend to analyse a large amount of code, the analysis should be performed at a reasonable cost. The model should either be relatively cheap to run or the model should be provided through institutional access.
+    \item \textbf{Repeatability:} The weights of the model should be stable, allowing the evaluation and analysis to be repeated in the future. Ideally, the model should have open weights. Alternatively, the model provider should offer point-in-time snapshots of the model.
+    \item \textbf{Structured outputs:} The model should reliably support structured outputs, providing responses that reliably adhere to expected JSON Schema. This is desired for the later development of the antipattern detection tool to minimise the risk of misformatted responses.
+\end{itemize}
+
+\subsubsection{Designing Prompts}
+
+We design a number of prompts, representative of different prompting strategies, gathered from recent research on LLMs. We limit our experiments to prompting techniques that can be fully executed in the span of one prompt and one response. Specifically, we focus on the following prompting strategies:
+
+\begin{itemize}
+    \item \textbf{Zero-Shot Prompting:} Providing a model with a direct query or task instructions, without providing examples of correct answers in the prompt, leveraging the model's generalisation capabilities \cite{DBLP:conf/nips/KojimaGRMI22}.
+    \item \textbf{Few-Shot Prompting:} Supplementing the prompt with a number of input-output examples, helping the model recognise patterns \cite{DBLP:conf/nips/BrownMRSKDNSSAA20}.
+    \item \textbf{Few-Shot Chain-of-Thought Prompting:} Incorporating logical steps into the input-output examples, guiding the model to work through intermediate reasoning steps before arriving at a final answer \cite{DBLP:conf/nips/Wei0SBIXCLZ22}.
+    \item \textbf{Zero-Shot Chain-of-Thought Prompting:} Guiding the model to work through intermediate reasoning steps before arriving at a final answer by using a zero-shot prompt with the words “Let's think step by step.” appended to it \cite{DBLP:conf/nips/KojimaGRMI22}.
+    \item \textbf{Meta Prompting:} Guiding the model by emphasising the structure and reasoning process of tasks, rather than relying on example content \cite{zhang2025metapromptingaisystems}.
+    \item \textbf{Tree-of-Thought Prompting:} Expands on Zero-Shot Chain-of-Thought Prompting by providing the model with an opportunity to explore multiple reasoning branches and to continuously self-evaluate \cite{tree-of-thought-prompting}, applying concepts from more complex Tree-of-Thought frameworks \cites{DBLP:journals/corr/abs-2305-08291}{DBLP:conf/nips/YaoYZS00N23} at prompt level.
+\end{itemize}
+
+We iteratively develop and fine-tune prompts for each technique, comparing the results against the development set produced in Chapter \ref{sec:groundTruth}. For prompting techniques requiring concrete examples (Few-Shot Prompting and Few-Shot Chain-of-Thought Prompting), we acquire the examples from the development set. We test each iteration of our prompts against all tested models until all models reach near-optimal performance. To simplify the experimental setup and the interpretation of results, we only develop universal, model-agnostic prompts, without fine-tuning them for individual models.
+
+\subsubsection{Quantitative Analysis}\label{sec:experimentsQuantitative}
+
+After we finalise the design of all the prompts, we perform an analysis on each of the projects in the validation set produced in Chapter \ref{sec:groundTruth} using each model and prompting strategy combination. We then evaluate the results of each combination against the ground truth.
+
+In essence, we are evaluating the performance of the models and prompts in performing a \textbf{multi-label} (there are multiple antipatterns that can be detected) \textbf{multi-occurrence} (each antipattern can occur multiple times within each file) \textbf{localisation} (in addition to classification, we aim to detect the location of the antipattern occurrences) task. For this reason, we employ a combination of spatial overlap criteria and classification metrics for evaluation, utilising Intersection over Union (IoU) and F1-Score.
+
+The first step involves quantifying the localisation accuracy using IoU. We define a line span \(S\) as the set of line indices within an inclusive range in a source code file. 
+
+\[S = \{i \in \mathbb{N} \mid start \le i \le end\}\]
+
+For a predicted line span \(S_p\) and a ground truth line span \(S_g\), the IoU is defined as:
+
+\[\text{IoU} = \frac{|S_p \cap S_g|}{|S_p \cup S_g|}\]
+
+This metric produces a value between 0 and 1, where 1 represents an exact line-level match. In this methodology, the IoU serves as the qualification gate for all subsequent metrics. A prediction is classified as a True Positive (TP) if its spatial overlap with the ground truth exceeds a pre-defined confidence threshold (typically \(\text{IoU} \geq 0.5\)). If the IoU is below this threshold, the prediction is classified as a False Positive (FP).
+
+Using this qualification gate, we classify the predictions into True Positives (TP), False Positives (FP), True Negatives (TN), and False Negatives (FN), employing Non-Maximum Suppression (NMS): in cases of multi-occurrence where multiple predictions overlap a single ground truth span, only the prediction with the highest confidence score is assigned as a TP, while subsequent overlaps are penalised as FPs. The precision (\(P\)) and recall (\(R\)) for the selected confidence threshold are defined as:
+
+\[P = \frac{\text{TP}}{\text{TP} + \text{FP}}, \quad R = \frac{\text{TP}}{\text{TP} + \text{FN}}\]
+
+Using the precision and recall, we calculate the F1-Score, which we use to evaluate the performance of the model at the selected threshold:
+
+\[F_1 = 2 \cdot \frac{P \cdot R}{P + R}\]
+
+We calculate \(P\), \(R\) and \(F_1\) for each antipattern separately, and as a weighted mean of all antipatterns:
+
+\[\bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}\]
+
+This way, we are provided with an understanding of which models and prompts are the best in the detection of antipatterns in general, but we also have the opportunity to study the differences in further detail. Based on the results of this analysis, we can provide answers to \textbf{RQ1} and \textbf{RQ2}, and we can decide on the preferred model and the prompting strategy for the development of an antipattern detection tool in Section \ref{sec:development}.
+
+\subsubsection{Qualitative Analysis}
+
+We select a systematic, non-exhaustive set of model and prompting strategy combinations including, but not limited to, the best and worst performers and anomalous outliers. We analyse a representative hand-picked set of code samples using each of the combinations. We study the results of these combinations comparatively and qualitatively in several areas, such as:
+
+\begin{itemize}
+  \item reasoning quality across prompting strategies,
+  \item common FP and FN patterns across models,
+  \item differences in localisation behaviour.
+\end{itemize}
+
+\subsection{Development of an Antipattern Detection Tool}\label{sec:development}
+
+We develop an SQL antipattern detection tool to employ the combination of the best-performing model and prompting strategy from Section \ref{sec:experimentsQuantitative} for the detection of real-world antipatterns. At minimum, the tool offers the following configuration options, granular enough to facilitate the analysis of the tool and future integrations (e.g. extensions for IDEs), while offering user-friendly defaults for command-line usage:
+
+\begin{itemize}
+  \item \textbf{Detection mode:} Allows to switch the granularity of detection between files (“classification”) and line spans (“localisation”), defaults to “localisation”.
+  \item \textbf{Output mode:} Allows to switch the output format of the results between machine-readable JSON (“json”) and “human-readable” representations, defaults to “human-readable”.
+  \item \textbf{Model used:} Allows users to upgrade the model in the future, defaults to the best-performing model from Section \ref{sec:experimentsQuantitative}.
+\end{itemize}
+
+\subsubsection{Quantitative Analysis}\label{sec:developmentQuantitative}
+
+To validate the accuracy of the finalised tool, we perform an analysis on each of the projects in the test set produced in Section \ref{sec:groundTruth}, using the tool in the default “localisation” mode. As in Section \ref{sec:experimentsQuantitative}, we evaluate the tool using metrics suitable for a multi-label multi-occurrence localisation task: IoU and F1-Score.
+
+So far, we are treating the task as a localisation task, and validating it as such, however there is not much comparison data available for such an approach. To compare our results against other works regarding detecting antipatterns and code smells using LLMs, we also evaluate it as a multi-label classification task.
+
+To achieve this, we re-analyse the projects in the test set, this time using the tool in the “classification” mode, and compare the results against the ground truth. In this case, a prediction is considered a TP, if the tool detects an antipattern within a file, and the ground truth also contains an antipattern within that file.
+
+While performing these calculations, we only include such files from the test set, which only contain up to one occurrence of each antipattern in the ground truth. This is because most other works on code smell detection perform their evaluations on datasets of code samples, which do not contain multiple occurrences of the same antipattern. By doing this, we keep the comparison more fair, as having multiple instances of the same antipattern in a file is likely to increase the number of TPs and decrease the number of FNs.
+
+We compare our accuracy metrics against previous works regarding both SQL antipattern detection \cites{de2025effectiveness}{nagy2017static} and LLM-based code smell detection \cites{DBLP:conf/sbes/GomesSMP25}{blaauwendraad2025evaluating}{sadik2025benchmarking}{DBLP:conf/esem/SilvaSMAV24}.
+
+\subsubsection{Qualitative Analysis}
+
+We manually inspect a representative subset of antipattern occurrences detected in the test set to assess whether the detections are semantically correct and aligned with the antipattern definitions established by \textcite{karwin2023sql}. We qualitatively analyse the FPs and FNs present in the subset, discussing the root causes based on the reasoning data provided by the underlying model.
+
+We also compare the outputs of the “localisation” and “classification” modes. We assess the differences in the results, looking for common errors in localisation behaviour and their causes, explaining why classification metrics may appear stronger than localisation metrics.
+
+We conduct a series of semi-structured interviews with developers to assess the perceived usefulness and interpretability of the tool in practice, and to gather suggestions for further enhancements of the tool. We perform the interviews with 5–10 software developers of varying experience, who have current or previous experience with Java, SQL/ORMs, and preferably jOOQ. Topics of the interviews include, but are not limited to, the semantic correctness of the detected antipatterns and the usefulness of localisation in taking action regarding the detections.
+
+Based on the results of the quantitative and qualitative analysis, we can provide an answer to \textbf{RQ3}.
+
+\subsection{Project Analysis}\label{sec:projectAnalysis}
+
+We use the developed antipattern detection tool to detect SQL antipatterns in all the software projects collected in Section \ref{sec:mining}. We use the tool in the default “localisation” mode to gather information about individual antipattern occurrences.
+
+\subsubsection{Quantitative Analysis}
+
+We group all detected antipattern occurrences by their type, and for each type of smell we compute the average smell density \cite[p. 190]{DBLP:conf/msr/SharmaFS16}, which we define as the number of SQL antipatterns detected per 10 SQL statements, similarly to \textcite[p. 6]{sharma2018smelly}. 
+
+As the jOOQ API allows SQL statements to be constructed dynamically, it is difficult to count the exact number of statements in the projects accurately. Other works \cites{muse2020prevalence}{sharma2018smelly}, which detect SQL code smells by extracting SQL statements from source code and then parsing them, receive the number of SQL statements as a side product of the extraction step. We provide a rough estimate of the number of SQL statements in the projects by counting the number of references to jOOQ API methods that execute an SQL statement.
+
+We compare these results against other works studying the prevalence of SQL antipatterns, such as \cites{muse2020prevalence}{sharma2018smelly}. Based on these results, we can provide an answer to \textbf{RQ4}.
+
+\subsubsection{Qualitative Analysis}
+
+We discuss the quantitative analysis results from a qualitative perspective. We assess, whether there are any major discrepancies between the prevalence numbers found by us and prior works, which focused on plain SQL. 
+
+If our results are significantly higher for some antipatterns, we look into the major causes of these antipatterns, looking for jOOQ APIs, which are especially antipattern-prone. Where possible, we provide suggestions for improving the API design of jOOQ. For antipatterns where the opposite is true, we look into ways jOOQ API may prevent these antipatterns from occurring as often. Based on this analysis, we can provide an answer to \textbf{RQ5}.
+
+\printbibliography
+
+\end{document}
