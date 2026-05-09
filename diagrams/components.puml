@@ -1,4 +1,4 @@
-@startuml comp
+@startuml components
 skinparam shadowing false
 skinparam packageStyle rectangle
 skinparam componentStyle rectangle

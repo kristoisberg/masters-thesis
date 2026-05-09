@@ -1,4 +1,4 @@
-@startuml Data sets
+@startuml datasets
 skinparam defaultTextAlignment center
 skinparam shadowing false
 skinparam packageStyle rectangle
