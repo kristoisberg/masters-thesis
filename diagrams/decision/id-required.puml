@@ -1,4 +1,4 @@
-@startuml ID Required
+@startuml id-required
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

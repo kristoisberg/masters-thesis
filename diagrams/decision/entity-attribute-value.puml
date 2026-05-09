@@ -1,4 +1,4 @@
-@startuml Entity-Attribute-Value
+@startuml entity-attribute-value
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

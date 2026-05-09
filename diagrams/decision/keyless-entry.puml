@@ -1,4 +1,4 @@
-@startuml Keyless Entry
+@startuml keyless-entry
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

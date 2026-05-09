@@ -1,4 +1,4 @@
-@startuml 31 Flavors
+@startuml 31-flavors
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

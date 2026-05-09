@@ -1,4 +1,4 @@
-@startuml Poor Man's Search Engine
+@startuml poor-mans-search-engine
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

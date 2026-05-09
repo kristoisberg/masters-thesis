@@ -1,4 +1,4 @@
-@startuml Fear of the Unknown
+@startuml fear-of-the-unknown
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

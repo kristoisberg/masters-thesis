@@ -1,4 +1,4 @@
-@startuml Random Selection
+@startuml random-selection
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

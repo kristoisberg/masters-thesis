@@ -1,4 +1,4 @@
-@startuml Metadata Tribbles
+@startuml metadata-tribbles
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

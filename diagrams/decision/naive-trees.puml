@@ -1,4 +1,4 @@
-@startuml Naive Trees
+@startuml naive-trees
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

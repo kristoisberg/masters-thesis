@@ -1,4 +1,4 @@
-@startuml Ambiguous Groups
+@startuml ambiguous-groups
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

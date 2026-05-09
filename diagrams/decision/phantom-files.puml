@@ -1,4 +1,4 @@
-@startuml Phantom Files
+@startuml phantom-files
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center

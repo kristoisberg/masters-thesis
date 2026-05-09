@@ -1,4 +1,4 @@
-@startuml Standard Operating Procedures
+@startuml standard-operating-procedures
 skinparam shadowing false
 skinparam ConditionEndStyle hline
 skinparam defaultTextAlignment center
