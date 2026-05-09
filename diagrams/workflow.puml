@@ -1,0 +1,103 @@
+@startuml SQL Antipattern Detector Workflow
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam componentStyle rectangle
+
+start
+
+:Receive CLI arguments;
+:Resolve input directory;
+:Validate input directory exists
+and is a directory;
+
+:Resolve configuration;
+note right
+Defaults are overridden by
+the configuration file, then
+environment variables, then
+command-line options.
+end note
+
+:Recursively scan project directory
+for Java files;
+
+:Read Java file contents;
+
+:Collect available jOOQ Keys files;
+
+:Apply jOOQ-specific inclusion and
+exclusion heuristics;
+
+:Create analysis candidates;
+note right
+For each retained file:
+- store absolute and relative paths
+- store file contents
+- classify as ddl or dml-dql
+- attach closest available Keys context
+end note
+
+:Resolve model provider and API key;
+
+fork
+  repeat
+    :Select next candidate;
+    :Build bounded model request;
+    note right
+    Source code is line-numbered.
+    If the request is too large,
+    source and Keys context are truncated.
+    end note
+
+    :Submit structured request to LLM;
+
+    if (Request succeeds and
+    response validates?) then (yes)
+      :Store per-file analysis result;
+    else (no)
+      :Retry until configured retries
+      are exhausted;
+      if (Retry succeeds?) then (yes)
+        :Store per-file analysis result;
+      else (no)
+        :Store per-file error result;
+      endif
+    endif
+  repeat while (More candidates?) is (yes)
+fork again
+  :Other candidates processed
+  concurrently up to configured limit;
+end fork
+
+:Sort per-file results;
+:Aggregate run-level summary;
+note right
+Summary includes scanned Java files,
+applicable files, analyzed files,
+failed files, files with findings,
+finding counts, distinct antipatterns,
+and token usage when available.
+
+In classification mode, finding counts
+are classified antipatterns per file.
+In localisation mode, finding counts
+are localized occurrences.
+end note
+
+:Create CLI output object;
+
+:Render selected output format;
+note right
+Supported formats:
+text, JSON, CSV.
+end note
+
+if (Output file configured?) then (yes)
+  :Create output directory if needed;
+  :Write report to file;
+else (no)
+  :Print report to stdout;
+endif
+
+stop
+@enduml

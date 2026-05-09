@@ -1,0 +1,48 @@
+@startuml comp
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment center
+top to bottom direction
+
+actor "User" as User
+
+package "Command Line Tool" {
+    component "CLI Interface" as CLI
+    component "Application\nOrchestration" as App
+    component "Configuration\nManagement" as Config
+    component "Java File\nDiscovery" as Discovery
+    component "Analysis Engine" as Analyzer
+    component "Output Rendering" as Output
+}
+
+package "Local Runtime Environment" as LRE {
+    database "Target Codebase" as TargetProject
+    file "Configuration\nSources" as ConfigSources
+    file "Report File" as ReportFile
+}
+
+cloud "**LLM Provider APIs**\n(Google, Anthropic,\nOpenAI, OpenRouter)" as LLMs
+
+User -down-> CLI : "command\n+ options"
+CLI --> Config : resolve settings
+ConfigSources --> Config : provide config values
+
+CLI --> App : start analysis
+Config --> App : effective configuration
+
+App --> Discovery : discover candidate files
+TargetProject --> Discovery : source files
+Discovery --> App : "candidate files\n+ context"
+
+App --> Analyzer : analyze candidates
+Analyzer -down-> LLMs : analysis requests
+LLMs -up-> Analyzer : responses
+
+Analyzer --> App : results + summary
+App --> CLI : analysis output
+
+CLI --> Output : render selected format
+Output -up-> User : console output
+Output --> ReportFile : produce report
+@enduml

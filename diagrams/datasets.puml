@@ -1,0 +1,49 @@
+@startuml Data sets
+skinparam defaultTextAlignment center
+skinparam shadowing false
+skinparam packageStyle rectangle
+top to bottom direction
+
+package "Stage 1: Annotation and Data Splitting" {
+    database "**Full Dataset**\n(602 projects)" as DS
+    database "**Annotated Dataset**\n(61 projects)" as AnnotatedDS
+
+    database "**Training Set**\n(34% split,\n21 projects)" as Train
+    database "**Validation Set**\n(33% split,\n20 projects)" as Val
+    database "**Test Set**\n(33% split,\n20 projects)" as Test
+
+    DS -down-> AnnotatedDS : Stratified Sampling (10%)\n& Manual Annotation
+
+    ' Splitting flow
+    AnnotatedDS -down-> Train : Split
+    AnnotatedDS -down-> Val : Split
+    AnnotatedDS -down-> Test : Split
+}
+
+package "Stage 2: Matrix Evaluation" {
+    rectangle "**Prompting Strategies**\n• Zero-Shot\n• Few-Shot\n• Chain-of-Thought\n• Tree-of-Thought" as Prompts
+    cloud "**Large Language Models**\n• OpenAI GPT-5.2\n• Z.ai GLM-5\n• Anthropic Claude Opus 4.5\n• OpenAI gpt-oss-120B" as LLMs
+    node "Model-Strategy\nCombinations" as Matrix
+
+    Prompts -down-> Matrix : "Combines\nto form"
+    LLMs -down-> Matrix : "Combines\nto form"
+}
+
+' Training set usage and Matrix creation
+Train -down-> Prompts : Provides examples for Few-Shot
+Matrix -up-> Train : Evaluated\nagainst\nduring\ndevelopment
+
+package "Stage 3: Tool Development and Evaluation" {
+    rectangle "Optimal Model and\nStrategy Combination" as Optimal
+    node "Antipattern\nDetection Tool" as Tool
+
+    Optimal -down-> Tool : Used to\ndevelop
+}
+
+' Matrix Evaluation and Selection
+Matrix --> Val : Evaluated\nagainst
+Optimal --> Matrix : Is\nselected\nfrom
+Tool --> Test : Evaluated\nagainst
+Tool ..> DS : Used to\nanalyse
+
+@enduml

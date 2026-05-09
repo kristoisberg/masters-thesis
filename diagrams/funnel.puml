@@ -1,0 +1,39 @@
+@startuml funnel
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultTextAlignment center
+
+start
+
+:Mine projects from\nGitHub Code Search API;
+note right
+  Collected: **3,829** projects
+end note
+
+:Retain projects storing\nrequired artefacts in Git;
+note right
+  Retained: **802** projects
+  Removed: **3,027** projects
+end note
+
+:Retain projects containing\nJava source classes;
+note right
+  Retained: **645** projects
+  Removed: **157** projects
+end note
+
+:Remove duplicated projects;
+note right
+  Retained: **603** projects
+  Removed: **42** projects
+end note
+
+:Late-stage duplicate removal;
+note right
+  Retained: **602** projects
+  Removed: **1** project
+end note
+
+stop
+
+@enduml
