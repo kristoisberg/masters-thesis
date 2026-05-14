@@ -1,0 +1,68 @@
+SQL (Structured Query Language) is one of the most popular programming languages in the world \nobreakcite{stackOverflowSurvey}, with the four most popular database management systems as of March 2026 all using SQL as their main language of interaction \nobreakcite{stackOverflowSurvey}, \nobreakcite{dbEnginesRanking}. At the same time, most developers using SQL have not been taught the best and worst practices of the language. They “are self-taught in SQL, learning it out of self-defence when they find themselves working on a project that requires it” \nobreakcite[p. xvi]{karwin2023sql}.
+
+This disparity—wide adoption with many users, but sparse systematic knowledge among them—results in a situation where the same mistakes are being repeated across the industry. When developers encounter problems with their database designs and queries, they often independently create solutions with similar flaws. These recurring missteps are known as SQL antipatterns—“the most frequent missteps software developers naively make while using SQL” \nobreakcite[p. 1]{karwin2023sql}.
+
+Previous research has shown that SQL antipatterns are prevalent among both industrial and open-source systems \nobreakcite{muse2020prevalence}, \nobreakcite[pp. 59–60]{sharma2018smelly}, and they have quantifiable negative effects on the affected systems \nobreakcite{lyu2019quantifying}, \nobreakcite[pp. 2334–2335]{DBLP:conf/sigmod/DintyalaNA20}.
+Research has also shown that antipattern occurrences tend to remain unfixed for long periods of time and are likely never to be fixed at all \nobreakcite{muse2020prevalence}. The researchers suggested that this may be due either to developers’ lack of awareness of SQL antipatterns and their disadvantages, or to the comparatively low priority assigned to fixing such antipatterns \nobreakcite{muse2020prevalence}.
+
+Both of these reasons could be attributed to the lack of SQL antipattern detection tools, which could bring attention to the occurrences of SQL antipatterns upon their introduction. As it stands right now, the tooling support for detecting SQL antipatterns in source code is scarce: while relevant tools exist for detecting antipatterns in plain SQL statements and some popular ORM (Object-Relational Mapping) frameworks, other frameworks and libraries lack support. One such library is jOOQ Object Oriented Querying (jOOQ)—a popular Java library for building and executing SQL queries in a type-safe manner. 
+
+\section{Research Objectives}\label{sec:objectives}
+
+The primary goal of this research is the development of a static analysis tool based on LLMs (Large Language Models), capable of detecting SQL antipatterns in jOOQ-based database access code.
+
+We focus our research on LLM-based static analysis, rather than alternatives, because of their advanced understanding of code semantics and context, which is highly desirable in these circumstances. Some SQL antipatterns are highly context-specific, and detecting them in jOOQ-based code may require analysing multiple files and understanding the relationships between them. The jOOQ API (Application Programming Interface) is also extensive, and its dynamic nature allows SQL antipatterns to occur in many different forms, making comprehensive coverage through traditional static analysis very difficult.
+
+Our secondary goal is to investigate the prevalence of SQL antipatterns in jOOQ-based code, as well as the ways in which these antipatterns manifest themselves. These results may help developers who use jOOQ become more aware of API usages that are strongly associated with antipatterns, thereby aiding them in \textit{avoiding the pitfalls of database programming} \nobreakcite{karwin2023sql}. Furthermore, these results can be used as input by the jOOQ maintainers when considering whether such APIs need clearer documentation or design changes in future versions.
+
+We aim to answer the following research questions:
+
+\begin{itemize}
+    \item \textbf{RQ1:} How do different LLMs compare in identifying SQL antipatterns in Java code that uses jOOQ for database access?
+    \item \textbf{RQ2:} How do different prompting strategies affect the detection performance of LLMs in identifying SQL antipatterns in Java code that uses jOOQ for database access?
+    \item \textbf{RQ3:} How accurately can the developed LLM-based tool detect SQL antipatterns in Java code that uses jOOQ for database access?
+    \item \textbf{RQ4:} What patterns can be observed in the occurrence of SQL antipatterns in Java code that uses jOOQ for database access?
+    \item \textbf{RQ5:} Which jOOQ API methods are most frequently associated with query antipattern occurrences?
+\end{itemize}
+
+\section{Methodology and Contributions}
+
+This research follows the principles of Design Science Research \nobreakcite{hevner2004design}. The primary design artefact produced by this research is an LLM-based SQL antipattern detection tool for jOOQ.
+
+To establish this tool's foundation, we compared multiple state-of-the-art LLMs and prompt engineering strategies (Zero-Shot, Few-Shot, Chain-of-Thought, Tree-of-Thought) using both quantitative metrics and qualitative inspection.
+
+Additionally, we produced a human-labelled dataset of SQL antipattern occurrences in Java code, which uses jOOQ for database access, curated through repository mining and stratified random sampling. Moreover, we performed a large-scale analysis of the prevalence of SQL antipatterns in \num{602} existing Java software projects that use jOOQ.
+
+To the best of our knowledge, this study is the first to evaluate LLM-based antipattern detection as a localisation task rather than a pure classification task. Instead of merely determining whether a file contains an antipattern, the proposed tool identifies the precise boundaries of antipattern occurrences.
+
+Artificial intelligence-based tools were used as supportive aids in the research process and in the preparation of this thesis. The following tools were used to draft the following sections:
+
+\begin{itemize}
+    \item \textbf{Google Gemini 3.1 Pro Preview \nobreakcite{gemini31ProPreview}:} Abstracts, List of abbreviations and terms, Thesis Outline (Section~\ref{sec:outline}), Reflection on Work Process (Section~\ref{sec:reflection}), Limitations (Section~\ref{sec:limitations}), Future Work (Section~\ref{sec:futureWork}), Summary (Chapter~\ref{chapter:summary}).
+    \item \textbf{Google NotebookLM \nobreakcite{notebookLm2026homepage}:} Logical Database Design Antipatterns (Section~\ref{sec:logicalAntipatterns}), Physical Database Design Antipatterns (Section~\ref{sec:physicalAntipatterns}), Query Antipatterns (Section~\ref{sec:queryAntipatterns}), Application Development Antipatterns (Section~\ref{sec:developmentAntipatterns}).
+    \item \textbf{OpenAI Codex \nobreakcite{openAiCodex2026GitHub}:} Development of Antipattern Detector (Chapter~\ref{chapter:development}, introductory paragraphs), Workflow (Section~\ref{sec:workflow}).
+\end{itemize}
+
+OpenAI Codex was further used to develop the SQL antipattern detection tool (development workflow is elaborated on in Chapter~\ref{chapter:development}), and to produce Figure~\ref{fig:toolWorkflow}. Gemini 3.1 Pro Preview and Gemini 3 Flash Preview \nobreakcite{gemini3FlashPreview} were further used extensively to improve wording in other sections.
+
+We confirm that artificial intelligence was used strictly as a supportive aid. All generated content has been critically analysed, fact-checked, and edited by us to the extent necessary to ensure compliance with academic requirements. We take full responsibility for the accuracy, originality, and integrity of the work’s content.
+
+Unless otherwise specified, all data processing steps, experiments, and evaluations described in this thesis were implemented and executed within Jupyter \nobreakcite{jupyterHomepage} notebooks.
+
+To ensure repeatability and facilitate future research, we open-sourced all artefacts produced as parts of the thesis. The finalised tool is available in the GitHub repository: \href{https://github.com/kristoisberg/jooq-antipattern-detector}{https://github.com/kristoisberg/jooq-antipattern-detector}. All other artefacts, including experimental scripts and their results, evaluated prompts, and source code for this document, are available in the following GitHub repository: \href{https://github.com/kristoisberg/masters-thesis}{https://github.com/kristoisberg/masters-thesis}.
+
+\section{Thesis Outline}\label{sec:outline}
+
+Chapter~\ref{chapter:background} provides the theoretical background on SQL antipatterns and the jOOQ library. We also review existing static analysis approaches and prompt engineering techniques used with large language models.
+
+Chapter~\ref{chapter:datasetCreation} details the methodology for creating a human-annotated ground truth dataset, encompassing the repository mining process, project sampling, and manual annotation guidelines. 
+
+In Chapter~\ref{chapter:promptingStrategies}, we conduct an empirical evaluation of various prompting strategies, detailing how we measured the ability of several models to identify flawed database access code. 
+
+In Chapter~\ref{chapter:development}, we provide an overview of the developed command-line application, covering the architectural design, internal workflow, and implementation technologies of the detection tool. 
+
+Chapter~\ref{chapter:projectAnalysis} outlines a framework for a large-scale project analysis, where we describe the statistical methods utilised to examine the prevalence and co-occurrence of antipatterns across hundreds of open-source repositories. 
+
+We present the answers to the formulated research questions in Chapter~\ref{chapter:results}, highlighting the comparative performance of the evaluated models, the detection performance of our finalised tool, and the most common database missteps found in practice. 
+
+We then critically interpret these findings in Chapter~\ref{chapter:analysis}, where we analyse the root causes of detection errors, compare our results with existing literature, and reflect on the methodology's limitations. 

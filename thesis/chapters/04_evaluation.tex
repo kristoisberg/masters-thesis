@@ -1,0 +1,198 @@
+This chapter details the empirical evaluation of various prompting strategies for detecting SQL antipatterns in jOOQ. To assess the versatility and reliability of these strategies under different conditions, we benchmarked them across multiple contemporary LLMs, analysing both quantitative performance metrics and qualitative outputs.
+
+\section{Selecting Models}\label{sec:models}
+
+To assess the prompting strategies under varying conditions, we evaluated them against multiple models. We chose the language models based on criteria selected to aid us in the development and analysis process, while keeping the selection of models diverse. In particular, we searched for the following characteristics in the models:
+
+\begin{itemize}
+    \item \textbf{Architectural diversity:} We aimed to include models with a diverse set of characteristics, such as different model sizes, reasoning vs non-reasoning models, and open vs closed-weight models.
+    \item \textbf{Performance:} For a given architecture, the model should demonstrate near-state-of-the-art (SotA) performance on public benchmarks \nobreakcite{artificialAnalysis}.
+    \item \textbf{Repeatability:} The weights of the model should be stable, allowing the evaluation and analysis to be repeated in the future. Ideally, the model should have open weights. Alternatively, the model provider should provide point-in-time snapshots of the model.
+    \item \textbf{Structured outputs:} The model should reliably support structured outputs, providing responses that reliably adhere to expected JSON Schema. This was desired to avoid the complexity of parsing non-structured outputs and handling of malformed responses. Structured output also increases determinism in responses by constraining decoding to outputs that satisfy the schema \nobreakcite{structuredOutputs}.
+\end{itemize}
+
+Based on this set of criteria, we settled on the following four models for our analysis:
+
+\begin{itemize}
+    \item \textbf{OpenAI GPT-5.2 \nobreakcite{gpt52} (reasoning):} Near-SotA proprietary weights model. The best-performing model offering point-in-time snapshots.
+    \item \textbf{Z.ai GLM-5 \nobreakcite{DBLP:journals/corr/abs-2602-15763} (reasoning):} SotA open-weights model.
+    \item \textbf{Anthropic Claude Opus 4.5 \nobreakcite{opus45Card} (non-reasoning):} Near-SotA in models, which allow reasoning to be disabled. Superseded by Opus 4.6, which did not offer point-in-time snapshots at the time.
+    \item \textbf{OpenAI gpt-oss-120B \nobreakcite{DBLP:journals/corr/abs-2508-10925} (reasoning):} Open-weights, SotA in models classified as medium language models (up to \num{150}B parameters).
+\end{itemize}
+
+Initially, we also planned to include Z.ai GLM-4.7-Flash \nobreakcite{DBLP:journals/corr/abs-2508-06471}, which was the best-performing small language model (up to \num{40}B parameters) at the time, but we were required to omit it due to vast stability issues with all providers offering the model.
+
+We most notably omitted Google Gemini 3.1 Pro Preview \nobreakcite{gemini31ProPreview} and Anthropic Claude Opus 4.6 \nobreakcite{opus46Card}, which outperformed all the selected models, but due to their recent releases, did not have point-in-time snapshots available.
+
+We were also not able to include any purely non-reasoning models in the comparison: such models have become increasingly rare, and the most capable purely non-reasoning model at the time, Kwaipilot KAT-Coder-Pro V1 \nobreakcite{DBLP:journals/corr/abs-2510-18779}, did not offer point-in-time snapshots. However, many modern reasoning models allow that capability to be disabled; therefore, we substituted the model with Anthropic Claude Opus 4.5, with the reasoning capability disabled.
+
+We found that all selected models supported structured outputs with adequate reliability. In our preliminary experiments, some older models (e.g., Kimi K2 Thinking \nobreakcite{DBLP:journals/corr/abs-2507-20534}) did not adhere to the provided JSON Schema, causing client-side validation to fail in numerous cases, but such issues were much less common in the selected models. The complete set of models considered for the analysis, along with their inclusion and omission reasons, is available in Appendix~\ref{chapter:appendix-model-selection}.
+
+\section{Designing Prompts}\label{sec:prompts}
+
+We designed prompts based on the four prompting strategies listed in Section~\ref{sec:promptEngineering}. We limited our experiments to prompting techniques that could be fully executed in the span of one prompt and one response to manage the scope of the thesis.
+
+We iteratively developed and fine-tuned prompts for each technique, comparing the results against the training set produced in Section~\ref{sec:dataSplit}. We tested each iteration of our prompts against all tested models until all models reached near-optimal performance. To simplify the experimental setup and the interpretation of results, we only developed universal, model-agnostic prompts, without fine-tuning them for individual models.
+
+Due to the high cost of LLM inference, we developed heuristics to target only the antipatterns that are potentially present in a given file. Firstly, we ignored files that did not contain any database-related code using the filters first mentioned in Section~\ref{sec:sampleGeneration}. Secondly, for each prompting strategy, we developed two prompts: 
+
+\begin{itemize}
+    \item for detecting query antipatterns from non-generated source files,
+    \item for detecting (mostly) design antipatterns from files generated by jOOQ.
+\end{itemize}
+
+In addition to the file being analysed, we provided the design antipattern detection prompts with additional context by supplying them with a jOOQ-generated class containing the definitions of all primary, unique, and foreign key constraints present in that database schema. This additional context is used in the detection of the “Keyless Entry” antipattern to verify if there is an appropriate primary or unique key present, which the missing foreign key could reference.
+
+We also applied the following pre-processing steps to the input files:
+\begin{itemize}
+    \item To reduce the number of input tokens, and subsequently costs, we removed all leading and trailing whitespace from each line in the input files (including indentation).
+    \item We noticed that the models consistently miscalculated the row spans of antipattern occurrences, if the analysed file contained two or more consecutive line breaks anywhere in the file before the antipattern occurrence. The models also often mislocated antipattern occurrences in large source files. To resolve these issues, we prefixed each line in the input file with the correct line number.
+\end{itemize}
+
+We designed our prompts to detect the seven qualifying antipatterns present in the training, validation, and tests sets created in Section~\ref{sec:dataSplit}. Designing them, we started with broad instructions, allowing models to use their judgement and reasoning to a wide extent. As we identified instances where the model misinterpreted certain antipatterns or detected them incorrectly, we moved towards more concrete and specific instructions to eliminate ambiguity and ensure the model consistently adhered to our intended criteria.
+
+Ultimately, it was necessary to define all detected antipatterns explicitly and, in certain cases, to specify the exact method calls and coding patterns to look out for. When models were provided only with the names of antipatterns, they tended to construct their own definitions, which were at times inconsistent with those proposed by \nobreaktextcite{karwin2023sql}. We attribute this behaviour to the limited availability of literature on SQL antipatterns within the training data of LLMs, resulting in them “hallucinating” the definitions. 
+
+Furthermore, for the “ID Required”, “31 Flavors”, “Poor Man's Search Engine”, and “Implicit Columns” antipatterns, it was necessary to provide explicit localisation rules to ensure consistent localisation behaviour.
+
+For the Few-Shot Prompting technique, which required concrete examples, we acquired the examples from the training set produced in Section~\ref{sec:dataSplit} by default. For antipattern variants and edge cases, which we were unable to find representative examples for from the training set, we created the examples synthetically.
+
+We ultimately settled on the instructions detailed in Figures~\ref{fig:ddlInstructions} and~\ref{fig:dmlDqlInstructions} for detecting antipatterns in generated and non-generated source files, respectively, consistent between all prompting strategies listed in Section~\ref{sec:promptEngineering}. The complete prompts for all prompting strategies, containing sample input files, are shown in Appendix~\ref{chapter:appendix-final-prompts}.
+
+\bigskip % Add space before the figure
+\begingroup % Start a local scope
+\captionsetup{type=figure}
+\phantomsection
+\captionlistentry[figure]{Detection instructions used in DDL prompts.}\label{fig:ddlInstructions}
+\begin{lstlisting}[
+    frame=none, 
+    basicstyle=\small, 
+    breaklines=true, 
+    breakatwhitespace=false, 
+    breakindent=0pt
+]
+- ID Required: Never identify this issue in classes representing views, as views cannot contain primary keys. If the class represents a table, always detect the antipattern, if the name of the primary key is just "id" (case-insensitive). Also detect the issue if a synthetic primary key column exists, even though another unique constraint exists, which is suitable as a primary key (the constraint is on columns, which are virtually immutable by nature), and which does not complicate foreign keys referencing the table too much. Only include the lines of the primary key column definition in the line range, do not include comments or anything else.
+- Keyless Entry: A column, which refers to another table, is missing its foreign key. Never identify this issue in classes representing views, as views cannot contain foreign keys. Only report this issue if the "Keys" class provided at the end contains a primary key that this is appropriate for this column to refer to.
+- Rounding Errors: Storing fixed-precision values in floating-point type columns, such as FLOAT and REAL, rather than using fixed-precision types like DECIMAL and NUMERIC.
+- 31 Flavors: Specifying allowed values in the column definition, i.e. with a CHECK constraint or an ENUM type, rather than using a lookup table. Only include the lines of the column definition in the line range, do not include comments or anything else. Do not report the issue if the CHECK constraint is used to check the value for emptiness or against a range of values (including greater/lesser than comparisons).
+- Fear of the Unknown: A special default value, such as an empty string, is used to mark a missing value, rather than NULL, and the special value does not hold a semantic meaning. A column, which can never be NULL in practice (e.g. it has a default value), is marked as NULLABLE.
+
+If the file does not contain any antipatterns, leave the list of occurrences empty.
+\end{lstlisting}
+
+\nopagebreak
+\begin{minipage}{\linewidth}
+    \captionof*{figure}{Figure \thefigure. Detection instructions used in DDL prompts.}
+\end{minipage}
+\par % Apply the paragraph settings *inside* the group
+\endgroup % Revert to global normalsize and paragraph spacing
+
+\bigskip % TODO: verify before submitting
+\bigskip % these are here to make sure the caption for figure 8 is not on a new page alone
+
+\begingroup % Start a local scope
+\captionsetup{type=figure}
+\phantomsection
+\captionlistentry[figure]{Detection instructions used in DML/DQL prompts.}\label{fig:dmlDqlInstructions}
+\begin{lstlisting}[
+    frame=none, 
+    basicstyle=\small, 
+    breaklines=true, 
+    breakatwhitespace=true, 
+    breakindent=0pt
+]
+- Poor Man's Search Engine: Usage of LIKE, ILIKE or regular expressions to perform full-text search. Report the issue if it isn't obvious from the method input parameters, whether the patterns contain wildcards used for full-text search. Do not report the issue if LIKE, ILIKE or regex is used for prefix search. Only include the line(s) where the full-text search condition is created in the line range.
+- Implicit Columns: A query fetching all columns from a database table. In addition to obvious violations, report cases where jOOQ fetches all columns of a table into records or generated DAOs (located in a package ending with `tables.daos`). Do not report this issue if it occurs within a `fetchCount` or `fetchExists` call. Only include the line(s) where the blind projection is selected in the line range, do not include the rest of the query.
+- Fear of the Unknown: Query logic uses a NULLABLE column in a way that produces incorrect results with NULL. Do not report issues that arise from insufficient null-handling in Java code. Also do not report the issue if you're unsure if the column is NULLABLE.
+
+Only identify problems in code, which interacts directly with the jOOQ DSL or generated DAOs (located in a package ending with `tables.daos`). Do not identify problems in code, which interacts with higher level abstractions. In case of multiple consecutive issues, report them separately, even if they are on consecutive lines. If the file does not contain any antipatterns, leave the list of occurrences empty.
+\end{lstlisting}
+
+\nopagebreak
+\begin{minipage}{\linewidth}
+    \captionof*{figure}{Figure \thefigure. Detection instructions used in DML/DQL prompts.}
+\end{minipage}
+\par % Apply the paragraph settings *inside* the group
+\endgroup % Revert to global normalsize and paragraph spacing
+
+\section{Quantitative Analysis}\label{sec:experimentsQuantitative}
+
+Following the finalisation of the prompt design, we analysed each project in the validation set created in Section~\ref{sec:dataSplit} using all combinations of models and prompting strategies. We subsequently evaluated the resulting outputs against the ground truth.
+
+We performed the analysis using the OpenAI Python SDK \nobreakcite{openAiPython2026GitHub}, accessing the models through OpenRouter \nobreakcite{openRouter2026homepage} as a unified gateway for different LLM providers, using the following parameters for LLMs:
+
+\begin{itemize}
+    \item \textbf{Temperature}: Used to control the randomness of the output, with higher values resulting in less deterministic results. Using a value of zero encourages the model to select the most likely token, reducing randomness and improving repeatability, making the output as deterministic as possible. We used the default value \num{1.0} for OpenAI gpt-oss-120B, since using near-zero values caused it to repeat tokens infinitely, and this issue did not resolve with any other parameter changes. We used the value \num{0.0} for all other models, except for OpenAI GPT-5.2, which did not support the parameter when being used as a reasoning model.
+    \item \textbf{Effort}: Used to control how much internal reasoning the model performs before generating a response. Higher effort levels enable deeper, multi‑step analysis, generally improving reliability, while being slower, costlier, and less deterministic. We used the highest supported value for each reasoning model to leverage improved reliability, while compensating for decreased determinism with other techniques.
+\end{itemize}
+
+In Table~\ref{tab:modelParameters} we show the selected parameter combinations for each model used for analysis.
+
+\begin{longtable}[hp]{|p{7.5cm}|S[table-format=1.1, table-column-width=3cm]|p{3cm}|}
+	\caption{Model parameters used for analysis.}
+	\label{tab:modelParameters}\\ \hline
+	{\thead[l]{Model}} & {\thead{Temperature}} & {\thead{Effort}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{3}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Model}} & {\thead{Temperature}} & {\thead{Effort}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{l}{\textit{Continues...}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+    \sotaModel & {Unsupported} & xhigh \\ \hline
+    \openModel & 0.0 & Unsupported \\ \hline
+    \nonReasoningModel & 0.0 & none \\ \hline
+    \mediumModel & 1.0 & high \\
+\end{longtable}
+
+While OpenRouter provides a convenient unified API, it acts as an abstraction layer where internal routing and caching semantics can vary. To maintain strict control over the experimental environment, we explicitly disabled OpenRouter's automatic model fallbacks. This ensured that requests were evaluated exclusively by the requested model or failed outright, triggering our local retry mechanism. We also considered OpenRouter's default request caching; however, because each analysed source file generated a strictly unique prompt and the evaluation was executed in a single pass, gateway-level caching could not artificially influence our results.
+
+In essence, we were evaluating the performance of the models and prompts in performing a \textbf{multi-label} (there were multiple antipatterns that could be detected) \textbf{multi-occurrence} (each antipattern could occur multiple times within each file) \textbf{localisation} (in addition to classification, we aimed to detect the location of the antipattern occurrences) task. For this reason, we employed a combination of spatial overlap criteria and classification metrics for evaluation, using Intersection over Union (IoU) and F1-score.
+
+The first step involved quantifying the localisation performance using IoU. We define a line span \(S\) as the set of line indices within an inclusive range in a source code file.
+\begin{equation}
+S = \{i \in \mathbb{N} \mid start \le i \le end\}
+\end{equation}
+
+For a predicted line span \(S_p\) and a ground truth line span \(S_g\), the IoU is defined as:
+\begin{equation}
+\text{IoU} = \frac{|S_p \cap S_g|}{|S_p \cup S_g|}
+\end{equation}
+
+This metric produces a value between \num{0} and \num{1}, where \num{1} represents an exact line-level match. In this methodology, the IoU serves as the qualification gate for all subsequent metrics. A prediction is classified as a true positive (TP) if its spatial overlap with the ground truth exceeds the threshold: \(\text{IoU} \geq 0.5\). If the IoU is below this threshold, the prediction is classified as a false positive (FP), while missed ground truth spans are considered false negatives (FN).
+
+Using this qualification gate, we classify the predictions into TPs, FPs, and FNs, employing Non-Maximum Suppression (NMS): in cases of multi-occurrence where multiple predictions overlap a single ground truth span, only the prediction with the highest spatial overlap is assigned as a TP, while subsequent overlaps are penalised as FPs.
+
+Based on the classifications, we calculated the precision (\(P\)) and recall (\(R\)) of the model at the selected threshold, defined as:
+\begin{equation}
+P = \frac{\text{TP}}{\text{TP} + \text{FP}}, \quad R = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\end{equation}
+
+Precision measures the exactness of the model by calculating the ratio of correctly identified detections to the total number of detections, thereby indicating the extent to which the model avoids FPs. Recall measures the completeness of the model by calculating the ratio of correctly identified detections to the total number of antipattern occurrences in the ground truth, reflecting the model's ability to minimize FNs.
+
+Using these values, we calculated the F1-score, which provides a balanced assessment of model performance at the selected threshold by calculating the harmonic mean of precision and recall, serving as a single unified metric that penalizes extreme values in either component:
+\begin{equation}
+F_1 = 2 \cdot \frac{P \cdot R}{P + R}
+\end{equation}
+
+We calculated \(P\), \(R\) and \(F_1\) for each antipattern separately, and as a weighted average of all antipatterns:
+\begin{equation}
+\bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}
+\end{equation}
+
+This way, we were provided with an understanding of which models and prompts are the best in the detection of antipatterns in general, but we also had the opportunity to study the differences in further detail. Additionally, we recorded the cost and runtime of each analysis and the number of requests retried due to incorrectly formatted (e.g., empty or non-JSON) responses provided models.
+
+We acquired the data about costs from the OpenRouter dashboard due to a subtlety in the OpenAI Python SDK's API for structured outputs: if the client-side validation for the output fails, the request, including its usage data, cannot be obtained from the client code, making accurate cost calculations impossible. We represent the cost in USD including VAT, and the runtime in seconds.
+
+Based on the results of this analysis, we could provide answers to \textbf{RQ1} and \textbf{RQ2} in Sections~\ref{sec:resultsRQ1} and~\ref{sec:resultsRQ2}, and we could decide on the preferred prompting strategy for the development of an antipattern detection tool in Chapter~\ref{chapter:development}.
+
+\section{Qualitative Analysis}
+
+We manually inspected the results produced by each combination of model and prompting strategy. Where possible, we also inspected the reasoning data to identify behavioural patterns that could explain the frequent FPs and FNs in the results. We then compared our experimental findings with existing literature on prompting strategies and LLM behaviour.
+
+We discuss the results of the qualitative analysis in Section~\ref{sec:llmCapabilities}.

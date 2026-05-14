@@ -1,0 +1,215 @@
+In this chapter, we critically analyse the empirical findings of our study to understand the capabilities and limitations of LLMs in detecting the seven evaluated SQL antipatterns. We also reflect on the successes and shortcomings of the research process, discuss the study's limitations, and outline directions for future research.
+
+\section{Interpretation of Results}\label{sec:interpretation}
+
+This section discusses the results of our quantitative and qualitative analysis, exploring the underlying causes of model behaviour, comparing our findings to existing literature, and examining the co-occurrence patterns of SQL antipatterns.
+
+\subsection{LLM Capabilities and Limitations in Static Analysis}\label{sec:llmCapabilities}
+
+Across all prompting strategies, we noticed a pattern where more common antipatterns were generally detected with a higher performance than rarer antipatterns. This can have multiple contributing factors:
+\begin{itemize}
+    \item \textbf{Lack of training data:} Due to fewer cases in the training set, the instructions for detecting less common antipatterns may not be as refined and resilient to variations in coding patterns.
+    \item \textbf{Low confidence:} Due to fewer cases in the validation set, each individual detection error causes a large reduction of the F1-score for less common antipatterns.
+    \item \textbf{Detection complexity:} The most common antipatterns, “Implicit Columns” and “ID Required”, are in most cases self-contained and do not require cross-referencing multiple pieces of code, while some less common antipatterns, such as “Keyless Entry” and “Fear of the Unknown” require additional context to be detected correctly.
+\end{itemize}
+
+When evaluating the Few-Shot Prompting strategy, the improvements we observed during development did not materialise in our evaluations on the validation set. We suspect that this is due to a classic case of overtraining: the provided examples were largely based on the training set, which guided the models to make the correct decisions for the edge cases present in the training set, but they did not have a large impact when tested on a different data set. The only exception was the gpt-oss-120B model, indicating that the additional clarity from the provided examples had an outsized impact for the gpt-oss-120B model compared to others.
+
+Regarding the CoT strategy, the large increases in runtime we observed indicate that the prompt functions as expected by eliciting additional reasoning in the models. The increases in runtime align with the results of \nobreaktextcite[p. 3–6]{DBLP:journals/corr/abs-2506-07142}, who found CoT prompts to take anywhere from \qtyrange[range-phrase = --, range-units = single]{20}{80}{\percent} more time than direct prompts for reasoning models, and \qtyrange[range-phrase = --, range-units = single]{35}{600}{\percent} for non-reasoning models. 
+
+In terms of detection performance, our results also loosely align with the findings of \nobreaktextcite[p. 3–6]{DBLP:journals/corr/abs-2506-07142}, who found the effect of CoT prompting to be nuanced for both reasoning and non-reasoning models. Although they found the average performance of non-reasoning models to generally improve (in the range of \qty{4.4}{\percent} and \qty{13.5}{\percent}), CoT introduced additional variability, causing errors that would have not occurred without it. For reasoning models, it only yielded marginal improvements on average, while also negatively affecting the performance of some models. It should be noted that the models used in their research were generally multiple generations older, architecturally different, and smaller than the models used by us, which could explain the discrepancies between our results.
+
+During the evaluation, the gpt-oss-120B model had a tendency to end up in long or even infinite cycles during its reasoning process, causing inconsistent and long runtimes. The model also frequently produced anomalous responses, first discussed in Section~\ref{sec:resultsRQ1}, which hindered both the precision and recall of the model. We observed that the anomalies were more prevalent for files, which required more reasoning tokens to be analysed. 
+
+When evaluating both the CoT and ToT strategies, we also observed the largest overall decline in the precision and recall scores of the gpt-oss-120B model, along with an increased prevalence of anomalies. As CoT and ToT were the most reasoning-heavy prompting strategies, these observations are consistent with the amplification of “context rot”—a phenomenon where LLM performance consistently degrades and becomes increasingly unreliable as input context length grows \nobreakcite{hong2025context}, but this causal explanation was not isolated experimentally. 
+
+\subsection{Qualitative Analysis of Detection Errors}\label{sec:detectionErrors}
+
+In this section, we qualitatively analyse the underlying causes of the FPs and FNs observed during the evaluation of the developed tool (as presented in Section~\ref{sec:resultsRQ3}). We structure this analysis by the respective SQL antipatterns.
+
+\subsubsection*{Implicit Columns}
+The main causes of FNs were DML statements, which returned all columns of modified rows with the \texttt{returning()} and \texttt{returningResult()} methods, which translate to the \texttt{RETURNING *} clause in plain SQL. It appears that the model did not associate these methods with the “Implicit Columns” antipattern, although they return blind projections from the database. Such DML statements accounted for \num{14} of the \num{17} FNs.
+
+One FP and one FN were caused by different localisation behaviour: while the ground truth annotated the entire multi-line \texttt{SELECT} clause, the tool only attributed the antipattern to the line directly causing the antipattern.
+
+The final three FPs and two FNs were caused by mistakes in the ground truth: in one case, an antipattern occurrence was attributed to the wrong source file; in the second case, the line number was off by one; in the final case, the ground truth was missing an annotation altogether.
+
+\subsubsection*{ID Required}
+Six FNs were caused by the tool not flagging primary key columns named as “id”, while one FN was caused by the tool not recognising an opportunity to use an alternative ID field as the primary key instead of the synthetic primary key. One FP was caused by the tool suggesting replacing a synthetic primary key with a field, which would make foreign keys too large and complex (a field containing internet URLs).
+
+The remaining FPs and FNs were caused by mistakes in the ground truth: in five cases, the ground truth contained incorrect line ranges for antipattern occurrences; in four cases, the ground truth contained invalid antipattern occurrences; in seven cases, the ground truth was missing valid antipattern occurrences detected by the tool.
+
+\subsubsection*{Keyless Entry}
+Half of the FPs (15) were caused by the tool flagging missing foreign keys in tables used for audit logging. We did not flag these columns as antipattern occurrences in the ground truth because these tables store historical data, which could refer to rows that do not exist any more. The prompt instructions did not specify an exception for audit tables; therefore, these errors were likely caused by imprecise instructions.
+
+One FP was caused by an ambiguity in database object names. The affected schema contained a table named “island”, which had a primary key column named “id”. The second table contained a column named “island\_id”, which the tool considered a reference to the aforementioned primary key. However, the columns had different data types, and “island\_id” actually referred to an external identifier.
+
+The other 14 FPs and one FN were caused by mistakes in the ground truth: in one case, the ground truth contained an incorrect line range for an antipattern occurrence; in the other 13 cases, the ground truth was missing valid antipattern occurrences.
+
+Nine of these FPs were edge cases, which we decided to resolve in favour of the tool: the tool flagged nine columns storing usernames of application users. While the affected database schema contained a table for users, the username was neither a primary nor unique key in that table. We considered the missing unique key an integrity violation of its own, and resolving it would have resulted in definite cases of the “Keyless Entry” antipattern; hence, we considered these nine detections to be mistakes in the ground truth.
+
+\subsubsection*{Fear of the Unknown}
+Ten FNs were caused by the tool not flagging columns, which used \texttt{NOT NULL} constraints with special default values (e.g., an empty string or the Unix epoch (January 1, 1970, 00:00:00 UTC)) to indicate “missing” values, rather than using nullable columns.
+
+The other seven FNs were caused by the tool not flagging columns, which had default values and contained values that were non-nullable by nature (e.g., boolean values indicating state).
+
+One FP was caused by the model suggesting a refactoring opportunity in a complex query, rather than pointing out an actual antipattern occurrence.
+
+The other 23 FPs were all caused by mistakes in the ground truth, which was missing many “Fear of the Unknown” antipattern occurrences. In six cases, it was missing columns, which used default values to represent missing values; in the other \num{17} cases, it was missing columns, which were nullable, but contained values non-nullable by nature.
+
+\subsubsection*{31 Flavors}
+The single FN was caused by the tool not flagging the \texttt{CHECK} constraint shown in Figure~\ref{fig:checkConstraint}, which validated a \texttt{SMALLINT} column against a range of values representing different authorisation methods. This error was likely due to imprecise prompt instructions because the prompt contained an instruction to ignore \texttt{CHECK} constraints checking for ranges (e.g., valid ages), but did not account for edge cases of this kind.
+
+\begin{figure}[h]
+    \begin{lstlisting}[frame=none, basicstyle=\small, breaklines=true, breakatwhitespace=false, breakindent=0pt]
+(((authorize_type >= 0) AND (authorize_type <= 1)))
+    \end{lstlisting}
+    \caption{CHECK constraint causing a false negative “31 Flavors” detection.}
+    \label{fig:checkConstraint}
+\end{figure}
+
+The single FP was caused by the tool flagging a \texttt{VARCHAR(50)} column named “status”, while there was nothing in the schema definition code indicating that the column contained a fixed set of values.
+
+\subsubsection*{Poor Man's Search Engine}
+Seven FNs and two FPs were caused by differences in localisation behaviour. In cases where two or more consecutive lines contained distinct occurrences of the “Poor Man's Search Engine” antipattern, the ground truth contained annotations for each of them separately. The tool grouped them together as one antipattern occurrence, although the prompt contained instructions to do otherwise.
+
+The remaining two FPs were caused by the tool flagging usages of the \texttt{LIKE} operator without any wildcards as antipattern occurrences. In these cases, the \texttt{LIKE} operator behaved similarly to an ordinary equality check, which could be determined from the logic of the class being analysed.
+
+The final FN was caused by the tool not flagging a usage of the \texttt{containsIgnoreCase} jOOQ DSL method, which is translated into the \texttt{LIKE} operator with preceding and succeeding wildcards. We suspect that the antipattern occurrence was not flagged because the condition was stored in an intermediate Java collection before being used in a query.
+
+\subsubsection*{Rounding Errors}
+The three FNs were all the same kind: the model did not consider casino game coefficients stored in \texttt{DOUBLE} columns as “Rounding Errors” antipattern occurrences. However, we annotated these columns as antipattern occurrences in the ground truth because these coefficients were used to calculate monetary winning in the business logic.
+
+\subsection{Comparison with Existing Tools and Literature}\label{sec:comparison}
+
+\nobreaktextcite{de2025effectiveness} were able to classify a variation of the “Implicit Columns” antipattern (called the “Use of \texttt{SELECT *} (asterisk wildcard)” or “USA” issue in their work) in PL/SQL projects with an F1-score of \num{1.00} using the GPT-4o model, with Phi-4, Gemini 2.0 Flash, and GPT-4o mini models displaying a lower F1-score. While achieving a higher detection performance than us, their work only included a subset of the “Implicit Columns” antipattern, simplifying the detection task for models. In total, they detected eight PL/SQL code smells, with the GPT-4o and Phi-4 models achieving an overall F1-score of \num{0.79}.
+
+\nobreaktextcite{nagy2017static} did not measure the detection performance of their tool, \emph{SQLInspect}. However, their tool relies on SQL query extraction from Java code. In their performance evaluation against multiple codebases, the query extractor achieved a precision of at least \num{0.879} and a recall of at least \num{0.715} \nobreakcite[p. 492]{meurice2016static}, resulting in a minimum F1-score of \num{0.79} for SQL query extraction, which they suggest using as an upper bound for the SQL antipattern detection performance of \emph{SQLInspect} \nobreakcite[p. 328]{muse2020prevalence}. The overlap of detected antipatterns between our tool and \emph{SQLInspect} is limited to the “Fear of the Unknown” and “Implicit Columns” antipatterns. 
+
+The suggested upper bound F1-score of \num{0.79} is lower than both the corrected (\num{0.97}) and uncorrected (\num{0.96}) F1-scores of our tool for the “Implicit Columns” antipattern. It is also lower than the corrected F1-score of our tool for the “Fear of the Unknown” antipattern (\num{0.82}), but higher than the uncorrected F1-score (\num{0.48}). However, it should be noted that \emph{SQLInspect} only detects the “Fear of the Unknown” antipattern in DQL and DML statements, and does not detect schema-level issues.
+
+In Table~\ref{tab:toolComparison}, we show the detection performance of our tool in classification mode, compared against works regarding LLM-based antipattern, smell, and vulnerability detection in various domains. Based on F1-score, we selected the results of the best-performing model(s) from each work. While not a direct comparison, it shows that our tool performs adequately compared to other tools using a similar methodology in other domains.
+
+\begin{longtable}[hp]{|p{2.5cm}|S[table-format=4.0, table-column-width=0.9cm]|p{2.6cm}|p{3.5cm}|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.0cm]|S[table-format=1.2, table-column-width=1.5cm]|}
+	\caption{Detection performance of the developed tool compared to various LLM-based detection tools.}
+	\label{tab:toolComparison}\\ \hline
+	{\thead[l]{Tool}} & {\thead{Year}} & {\thead[l]{Model}} & {\thead[l]{Domain}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{7}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Tool}} & {\thead{Year}} & {\thead[l]{Model}} & {\thead[l]{Domain}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{7}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    \makecell[l]{Tamberg and\\Bahsi \cite{tamberg_suurte_2024}} & 2024 & GPT-4 & \makecell[l]{Software vulnerability\\detection} & 0.76 & 0.60 & 0.67 \\ \hline
+    \textcite{de2025effectiveness} & 2025 & GPT-4o & \makecell[l]{PL/SQL smell\\detection} & 0.68 & 0.93 & 0.79 \\ \hline
+    \textcite{de2025effectiveness} & 2025 & Phi-4 & \makecell[l]{PL/SQL smell\\detection} & 0.70 & 0.90 & 0.79 \\ \hline
+    \makecell[l]{Blaauwendraad\\\cite{blaauwendraad2025evaluating}} & 2025 & GPT 4o-mini & \makecell[l]{Traditional code\\smell detection} & 0.26 & 0.61 & 0.37 \\ \hline
+    \makecell[l]{Sadik and\\Govind \cite{sadik2025benchmarking}} & 2025 & GPT-4 & \makecell[l]{Traditional code\\smell detection} & 0.79 & 0.41 & 0.54 \\ \hline
+    \makecell[l]{Ploom and\\Eessaar \cite{ploom_suurte_2026}} & 2026 & Gemini 3 Pro & \makecell[l]{UML diagram smell\\detection from PDFs} & 0.82 & 0.69 & 0.75 \\ \hline
+    \makecell[l]{Ours\\(uncorrected)} & 2026 & \makecell[l]{Claude Opus 4.5\\(non-reasoning)} & \makecell[l]{SQL antipattern\\detection in jOOQ} & 0.88 & 0.92 & 0.88 \\\hline
+    \makecell[l]{Ours\\(corrected)} & 2026 & \makecell[l]{Claude Opus 4.5\\(non-reasoning)} & \makecell[l]{SQL antipattern\\detection in jOOQ} & 0.93 & 0.95 & 0.94 \\
+\end{longtable}
+
+Compared to \nobreaktextcite[p. 322]{muse2020prevalence}, who found the “Implicit Columns” antipattern to be present in \qty{1.67}{\percent} of all SQL statements, and the “Fear of the Unknown” antipattern to be present in \qty{0.8}{\percent} of all SQL statements, our prevalence numbers are vastly larger. 
+
+While our metric—occurrences per 100 jOOQ statements—allows for multiple occurrences within a single statement, Muse et al. used a binary count for each antipattern, recording only its presence or absence per statement. Due to this difference in granularity, as well the difference in statement count estimations (explained in Section~\ref{sec:projectAnalysisQuantitative}), these numbers are not directly comparable. Despite this, they can be used as indications of broader trends.
+
+We found there to be \num{21.94} occurrences of “Implicit Columns” per \num{100} SQL statements, which is over 13 times more than found in SQL statements by \nobreaktextcite[p. 322]{muse2020prevalence}. We believe that this difference originates from a difference in detection methodologies: while \emph{SQLInspect}, which was used by Muse et al., only detects wildcards in \texttt{SELECT} statements \nobreakcite[p. 150]{nagy2017static}, we also detect other blind projections generated by jOOQ, which comprised the vast majority of “Implicit Columns” antipattern occurrences detected by us (as shown in Section~\ref{sec:apiDesign}).
+
+We also found there to be \num{3.78} occurrences of “Fear of the Unknown” per \num{100} SQL statements, which is nearly five times more than found in SQL statements by \nobreaktextcite[p. 322]{muse2020prevalence}. We believe that this difference also originates from a difference in detection methodologies: while \emph{SQLInspect} detects the antipattern only from DML and DQL statements \nobreakcite[pp. 149–150]{nagy2017static}, we also detect it from the database schema. As seen from the file-level Jaccard Indices (Appendix~\ref{chapter:appendix-jaccard-file}), we found the majority of “Fear of the Unknown” antipattern occurrences from classes representing the database schema, alongside design antipatterns.
+
+\subsection{The Anatomy of SQL Decay}\label{sec:anatomy}
+
+We found the “Implicit Columns” and “ID Required” antipatterns to be almost ubiquitous across the dataset. Because they are present in \qty{89}{\percent} and \qty{87}{\percent} of projects respectively, their high project-wise Jaccard Index (\num{0.81}) is largely a byproduct of their high individual prevalence. Nevertheless, their near-ubiquity suggests that they represent baseline characteristics of poor SQL design in the analysed projects. Furthermore, their moderate project-wise Spearman correlation (\num{0.43}) suggests that these antipatterns tend to increase together: projects with more generic primary keys often also contain more queries with blind projections.
+
+The “Keyless Entry” and “Fear of the Unknown” antipatterns form a second, lower-prevalence co-occurrence pattern. They are the third and fourth most prevalent antipatterns, appearing in \qty{33}{\percent} and \qty{34}{\percent} of projects, respectively. Their project-wise Jaccard Index of \num{0.34} indicates that roughly one third of projects exhibiting at least one of the two antipatterns exhibit both. This association is also reflected in the conditional probabilities: approximately half of the projects with “Keyless Entry” also exhibit “Fear of the Unknown”, and vice versa. Together with their moderate project-wise Spearman correlation of \num{0.32}, these results suggest a possible broader tendency towards underutilising database-level constraints: projects omitting \texttt{NOT NULL} constraints are also more likely than average to omit foreign key constraints, and vice versa, likely shifting data integrity responsibilities to the application layer.
+
+As expected, the file-level Spearman correlations between DDL and DML/DQL antipatterns are negative, since these antipatterns generally cannot occur within the same source files. The positive file-level Spearman correlation between “Implicit Columns” and “Poor Man's Search Engine” indicates that while most antipatterns are isolated at the file level, these query antipatterns show a slight localised tendency to increase together.
+
+The Conditional Probability analysis indicates that rarer SQL antipatterns frequently co-occur with more prevalent ones, rather than appearing in isolation. For instance, finding the “Poor Man's Search Engine” antipattern yields a \qty{95}{\percent} probability of also finding the “Implicit Columns” antipattern within the same project. Given that “Implicit Columns” already has a high baseline prevalence (present in \qty{89}{\percent} of all projects), this high conditional probability suggests that niche antipatterns rarely exist in isolation; a codebase exhibiting rarer, specific antipatterns almost universally suffers from more common antipatterns as well.
+
+\subsection{Associations with jOOQ API Design}\label{sec:apiDesign}
+
+Our analysis of the jOOQ API methods associated with SQL antipattern occurrences highlights several implications for the library’s documentation and possible API design review.
+
+Regarding the “Implicit Columns” antipattern, we found that jOOQ DSL methods, which fetch records containing all columns from the underlying database table(s), make up nearly three quarters of all occurrences. Although the jOOQ documentation explicitly discourages the use of such methods in order to avoid fetching redundant data \nobreakcite{jooq2025select}, they represent some of the simplest and most straightforward approaches to data retrieval in jOOQ and appear frequently among the detected antipattern occurrences. In contrast, calls to methods, which make the intent of fetching all columns from tables explicit, are much less frequently associated with the antipattern.
+
+For the “Poor Man's Search Engine” SQL antipattern, while the \texttt{Field.like} DSL method is directly translated into an equivalent SQL statement, a significant portion of occurrences are associated with DSL methods like \texttt{Field.containsIgnoreCase} and \texttt{Field.contains}. These methods implicitly add preceding and succeeding \texttt{\%} wildcards to the generated SQL. By hiding the wildcard mechanics, these abstraction methods may make occurrences of the “Poor Man's Search Engine” antipattern less obvious to developers.
+
+\section{Reflection on Work Process}\label{sec:reflection}
+
+We performed the reflection of the thesis based on the experiential learning theory by \nobreaktextcite{Kolb1983-pd}, according to which a concrete experience (performing the work) is followed by reflection, learning from the experience gained, and testing the results in new conditions. In the present work, we did not perform testing in new conditions; however, we highlight what others undertaking similar work could learn from this study.
+
+\subsection{Successes}
+
+The primary success of this research lies in the successful design and implementation of the LLM-powered static analysis CLI tool, as well as the large-scale empirical analysis of \num{602} open-source jOOQ projects. By formulating antipattern detection as a multi-label, multi-occurrence localisation task, we demonstrated the potential of LLMs to address the parsing limitations of dynamic, DSL-based database frameworks. Furthermore, processing over \num{17000} relevant source files allowed us to extract actionable, real-world insights, successfully bridging the gap between theoretical database design flaws and actual developer behaviour in modern Java environments.
+
+Although the final focus of the thesis was settled upon relatively late in the research process, pivoting to an LLM-based methodology ultimately proved to be a critical success. Attempting to achieve similar detection capabilities using traditional static analysis would have been exponentially more complex, partially due to unforeseen complexities. For instance, detecting the “31 Flavors” antipattern requires evaluating fragments of raw SQL \texttt{CHECK} constraints embedded as strings within jOOQ-generated Java classes, effectively forcing a fragile, multi-language parsing pipeline. Furthermore, the highly dynamic nature of the jOOQ DSL would have demanded complex, intra-procedural data flow analysis. By leveraging the semantic and contextual understanding of LLMs, we successfully bypassed these rigid parsing barriers, validating that the modern AI-driven approach was the right tool for the job.
+
+Beyond the technical achievements, the work process itself was a highly successful experiment in human-AI collaboration. The use of a semi-autonomous agentic workflow proved invaluable not only for coding—allowing for rapid iteration of the tool's architecture, concurrency handling, and file-system traversal logic—but also for agentic writing. Leveraging LLMs as writing assistants helped streamline the drafting and structuring of complex arguments, allowing the research effort to remain focused on core complexities, rather than getting bogged down in boilerplate implementation or writer's block. Additionally, undertaking this thesis served as an excellent vehicle for personal and professional growth, significantly strengthening my academic writing skills and providing a great, hands-on opportunity to master LaTeX.
+
+Finally, a major highlight of this research process was the highly pleasant and productive collaboration with my supervisor. His continuous feedback and deep domain expertise were instrumental in shaping the direction of the study. Through our discussions, he helped to level up the overall methodology of the thesis by a significant margin.
+
+\subsection{Shortcomings and Problems}
+
+A significant overarching problem during this research was the severely compressed timeline. The final topic of the thesis only became fully clear near New Year's Eve, which meant that a good amount of previous exploratory work had to be left aside. This pivot drastically shortened the window available for executing the core experiments. Because the scope of the thesis remained remarkably broad despite this temporal constraint, certain aspects of the methodology and analysis may not have received the thorough attention they ultimately deserved.
+
+Consequently, the rushed timeline led to suboptimal data management practices: specifically, we did not adequately preserve intermediate results at each step. The failure to persist raw detection results for individual model evaluations resulted in redundant API calls whenever minor pipeline adjustments were introduced. This oversight not only inflated computational costs but also reduced the overall transparency and reproducibility of the study. Furthermore, this prevented us from rigorously evaluating the statistical significance of the performance differences between the alternative prompting strategies and the baseline.
+
+Another significant shortcoming of this research was the reliance on a single human annotator for establishing the ground truth dataset. Despite our rigorous efforts to maintain internal consistency—including the creation of decision trees and a 30-day washout period that yielded a high Cohen’s Kappa of \num{0.834}—the single annotator setup was ultimately not reliable enough. Qualitative analysis during the evaluation phase revealed numerous human inaccuracies, missed occurrences, and misclassified edge cases. Relying on one individual's subjective interpretation inherently introduced blind spots and bias into the dataset, meaning the LLMs were benchmarked against a fallible human baseline rather than an objective consensus.
+
+Additionally, the research suffered from unfortunate timing regarding the release cycle of new language models. The landscape of LLMs evolves at a rapid pace, and just as we moved past the model evaluation stage, highly compelling small language models were released. Most notably, Google Gemma 4 and Alibaba Cloud Qwen 3.5 and 3.6 became available. Because our evaluation framework was already committed to the selected models, we were unable to test these newly released model families, which otherwise looked to be perfect candidates for high-performance, cost-effective, and locally hosted static analysis.
+
+\subsection{Suggestions for Future Improvements}
+
+Should this study be repeated or expanded upon, it is imperative that a multi-annotator setup be employed for dataset creation. Engaging multiple independent domain experts to review the jOOQ source code and cross-validate antipattern occurrences would dramatically improve the objective correctness of the ground truth. Resolving annotator disagreements through consensus discussions would eliminate the subjective biases and blind spots that hindered the dataset in this study, resulting in a much more resilient benchmark for evaluating LLM performance.
+
+To improve methodological rigour, future iterations of this work must incorporate strict data versioning and artifact tracking practices. Every intermediate result—such as the raw JSON responses returned by the LLMs for each prompt variation—should be persistently stored and logged. Doing so will eliminate the need for redundant API calls, save on research costs, and ensure total transparency, allowing peer researchers to inspect the exact reasoning steps and outputs generated at any point during the evaluation phase.
+
+\section{Limitations}\label{sec:limitations}
+
+A primary limitation of this study is the reliance on a single human annotator for establishing the ground truth dataset. Although an intra-annotator agreement check was conducted after a 30-day washout period, yielding a high Cohen's Kappa of \num{0.834}, this metric only demonstrates internal consistency rather than objective correctness. As revealed during the qualitative analysis of detection errors, the ground truth contained several human inaccuracies, including missed antipattern occurrences, imprecise line ranges, and misclassified edge cases. Subjective interpretations of complex code structures or systematic blind spots regarding specific jOOQ patterns remain unchecked by independent domain experts, meaning the evaluated LLMs are benchmarked against one individual's fallible interpretation rather than an independently verified consensus.
+
+Consequently, the retroactive corrections made to the ground truth during the evaluation phase introduce a bias in favour of the developed tool. While the corrected F1-scores account for human annotation errors successfully identified by the tool (i.e., false positives that were actually true positives), this methodology inherently ignores ‘unknown unknowns’—antipattern occurrences missed by both the human annotator and the language model. Because the ground truth was only corrected in locations where the tool flagged an anomaly, the revised performance metrics effectively represent an optimistic upper bound rather than an absolute measure of the tool's detection capabilities.
+
+Another limitation relates to the calculation of antipattern prevalence metrics, specifically occurrences per \num{100} statements. Due to the dynamic nature of the jOOQ DSL, extracting and counting exact SQL statements statically is highly error-prone. Consequently, jOOQ API method calls were used as a proxy to estimate the total number of executed statements. Because loop constructs and conditional query building can generate a vastly different number of actual SQL statements at runtime than static method references imply, this proxy measurement introduces a margin of error, invalidating direct comparisons with density metrics from previous plain SQL studies.
+
+Regarding external validity, the dataset utilised for evaluating antipattern prevalence consists entirely of open-source projects mined from GitHub. Open-source repositories often exhibit different architectural patterns, code review cadences, and developer demographics compared to closed-source enterprise systems. Because jOOQ is widely utilised in enterprise environments dealing with complex databases, the prevalence rates and co-occurrence clusters identified in this study may not perfectly generalise to proprietary industrial codebases.
+
+The repository mining process was also constrained by the technical limitations of the GitHub Code Search API, specifically its hard limit of \num{1000} results per query, which introduced potential blind spots, further explored in Section \ref{sec:miningAlternatives}.
+
+Additionally, the sampling process was not based on a perfectly filtered initial dataset. As the research progressed, it became evident that the dataset contained minor imperfections, such as the inclusion of a duplicated project and an incomplete heuristic list for excluding irrelevant files. Although further corrections were made later in the study, these retroactive adjustments imply that the initial sampling pool used to create the training, validation, and test splits contained slight flaws that marginally skewed the representativeness of the evaluated sample.
+
+Another limitation concerns the evaluation of the prompting strategies, specifically the risk of overtraining observed in the Few-Shot strategy. The examples provided to the models within the Few-Shot prompts were largely derived from the training set. While this effectively guided the models to make correct decisions for specific edge cases during prompt development, these improvements largely failed to materialise when evaluated against the unseen validation set. This discrepancy suggests that the models may have overfitted to the provided examples, limiting their generalisation capabilities when presented with novel code structures.
+
+An additional limitation regarding the evaluation of prompting strategies is the inability to formally determine the statistical significance of the observed performance differences. Consequently, the comparisons between prompting strategies rely solely on absolute metric differences, lacking the rigorous statistical validation required to prove whether the marginal fluctuations in F1-scores were true improvements or merely the result of random variance.
+
+Furthermore, the selection of prompting strategies evaluated in this research was deliberately restricted to keep the scope of the thesis manageable. The experiments were strictly limited to techniques that could be fully executed within a single request-response cycle, namely Zero-Shot, Few-Shot, and single-prompt variations of Chain-of-Thought and Tree-of-Thought. More complex, multi-agent, or iterative multi-turn prompting frameworks were excluded from this comparative analysis.
+
+From a Design Science Research perspective, the developed CLI artefact was evaluated purely algorithmically (an artificial ex-post evaluation) against an annotated dataset. While the tool achieved a high F1-score, algorithmic performance does not inherently translate to practical utility. Due to time constraints, the study does not evaluate the tool in a naturalistic setting, leaving questions unanswered regarding whether the LLM-generated explanations are easily understood by developers, if the false-positive rate induces alert fatigue, or if the execution times are viable for integration into real-world developer workflows.
+
+Finally, the inherent non-determinism of LLMs poses a fundamental constraint on the tool's reliability. Although we maximised determinism through multiple technical means—specifically by disabling model reasoning (in the final tool), utilising a zero-temperature setting, and enforcing strict structured outputs—LLMs remain fundamentally probabilistic by nature. Consequently, the tool cannot guarantee the absolute, repeatable determinism that developers traditionally expect from static analysis utilities. Furthermore, due to the high financial costs associated with processing large codebases through commercial LLM APIs, the quantitative evaluations in this study were only executed once. Relying on a single evaluation run means the potential variance in detection performance across multiple iterations of the same dataset remains unmeasured.
+
+The use of OpenRouter as an API gateway introduces an additional layer of potential non-determinism affecting future reproducibility. Because OpenRouter dynamically routes requests for open-weights models (such as GLM-5 or gpt-oss-120B) to different backend hosting providers, variations in backend inference engines or quantization methods could introduce token-level output differences. Furthermore, if a provider silently updates a model version behind the same endpoint, future replications of this study could yield different results. Finally, while API caching did not affect our single-pass methodology (as noted in Section \ref{sec:experimentsQuantitative}), future researchers attempting to measure detection variance across multiple iterations of the same dataset must explicitly account for (or disable) OpenRouter's caching semantics to avoid artificially skewed stability metrics.
+
+\section{Future Work}\label{sec:futureWork}
+
+The catalogue of SQL antipatterns evaluated in this thesis is limited to Karwin's foundational work. Future work could expand this tool to allow for detecting antipatterns from more extensive and specialised taxonomies \nobreakcite{alshemaimri2021survey}, \nobreakcite{10.1007/978-3-031-09070-7_26}, \nobreakcite{10.1007/978-3-031-35311-6_51}, \nobreakcite{factor2014sql} and Karwin's follow-up book \nobreakcite{karwin2026more}, as well as vendor-specific literature \nobreakcite{angelakos2025PostgreSQL}.
+
+This thesis deliberately restricted the evaluated prompting strategies to single request-response cycles to manage scope. Exploring more complex (e.g., multi-turn or multi-agent) prompting frameworks could offer sophisticated pathways for improvement, refining reasoning pathways and achieving a higher degree of analytical rigour.
+
+The accurate detection of complex antipatterns (e.g., “Keyless Entry” and “Fear of the Unknown”) is currently constrained by the limited cross-file context provided in prompts. Implementing a Retrieval-Augmented Generation (RAG) architecture represents a promising methodological enhancement. By indexing the relevant parts of a codebase, a RAG-enabled system could dynamically supply the LLM with comprehensive context, thereby substantially improving both precision and recall for context-dependent antipatterns. To offset the token overhead of retrieving this additional context, future implementations could pair RAG with lightweight pre-filtering mechanisms, such as regular expressions or basic AST parsing. By using these heuristics to isolate and send only the specific code blocks containing jOOQ queries—rather than entire source files—the tool could drastically shrink the required context windows, conserving API resources and significantly reducing analysis costs.
+
+The financial costs and latency associated with utilising frontier commercial models present a significant barrier to the continuous analysis of large-scale codebases. The landscape of LLMs is evolving rapidly, and during the later stages of this study, several promising families of small language models (Alibaba Cloud Qwen 3.5 and 3.6, Google Gemma 4) were released, potentially offering significant improvements over the medium-sized model (gpt-oss-120B) evaluated in this study. Future research could also include small language models, and explore fine-tuning them using the manually annotated ground truth dataset developed in this study. These approaches could achieve comparable detection performance while drastically reducing costs. Such models are also viable for self-hosting, ensuring data privacy for proprietary enterprise applications.
+
+The current tool implementation only provides core detection functionality, which future work could extend upon. The architecture allows alternative user interfaces to be developed independently of the tool, while more interactive interfaces could enable more advanced functionality. For instance, a user interface could be used to mark detections -- both false positives and deliberate violations -- as ignored, so subsequent analyses would not re-detect the same antipattern occurrences.
+
+While this research demonstrates the efficacy of LLMs in bypassing the parsing limitations of the jOOQ DSL specifically, the underlying methodology is highly adaptable. Expanding the detection logic to encompass other query builders, such as LINQ and SQLAlchemy, would broaden the tool's applicability.
+
+While the results of the large-scale analysis were used to find the jOOQ DSL methods most commonly associated with query antipatterns, we did not evaluate them regarding database design antipatterns. The \num{15931} flagged antipattern occurrences could be further processed and analysed, seeking patterns among the detections, which could be used to improve detection heuristics in other tools, such as scripts analysing database system tables.

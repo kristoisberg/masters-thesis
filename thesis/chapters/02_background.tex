@@ -1,0 +1,145 @@
+This chapter establishes the theoretical foundation for the thesis by introducing key concepts and reviewing related literature. We begin by detailing the history and impact of SQL antipatterns, followed by an overview of the jOOQ database access library. We then explore existing static analysis methods for code smell detection and discuss prompt engineering strategies used with large language models. Finally, we bridge these domains by reviewing previous efforts in automated SQL antipattern detection.
+
+\section{SQL Antipatterns}\label{sec:sqlAntipatterns}
+
+SQL antipatterns refer to frequently occurring counterproductive solutions in database schema design or query construction that initially appear effective, but ultimately result in poor performance, maintainability challenges, or compromised data integrity \nobreakcite[p. 1]{karwin2023sql}, \nobreakcite[p. 4]{alshemaimri2021survey}. The term “antipattern” was coined by Koenig in 1995 \nobreakcite[p. 46]{koenig1995patterns} and is generally used to describe common solutions to recurring problems that prove to be ineffective and have negative consequences in the long term \nobreakcite[p. 1]{karwin2023sql}, \nobreakcite[p. 4]{ambler1998process}, \nobreakcite[p. 6]{brown1998antipatterns}. A related term, “code smell”, was coined by Beck and Fowler in 1999 \nobreakcite[Ch. 3]{fowler2019refactoring}. The term is used to describe the characteristics of source code that hint at the use of bad practices in the code \nobreakcite[pp. 71–72]{fowler2019refactoring}.
+
+SQL antipatterns were first described by Karwin in a book originally published in 2010 \nobreakcite{karwin2023sql}, which details “the most frequent missteps software developers naively make while using SQL” \nobreakcite[p. 1]{karwin2023sql}. Since the publication of the book by Karwin, researchers and industry professionals alike have produced numerous other collections and taxonomies of SQL antipatterns, both general \nobreakcite{alshemaimri2021survey}, \nobreakcite{10.1007/978-3-031-09070-7_26}, \nobreakcite{10.1007/978-3-031-35311-6_51}, \nobreakcite{factor2014sql} and database vendor specific \nobreakcite{angelakos2025PostgreSQL}. SQL antipatterns can have a negative impact on various characteristics of affected systems, such as performance, maintainability, portability, and data integrity \nobreakcite[p. 4]{alshemaimri2021survey}.
+
+Although more extensive catalogues of SQL antipatterns have been produced, we limited our efforts to the antipatterns defined by \nobreaktextcite{karwin2023sql}, which is considered a seminal work on the subject \nobreakcite[p. 336]{muse2020prevalence} and have the most data available for comparison. Karwin is also working on a follow-up to his original book \nobreakcite{karwin2026more}, containing \num{13} additional SQL antipatterns, expected to be published in June 2026 \nobreakcite{moreSqlAntipatternsGoogleBooks}.
+
+As an example, the “Implicit Columns” antipattern \nobreakcite[Ch. 19]{karwin2023sql} occurs when a \texttt{SELECT} statement does not specify the columns that are necessary to be selected, but rather selects them all using the \texttt{*} wildcard. This degrades the maintainability of the affected system, since several database table operations (such as dropping a column) can change the ordinal positions of columns in the table. If code dependent on previously correct ordinal positions selects its data using the \texttt{*} wildcard after the table layout has changed, it will receive columns in altered ordinal positions, resulting in faulty behaviour.
+
+Furthermore, the antipattern hinders performance, since unneeded columns must be processed by the database management system (DBMS), and the corresponding data must be transferred to the affected system. This claim was confirmed by \nobreaktextcite[p. 60]{lyu2019quantifying}, who studied the performance impact of SQL antipatterns in the context of local SQLite databases of Android applications. They found that on average, fixing the antipattern reduced the runtime of affected queries by \qty{27}{\percent}, and their energy consumption by \qty{29}{\percent}.
+
+The antipattern can also occur in the form of an \texttt{INSERT} statement, which does not specify the list of columns to which inserted values should be assigned, but rather depends on the implicit column order of the table \nobreakcite[Ch. 19]{karwin2023sql}. An example of an SQL query containing the “Implicit Columns” antipattern is shown in Figure~\ref{fig:implicitColumnsSql}.
+
+\begin{figure}[h]
+    \begin{lstlisting}[frame=none, basicstyle=\small]
+SELECT * FROM employee WHERE name = 'Jack'
+    \end{lstlisting}
+    \caption{Query written in SQL containing the “Implicit Columns” antipattern.}
+    \label{fig:implicitColumnsSql}
+\end{figure}
+
+\nobreaktextcite{muse2020prevalence} studied the prevalence of SQL antipatterns in data-intensive Java software systems and found that SQL antipatterns are prevalent in all studied application domains. For example, they found that the “Implicit Columns” antipattern affects nearly two queries out of every \num{100}. Similarly, \nobreaktextcite[pp. 59–60]{sharma2018smelly} found that several database design antipatterns are prevalent in both industrial and open-source projects.
+
+\nobreaktextcite{muse2020prevalence} also found that compared to traditional code smells \nobreakcite[Ch. 3]{fowler2019refactoring}, SQL antipatterns tend to remain unfixed for a longer period and are more likely to persist throughout the lifetime of the software. They suggested that the reason for this could be developers' lack of awareness of SQL antipatterns and their downsides, or the comparatively low priority of the task of fixing antipatterns.
+
+In the following sections, we provide a brief overview of each SQL antipattern defined by Karwin.
+
+\subsection{Logical Database Design Antipatterns}\label{sec:logicalAntipatterns}
+
+Logical database design involves developing solutions that remain agnostic of the implementation environment \nobreakcite[p. 4]{eessaar2026loogiline}. Logical design antipatterns describe missteps in planning out database tables, columns, and relationships \nobreakcite[p. 1]{karwin2023sql}.
+
+\begin{itemize}
+    \item \textbf{Jaywalking \nobreakcite[Ch. 2]{karwin2023sql}:} Storing multiple values for a single attribute as a comma-separated string in one column to avoid creating an intersection table. This makes querying individual items inefficient and prevents the database from enforcing referential integrity.
+    \item \textbf{Naive Trees \nobreakcite[Ch. 3]{karwin2023sql}:} Relying on a simple parent\_id column to store hierarchical data, which makes it difficult to query deep or unlimited branches in a single step. Although easy to implement, it requires expensive recursive logic or many queries to retrieve full trees.
+    \item \textbf{ID Required \nobreakcite[Ch. 4]{karwin2023sql}:} Using a generic, non-descriptive column named “id” as a primary key, or using a synthetic primary key, regardless of whether a natural or compound key would be more appropriate. This convention can lead to redundant or missing keys and allow duplicate rows in tables.
+    \item \textbf{Keyless Entry \nobreakcite[Ch. 5]{karwin2023sql}:} Omitting foreign key constraints in an attempt to simplify design or improve performance, which forces the application code to manage referential integrity. This practice often leads to orphaned rows and corrupted data that must be cleaned up with periodic scripts.
+    \item \textbf{Entity-Attribute-Value \nobreakcite[Ch. 6]{karwin2023sql}:} Using a generic table to store variable attributes as rows rather than columns to achieve an “open schema”. This design breaks the relational model, making mandatory attributes impossible to enforce and significantly complicating the creation of even simple reports.
+    \item \textbf{Polymorphic Associations \nobreakcite[Ch. 7]{karwin2023sql}:} Using a multipurpose foreign key column to reference multiple parent tables, often distinguished by a “type” column. Because SQL foreign keys can only reference exactly one table, this design prevents the database from enforcing data integrity.
+    \item \textbf{Multicolumn Attributes \nobreakcite[Ch. 8]{karwin2023sql}:} Creating multiple columns (e.g., tag1, tag2, and tag3) to store the values of a single multivalued attribute. This makes searching for values tedious and limits the number of items you can store to the fixed number of columns defined.
+    \item \textbf{Metadata Tribbles \nobreakcite[Ch. 9]{karwin2023sql}:} Creating new tables or columns for each successive data value (such as a separate table or a column for each year) to manage large data sets. This leads to a proliferation of metadata objects that must be manually synchronised and updated as new data arrives.
+\end{itemize}
+
+\subsection{Physical Database Design Antipatterns}\label{sec:physicalAntipatterns}
+
+Physical database design adapts logical designs for specific implementation environments, targeting them for particular hardware and software platforms \nobreakcite[p. 4]{eessaar2026loogiline}. Physical design antipatterns describe missteps in defining tables and indexes, and choosing data types \nobreakcite[pp. 1–2]{karwin2023sql}.
+
+\begin{itemize}
+    \item \textbf{Rounding Errors \nobreakcite[Ch. 10]{karwin2023sql}:} Using the \texttt{FLOAT} or \texttt{REAL} data types for exact fractional values, such as currency, which results in cumulative precision errors during calculations. Using \texttt{NUMERIC} or \texttt{DECIMAL} types ensures values are stored and compared accurately.
+    \item \textbf{31 Flavors \nobreakcite[Ch. 11]{karwin2023sql}:} Specifying a fixed list of allowed values directly in a column definition (using \texttt{CHECK} constraints or \texttt{ENUM}) instead of using a lookup table. This makes it difficult to update the allowed values or retrieve them for use in a user interface without changing the database schema.
+    \item \textbf{Phantom Files \nobreakcite[Ch. 12]{karwin2023sql}:} Assuming that media files must be stored on the file system with only their paths saved in the database, which breaks transactional consistency. Storing media as \texttt{BLOB} data ensures that backups, deletions, and rollbacks are perfectly synchronised with the database.
+    \item \textbf{Index Shotgun \nobreakcite[Ch. 13]{karwin2023sql}:} Creating database indexes by guessing rather than following a plan, leading to either too many redundant indexes or none where they are actually needed. This can result in unnecessary overhead for updates or poor performance for critical queries.
+\end{itemize}
+
+\subsection{Query Antipatterns}\label{sec:queryAntipatterns}
+
+Query antipatterns describe missteps in manipulating and retrieving data with statements such as \texttt{SELECT}, \texttt{UPDATE}, and \texttt{DELETE} \nobreakcite[p. 2]{karwin2023sql}.
+
+\begin{itemize}
+    \item \textbf{Fear of the Unknown \nobreakcite[Ch. 14]{karwin2023sql}:} Treating NULL as an ordinary value or using ordinary values (like \num{-1}) to signify “unknown,” leading to confusing results in logical comparisons. Since any comparison with \texttt{NULL} returns “unknown,” queries using equality or inequality checking operators often fail to return expected rows.
+    \item \textbf{Ambiguous Groups \nobreakcite[Ch. 15]{karwin2023sql}:} Referencing columns in a query with a \texttt{GROUP BY} clause that are neither grouped by nor part of an aggregate function. This can result in the database returning arbitrary and unreliable values for the non-grouped columns.
+    \item \textbf{Random Selection \nobreakcite[Ch. 16]{karwin2023sql}:} Using \texttt{ORDER BY rand()} to fetch a random sample of data, which forces the database to perform an expensive table scan and manual sort. This technique is notoriously slow and fails to scale as the volume of data grows.
+    \item \textbf{Poor Man's Search Engine \nobreakcite[Ch. 17]{karwin2023sql}:} Implementing full-text search using basic SQL pattern-matching predicates like \texttt{LIKE} or regular expressions instead of specialised tools. This approach cannot utilise standard indexes and often returns irrelevant matches that lack linguistic precision.
+    \item \textbf{Spaghetti Query \nobreakcite[Ch. 18]{karwin2023sql}:} Trying to solve a complex, multistep problem in a single SQL statement to avoid running multiple queries. These convoluted queries are difficult to maintain and often produce unintended Cartesian products that multiply result sets incorrectly.
+    \item \textbf{Implicit Columns \nobreakcite[Ch. 19]{karwin2023sql}:} Relying on wildcards like \texttt{SELECT *} or omitting column names in \texttt{INSERT} statements to reduce typing. This makes application code fragile, since it can break or reference the wrong data whenever the database schema changes.
+\end{itemize}
+
+\subsection{Application Development Antipatterns}\label{sec:developmentAntipatterns}
+
+Application development antipatterns describe missteps in the use of SQL in the context of applications written in other programming languages \nobreakcite[p. 2]{karwin2023sql}.
+
+\begin{itemize}
+    \item \textbf{Readable Passwords \nobreakcite[Ch. 20]{karwin2023sql}:} Storing user passwords in plain text or with reversible encoding, exposing them to anyone with access to the database, logs, or backups. The secure solution is to store a one-way salted hash of the password that cannot be reversed by an attacker.
+    \item \textbf{SQL Injection \nobreakcite[Ch. 21]{karwin2023sql}:} Building SQL queries by interpolating unverified user input directly into the query string, allowing attackers to manipulate the statement's syntax. Developers should use query parameters to ensure that user input is always treated as a literal value and never as executable code.
+    \item \textbf{Pseudokey Neat-Freak \nobreakcite[Ch. 22]{karwin2023sql}:} Attempting to fill gaps in a primary key sequence or renumber rows to make them contiguous. This is unnecessary as surrogate primary keys are intended only as unique identifiers, and changing the values can break data integrity and relationships with other systems.
+    \item \textbf{See No Evil \nobreakcite[Ch. 23]{karwin2023sql}:} Neglecting to check return values or handle exceptions from database API calls to keep the application code concise. Ignoring these signals leads to silent failures and makes it nearly impossible to diagnose simple syntax or connection errors.
+    \item \textbf{Diplomatic Immunity \nobreakcite[Ch. 24]{karwin2023sql}:} Exemption of SQL and database code from standard software engineering practices such as version control, documentation, and automated testing. Treating SQL as a “second-class citizen” leads to high technical debt and a brittle, undocumented system.
+    \item \textbf{Standard Operating Procedures \nobreakcite[Ch. 25]{karwin2023sql}:} Using stored procedures for all logic simply because “it's always been done that way”, without evaluating modern architectural needs. This can concentrate the workload on a single database server and create bottlenecks, whereas modern application servers scale out more easily.
+\end{itemize}
+
+\section{jOOQ Object Oriented Querying}\label{sec:jooq}
+
+jOOQ \nobreakcite{jooq2026homepage} is an open-source Java library that aims to simplify and enhance the way developers interact with SQL databases. Rather than abstracting SQL (like ORM frameworks such as Hibernate \nobreakcite{hibernate2026homepage} do), jOOQ integrates SQL into Java as an embedded domain-specific language (DSL) \nobreakcite{jooq2025sql}. jOOQ allows developers to build and execute SQL queries using its DSL, while leveraging code generation to provide improved type safety and enhanced Integrated Development Environment (IDE) support \nobreakcite{jooq2025codegen}. Their code generator reverse-engineers an existing database schema into a set of Java classes that model numerous database objects, such as tables, sequences, stored procedures, and user-defined types \nobreakcite{jooq2025codegen}. When constructing SQL queries with jOOQ is not desirable, jOOQ also allows the execution of plain SQL statements through Java Database Connectivity (JDBC), serving as an object-oriented wrapper around the relatively low-level JDBC API \nobreakcite{jooq2025execution}.
+
+A query written using the jOOQ DSL containing the “Implicit Columns” antipattern \nobreakcite[Ch. 19]{karwin2023sql}, equivalent to the SQL query in Figure~\ref{fig:implicitColumnsSql}, is shown in Figure~\ref{fig:implicitColumnsJooq}.
+
+\begin{figure}[h]
+    \begin{lstlisting}[frame=none, basicstyle=\small]
+var employee = dslContext.select(DSL.asterisk())
+    .from(EMPLOYEE)
+    .where(EMPLOYEE.NAME.eq("Jack"))
+    .fetchOne();
+    \end{lstlisting}
+    \caption{Query written in jOOQ containing the “Implicit Columns” antipattern.}
+    \label{fig:implicitColumnsJooq}
+\end{figure}
+
+The approach jOOQ takes to integrate SQL into Java makes it a popular choice for performing complex database interactions. It is one of the most widely used methods for interacting with databases in Java projects, having more than \num{6500} stars on GitHub as of October 2025 \nobreakcite{jooq2025repo}, and being widely adopted in industrial software \nobreakcite{jooq2025customers}. It is widely used both as the sole method of database interaction and alongside ORMs such as Hibernate to implement the most complex and performance-critical database operations, which ORMs often struggle to execute efficiently, if they can execute them at all \nobreakcite[p. 423]{mihalcea2016high}.
+
+\section{Static Analysis for Antipattern Detection}\label{sec:staticAnalysis}
+
+Historically, the detection of antipatterns and code smells has been the domain of traditional static analysis methods, which take metrics-based and rule-based approaches, represented by tools such as SonarQube \nobreakcite{sonarQube2026homepage} and PMD \nobreakcite{pmd2026homepage}. 
+
+In metrics-based approaches, code smells are identified based on threshold values defined for software metrics such as lines of code, complexity, and coupling \nobreakcite{DBLP:conf/icsm/Marinescu04}. For example, a class with high complexity, low cohesion, and any direct access to foreign data could be identified as the “God Class”, also known as “Blob” code smell \nobreakcite[Ch. 3.3]{Riel1996-tv}, \nobreakcite[pp. 73–84]{brown1998antipatterns}, \nobreakcite[p. 355]{DBLP:conf/icsm/Marinescu04}.
+
+In rule-based approaches, code smells are detected by searching the Abstract Syntax Tree (AST) of the source code for suspicious patterns \nobreakcite{DBLP:journals/tse/MohaGDM10}. For example, a class characterised by a procedural name, a very high number of lines of code, the absence of parameters, the use of global variables, and the lack of inheritance and polymorphism could be identified as exhibiting the “Spaghetti Code” smell \nobreakcite[pp. 119–137]{brown1998antipatterns}. This demonstrates a combination of rule- and metrics-based approaches \nobreakcite[p. 27]{DBLP:journals/tse/MohaGDM10}.
+
+Although static analysis tools that use traditional methods have been effective in detecting code smells and antipatterns to an extent, they suffer from notable limitations due to the rigidity of the underlying methods. The metric- and pattern-based tools lack contextual awareness, making them prone to high false positive rates \nobreakcite[pp. 10--11]{DBLP:journals/jserd/PaivaDFS17}, often reporting issues, which are not actual problems upon human review, which reduces the practical usability of these tools and developers' confidence in them \nobreakcite{DBLP:conf/icse/JohnsonSMB13}.
+
+To overcome the limitations of rigid thresholds and patterns, researchers have explored machine learning (ML) techniques for code smell detection \nobreakcite{DBLP:journals/ese/FontanaMZM16}. Rather than defining fixed thresholds or patterns, these approaches learn from data, such as human-annotated datasets of smelly and clean code \nobreakcite{DBLP:journals/ese/FontanaMZM16}. Although recent approaches based on deep learning show promising results in terms of detection performance \nobreakcite[pp. 3492–3494]{DBLP:journals/cluster/MalhotraJK23}, traditional techniques remain prominent in real-world scenarios.
+
+More recently, with the rapid evolution of LLMs, researchers are increasingly using them to detect problematic patterns in code. LLMs have repeatedly shown advanced semantic understanding and contextual awareness in software engineering tasks \nobreakcite{DBLP:journals/corr/abs-2107-03374}, \nobreakcite{DBLP:journals/corr/abs-2306-03091}. Commercial tools such as CodeRabbit \nobreakcite{codeRabbit2026homepage} are widely used to detect problems during code reviews, and various research has indicated that LLMs can detect code quality problems with reasonable precision \nobreakcite{blaauwendraad2025evaluating}, \nobreakcite{sadik2025benchmarking}. Most relevantly to our work, \nobreaktextcite[p. 410]{de2025effectiveness} found that both small and large language models are reasonably capable of detecting bad smells in PL/SQL code. It should be noted that the models used in many of these studies are considered outdated or deprecated by now, and repeating these studies with recent models would likely demonstrate improved performance.
+
+\section{Prompt Engineering}\label{sec:promptEngineering}
+
+The interaction between users and LLMs is mediated through prompting, which is the process of providing natural language inputs to guide the model towards generating a desired output \cite{DBLP:journals/csur/LiuYFJHN23}. Prompt engineering is the practice of intentionally designing, refining, and optimising prompts to guide LLMs to produce the most accurate, reliable, and useful outputs possible \cite{DBLP:journals/csur/LiuYFJHN23}.
+
+Effective prompt engineering involves the application of diverse prompting strategies—methodological frameworks that structure information, constraints, and instructions to better align the model's reasoning capabilities with specific task requirements \cite{DBLP:journals/corr/abs-2302-11382}.
+
+The landscape of prompting strategies is vast and ever-changing, with a survey from 2024 \nobreakcite{DBLP:journals/corr/abs-2402-07927} listing \num{41} distinct prompting strategies of varying levels of implementation complexity, used with different goals, such as eliciting reasoning and reducing hallucination. Some of the more popular prompting strategies include the following:
+
+\begin{itemize}
+    \item \textbf{Zero-Shot Prompting:} Providing a model with a direct query or task instructions, without providing examples of correct answers in the prompt, leveraging the model's pre-existing knowledge and abilities to generalise and follow instructions \nobreakcite{DBLP:conf/nips/KojimaGRMI22}. Zero-Shot Prompting is the most common prompting technique and most representative of common LLM usage, and is often treated as the baseline prompting strategy.
+    \item \textbf{Few-Shot Prompting:} Supplementing the prompt with a number of input-output examples, helping the model recognise patterns \nobreakcite{DBLP:conf/nips/BrownMRSKDNSSAA20}.
+    \item \textbf{Chain-of-Thought (CoT) Prompting:} A collection of techniques used to guide the model to work through intermediate reasoning steps before arriving at a final answer \nobreakcite{DBLP:conf/nips/KojimaGRMI22}, \nobreakcite{DBLP:conf/nips/Wei0SBIXCLZ22}. Although commonly considered a best practice, recent reports have indicated that its benefits have marginalised with the introduction of reasoning models \nobreakcite{DBLP:journals/corr/abs-2506-07142}. We use the Zero-Shot version of CoT \nobreakcite{DBLP:conf/nips/KojimaGRMI22}, appending the words “Let's think step by step.” to our Zero-Shot prompt. Although there are more elaborate versions of CoT \nobreakcite{DBLP:conf/nips/Wei0SBIXCLZ22}, their benefits have been shown to be similar to the Zero-Shot version \nobreakcite[p. 3]{DBLP:journals/corr/abs-2506-07142}.
+    \item \textbf{Tree-of-Thought (ToT) Prompting:} Expands on CoT by providing the model with an opportunity to explore multiple reasoning branches and to continuously self-evaluate by acting out a discussion between multiple subject-matter experts \nobreakcite{tree-of-thought-prompting}. Applies concepts from more complex ToT frameworks \nobreakcite{DBLP:journals/corr/abs-2305-08291}, \nobreakcite{DBLP:conf/nips/YaoYZS00N23} at the prompt level.
+\end{itemize}
+
+\section{Detection of SQL Antipatterns}\label{sec:sqlDetection}
+
+To the best of our knowledge, there are currently (as of the beginning of the year 2026) two static analysis tools capable of detecting SQL antipatterns in Java code.
+
+The first tool, \emph{DbDeo} \nobreakcite{dbDeo2026GitHub}, was presented by \nobreaktextcite{sharma2018smelly} and is capable of detecting nine schema-related antipatterns in SQL statements embedded in numerous programming languages. They employ regular expressions to extract SQL statements from code written in a host language. The extracted SQL statements are parsed and converted into models of the statements, which are then analysed by their smell detector. In their detection performance assessment, \emph{DbDeo} demonstrated a low rate of false positives, all of which they attributed to errors during the extraction and parsing phases.
+
+The second tool was presented by \nobreaktextcite{nagy2017static} and is capable of detecting four of the query-related antipatterns described by \nobreaktextcite{karwin2023sql}. Their tool uses intra-procedural string resolution to extract SQL statements from Java code, which are then parsed using a fault-tolerant SQL parser, capable of handling SQL statements with incomplete sections due to extraction errors. The tool can be accessed using a command-line interface or the \emph{SQLInspect} plug-in for the Eclipse IDE \nobreakcite{nagy2017static}, \nobreakcite{nagy2018sqlinspect}.
+
+As the recommended method of constructing SQL statements with jOOQ is to use its DSL with code generation \nobreakcite{jooq2025withgen}, most statements in projects using jOOQ are not in the form of plain SQL and the SQL is generated dynamically at runtime. Since both of the mentioned tools are designed to work with plain SQL statements, which must be present within the source code, they are incapable of detecting most SQL antipatterns in such projects.
+
+Elsewhere, \nobreaktextcite{DBLP:conf/iwpc/FilhoMVMSMR19} used a tool named Manduka to detect bad smells in PL/SQL projects using static analysis, but the tool is no longer available. Following their footsteps, \nobreaktextcite{de2025effectiveness} used language models to statically detect bad smells in PL/SQL projects.
+
+\nobreaktextcite{DBLP:conf/sigmod/DintyalaNA20} presented \emph{SQLCheck} \nobreakcite{sqlCheck2026GitHub}, which is capable of detecting 26 different antipatterns using a combination of static and dynamic analysis. \emph{SQLCheck} parses and analyses the query log of an application, searching for antipatterns both from individual queries and from the relationships of multiple consecutive queries. In their evaluation, \emph{SQLCheck} achieved higher precision and recall than \emph{DbDeo}.
+
+As part of a series of articles \nobreakcite{10.1007/978-3-030-57672-1_14}, \nobreakcite{10.1007/978-3-030-77442-4_33}, \nobreakcite{10.1007/978-3-031-09070-7_26}, \nobreakcite{10.1007/978-3-031-35311-6_51}, Eessaar has published a collection of database queries for PostgreSQL, capable of detecting numerous database design problems by analysing the content of PostgreSQL system tables. \nobreaktextcite{DBLP:conf/snpd/KhumninS17} have published a similar collection of queries for Microsoft SQL Server.

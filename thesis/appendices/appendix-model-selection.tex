@@ -1,0 +1,71 @@
+\begin{ThreePartTable}
+\begin{TableNotes}
+\item[1] Artificial Analysis Intelligence Index
+\item[2] Parameter count is unknown for closed-weight models.
+\end{TableNotes}
+
+\begin{longtable}[hp]{|p{2.5cm}|p{1cm}|S[table-format=4.0, table-column-width=1.7cm]|S[table-format=2.0, table-column-width=1.0cm]|S[table-format=2.3, table-column-width=1.0cm]|p{1.8cm}|p{1.9cm}|p{2cm}|}
+\caption*{Table \thetable. Models considered for inclusion in the analysis.}
+\\ \hline
+% The first cell needs bars on both sides
+\multicolumn{1}{|c|}{\thead[l]{Model}} & 
+
+% Intermediate cells only need a bar on the right (the left bar comes from the previous cell)
+\multicolumn{1}{c|}{\thead[l]{Reaso-\\ning}} & 
+\multicolumn{1}{c|}{\thead{Parameter\\Count (B)}} & 
+\multicolumn{1}{c|}{\thead{AAII\tnote{1}}} & 
+\multicolumn{1}{c|}{\thead{1M tokens\\I/O (USD)}} & 
+\multicolumn{1}{c|}{\thead[l]{Repeata-\\bility}} & 
+\multicolumn{1}{c|}{\thead[l]{Structured\\Outputs}} & 
+
+% The last cell needs a bar on the right to close the table
+\multicolumn{1}{c|}{\thead[l]{Verdict}} \\ \hline
+\endfirsthead
+\multicolumn{5}{l}
+{\tablename\ \thetable\ -- \textit{Continues...}} \\
+\hline
+% The first cell needs bars on both sides
+\multicolumn{1}{|c|}{\thead[l]{Model}} & 
+
+% Intermediate cells only need a bar on the right (the left bar comes from the previous cell)
+\multicolumn{1}{c|}{\thead[l]{Reaso-\\ning}} & 
+\multicolumn{1}{c|}{\thead{Parameter\\Count (B)}} & 
+\multicolumn{1}{c|}{\thead{AAII}} & 
+\multicolumn{1}{c|}{\thead{1M tokens\\I/O (USD)}} & 
+\multicolumn{1}{c|}{\thead[l]{Repeata-\\bility}} & 
+\multicolumn{1}{c|}{\thead[l]{Structured\\Outputs}} & 
+
+% The last cell needs a bar on the right to close the table
+\multicolumn{1}{c|}{\thead[l]{Verdict}} \\ \hline
+\endhead
+\hline \multicolumn{5}{l}{\textit{Continues...}} \\
+\endfoot
+\endlastfoot
+\makecell[l]{Google Gemini\\3.1 Pro Preview} & Yes & {N/A\tnote{2}} & 57 & {\makecell{2.00\\12.00}} & {\makecell[l]{In preview,\\no snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.6\\Opus thinking} & Yes & N/A & 53 & {\makecell{5.00\\25.00}} & {\makecell[l]{No snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.6\\Sonnet thinking} & Yes & N/A & 51 & {\makecell{3.00\\15.00}} & {\makecell[l]{No snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{OpenAI\\GPT-5.2} & Yes & N/A & 51 & {\makecell{1.75\\14.00}} & {\makecell[l]{Offers\\snapshots}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Selected as\\the closed\\model}} \\ \hline
+\makecell[l]{Z.ai GLM-5} & Yes & 744 & 50 & {\makecell{1.00\\3.20}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Selected as\\the open\\model}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.5\\Opus thinking} & Yes & N/A & 49 & {\makecell{5.00\\25.00}} & {\makecell[l]{Offers\\snapshots}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted in\\favour of\\GPT-5.2}} \\ \hline
+\makecell[l]{Google Gemini\\3 Pro Preview} & Yes & N/A & 48 & {\makecell{2.00\\12.00}} & {\makecell[l]{In preview,\\no snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Kimi K2.5} & Yes & 1000 & 47 & {\makecell{0.60\\3.00}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Omitted in\\favour of\\GLM-5}} \\ \hline
+\makecell[l]{OpenAI\\GPT-5.1} & Yes & N/A & 47 & {\makecell{1.25\\10.00}} & {\makecell[l]{Offers\\snapshots}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted in\\favour of\\GPT-5.2}} \\ \hline
+\makecell[l]{Google Gemini\\3 Flash Preview} & Yes & N/A & 46 & {\makecell{0.50\\3.00}} & {\makecell[l]{In preview,\\no snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.6\\Opus\\non-thinking} & No & N/A & 46 & {\makecell{5.00\\25.00}} & {\makecell[l]{No snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.6\\Sonnet\\non-thinking} & No & N/A & 44 & {\makecell{3.00\\15.00}} & {\makecell[l]{No snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.5\\Opus\\non-thinking} & No & N/A & 43 & {\makecell{5.00\\25.00}} & {\makecell[l]{Offers\\snapshots}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Selected\\as the non-\\reasoning\\model}} \\ \hline
+\makecell[l]{Anthropic\\Claude 4.5\\Sonnet thinking} & Yes & N/A & 42 & {\makecell{3.00\\15.00}} & {\makecell[l]{Offers\\snapshots}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted in\\favour of\\GPT-5.2}} \\ \hline
+\makecell[l]{Z.ai GLM-4.7} & Yes & 357 & 42 & {\makecell{0.40\\2.00}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Omitted in\\favour of\\GLM-5}} \\ \hline
+\makecell[l]{xAI Grok 4} & Yes & N/A & 41 & {\makecell{3.00\\15.00}} & {\makecell[l]{Offers\\snapshots}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted in\\favour of\\GPT-5.2}} \\ \hline
+\makecell[l]{DeepSeek V3.2} & Yes & 685 & 41 & {\makecell{0.26\\0.38}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Omitted in\\favour of\\GLM-5}} \\ \hline
+\makecell[l]{Kimi K2\\Thinking} & Yes & 1000 & 40 & {\makecell{0.47\\2.00}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Omitted in\\favour of\\GLM-5}} \\ \hline
+\makecell[l]{MiniMax-M2.1} & Yes & 230 & 39 & {\makecell{0.28\\1.20}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted in\\favour of\\GLM-5}} \\ \hline
+\makecell[l]{Xiaomi\\MiMo-V2-Flash} & Yes & 309 & 39 & {\makecell{Free at\\the time}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Unsupported}} & {\makecell[l]{Omitted due\\to no\\structured\\outputs}} \\ \hline
+\makecell[l]{xAI Grok\\4.1 Fast} & Yes & N/A & 38 & {\makecell{0.20\\0.50}} & {\makecell[l]{No snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{Kwaipilot\\KAT-Coder-Pro\\V1} & No & N/A & 36 & {\makecell{0.30\\1.20}} & {\makecell[l]{No snapshot\\available}} & {\makecell[l]{Supported,\\reliable}} & {\makecell[l]{Omitted due\\to non-\\repeatability}} \\ \hline
+\makecell[l]{OpenAI\\gpt-oss-120B} & Yes & 117 & 33 & {\makecell{0.039\\0.19}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Selected\\as the\\medium\\model}} \\ \hline
+\makecell[l]{Z.ai\\GLM-4.7-Flash} & Yes & 30 & 30 & {\makecell{0.06\\0.40}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Selected\\as the small\\model, later\\omitted due\\to instability}} \\ \hline
+\makecell[l]{OpenAI\\gpt-oss-20B} & Yes & 21 & 25 & {\makecell{0.03\\0.14}} & {\makecell[l]{Open\\weights}} & {\makecell[l]{Supported,\\unreliable}} & {\makecell[l]{Omitted in\\favour of\\GLM-4.7-\\Flash}} \\ \hline
+\insertTableNotes
+\end{longtable}
+\end{ThreePartTable}

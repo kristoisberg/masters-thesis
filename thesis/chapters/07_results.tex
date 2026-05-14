@@ -1,0 +1,490 @@
+This chapter presents the empirical results of our research, directly answering the five research questions formulated in Section~\ref{sec:objectives}. We report on the comparative performance of the evaluated LLMs and prompting strategies, the detection performance of the finalised detection tool, and the estimated prevalence of SQL antipatterns. Further interpretation of these findings is reserved for Section~\ref{sec:interpretation}.
+
+\section{RQ1: How do different LLMs compare in identifying SQL \mbox{antipatterns} in Java code that uses jOOQ for database access?}\label{sec:resultsRQ1}
+
+To evaluate the baseline performance of LLMs in detecting the seven qualifying SQL antipatterns, we used the performance of the Zero-Shot Prompting strategy, which uses the fewest prompt engineering methods and is the most representative of real-life use. In Table~\ref{tab:zeroShotBev} we show the baseline detection performance of SQL antipatterns for each compared LLM, calculated as the weighted average of the detection performances of individual antipatterns. In Appendix~\ref{chapter:appendix-zero-shot-accuracy} we show the baseline detection performances for individual SQL antipatterns.
+
+\begin{longtable}[hp]{|p{4cm}|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=2.2, table-column-width=2cm]|S[table-format=4.0, table-column-width=2cm]|S[table-format=3.0, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics, costs, runtimes, and retry counts for detection of SQL antipatterns using Zero-Shot Prompting.}
+	\label{tab:zeroShotBev}\\ \hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{7}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{7}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    \makecell[l]{\sotaModelNl} & 0.85 & 0.92 & 0.88 & 26.16 & 2423 & 1 \\ \hline
+    \makecell[l]{\openModelNl} & 0.88 & 0.89 & 0.88 & 11.77 & 5774 & 175 \\ \hline
+    \makecell[l]{\nonReasoningModelNl} & 0.88 & 0.89 & 0.88 & 29.97 & 367 & 0 \\ \hline
+    \makecell[l]{\mediumModelNl} & 0.83 & 0.87 & 0.83 & 1.49 & 2808 & 0 \\
+\end{longtable}
+
+All near-SotA models (GPT-5.2, GLM-5, and Opus 4.5) achieved a weighted average F1-score of \num{0.88}, demonstrating strong detection performance. The difference lies in the paranoia of the models: GPT-5.2 achieved a greater recall than the other models (\num{0.92} vs \num{0.89}), but a lower precision (\num{0.85} vs \num{0.88}), capturing more TPs, while also returning more FPs.
+
+However, the models achieved strong performance at significantly different costs and runtimes. As is common for non-reasoning models, Opus 4.5 was the fastest but also the most expensive, completing the analysis of \num{20} projects (containing \num{823} analysed “relevant” files) in six minutes and seven seconds at a cost of \usd{29.97}. GLM-5 was the opposite: nearly three times cheaper at \usd{11.77}, but also over \num{15} times slower due to stability issues explained later. GPT-5.2 was in the middle, costing slightly less than Opus 4.5 at \usd{26.16}, but being \num{6.6} times slower due to its heavy reasoning process. The gpt-oss-120B model was by far the cheapest, costing just \usd{1.49} while being slightly slower than GPT-5.2.
+
+An interesting difference between the near-SotA models was that Opus 4.5 was consistently superior in the precision of detecting the “Keyless Entry” antipattern, achieving a precision of at least \num{0.72} in all prompting strategies, also consistently displaying a very high recall of at least \num{0.98}, while all other models never exceeded a precision of \num{0.64}.
+
+It should also be noted that for both the baseline prompting strategy and all tested prompting strategies, GLM-5 and gpt-oss-120B models showed unstable behaviour. The GLM-5 model was by far the slowest with inconsistent runtimes and had a tendency to return misformatted and empty responses, causing the analysis for these files to be retried. 
+
+The gpt-oss-120B model had a tendency to end up in long/infinite cycles during its reasoning process, causing inconsistent and long runtimes. The model also suffered from several anomalies that mainly affected the precision of the model. In some cases, it detected the same antipattern occurrence twice, while in others it denoted an antipattern-free file with a detected antipattern occurrence with a line span consisting of values between \num{-1} and \num{0}, ignoring the instructions in the prompt. In numerous cases, the model filled the output fields with nonsensical values, such as choosing line ranges that extend beyond the bounds of the analysed files, which hinders both the precision and recall of the results in our methodology.
+
+In Figure~\ref{fig:gptOssAnomaly}, we display an example where the reasoning process of the model “leaked” into the final response, causing multiple anomalies for one antipattern occurrence: an invalid line range, an incorrect code fragment containing Unicode-encoded non-breaking space characters, and a reasoning for the antipattern occurrence where the model is berating its previous thinking process. Interestingly, the occurrence of such anomalies was higher for files, which required more reasoning tokens to be analysed. We did not spot any such anomalies in the results for other models. An interpretation of these stability issues is discussed in Section~\ref{sec:llmCapabilities}.
+
+\begin{figure}[h]
+    \begin{lstlisting}[frame=none, basicstyle=\small, breaklines=true, breakatwhitespace=false, breakindent=0pt]
+Response(occurrences=[AntipatternOccurrence(
+    antipatternName=<AntipatternName.id_required: 'ID Required'>, 
+    linesRangeStart=0, 
+    linesRangeEnd=-17, 
+    codeFragment='77: \xa0\xa0', 
+    reasoning="]} The assistant's answer is garbled nonsensical. Need to produce correct output: list of antipattern occurrences with appropriate fields: antipatternName, codeFragment (lines of definition), linesRangeStart, linesRangeEnd, and reasoning. Let's analyze class for each antipattern defined: ID Required, Keyless Entry, Rounding Errors, 31 Flavors, Fear of the Unknown. Also consider that class is for a table (not a view). First, ID Required: primary key column name "
+)])
+    \end{lstlisting}
+    \caption{Example of an anomalous response provided by the gpt-oss-120B model.}
+    \label{fig:gptOssAnomaly}
+\end{figure}
+
+\section{RQ2: How do different prompting strategies affect the detection performance of LLMs in identifying SQL antipatterns in Java code that uses jOOQ for database access?}\label{sec:resultsRQ2}
+
+In the following sections, we analyse the effects of the evaluated prompting strategies on the detection performance of SQL antipatterns. It should be noted that due to the stability issues described in the previous section, which resulted in extremely inconsistent runtimes for the GLM-5 and gpt-oss-120B models, we omitted these models from all runtime comparisons between the evaluated prompting strategies and the baseline.
+
+\subsection{Few-Shot Prompting}
+
+As shown by the binary evaluation metrics in Table~\ref{tab:fewShotBev}, only GLM-5 showed a slight improvement in the precision (\num{0.89} vs \num{0.88}), recall (\num{0.90} vs \num{0.89}), and F1-score (\num{0.89} vs \num{0.88}). For all other models, the improvements, if any, were within the margin of error.
+
+\begin{longtable}[hp]{|p{4cm}|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=2.2, table-column-width=2cm]|S[table-format=4.0, table-column-width=2cm]|S[table-format=3.0, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics, costs, runtimes, and retry counts for detection of SQL antipatterns using Few-Shot Prompting.}
+	\label{tab:fewShotBev}\\ \hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{7}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{7}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    \makecell[l]{\sotaModelNl} & 0.86 & 0.92 & 0.88 & 29.97 & 2507 & 0 \\ \hline
+    \makecell[l]{\openModelNl} & 0.89 & 0.90 & 0.89 & 14.85 & 4281 & 9 \\ \hline
+    \makecell[l]{\nonReasoningModelNl} & 0.88 & 0.89 & 0.88 & 45.00 & 352 & 0 \\ \hline
+    \makecell[l]{\mediumModelNl} & 0.83 & 0.87 & 0.84 & 2.00 & 543 & 1 \\
+\end{longtable}
+
+In Appendix~\ref{chapter:appendix-few-shot-accuracy} we show the detection performances for individual SQL antipatterns using the Few-Shot Prompting strategy. The differences compared to the baseline were generally negligible, except for the gpt-oss-120B model, which saw the F1-score for the “Keyless Entry” antipattern decrease from \num{0.77} to \num{0.71}, and the F1-score for the “Fear of the Unknown” antipattern increase from \num{0.18} to \num{0.42}.
+
+Using the Few-Shot Prompting strategy, the average analysis cost across all models increased by \qty{31}{\percent}, showing a significant increase in cost at a negligible increase in detection performance. On the contrary, the runtime did not see significant changes compared to the baseline: for GPT-5.2 it increased by \qty{3}{\percent}, while for Opus 4.5 it \textbf{decreased} by \qty{4}{\percent}. While the runtimes of the two open models decreased significantly, these changes were an effect of the stability issues affecting the models.
+
+\subsection{Chain-of-Thought Prompting}
+
+Using the CoT strategy, the average analysis cost across all models increased by \qty{23}{\percent} compared to baseline, while the runtime for GPT-5.2 increased by \qty{20}{\percent} and the runtime for Opus 4.5 increased by \qty{160}{\percent}, as shown in Table~\ref{tab:chainOfThoughtBev}.
+
+\begin{longtable}[hp]{|p{4cm}|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=2.2, table-column-width=2cm]|S[table-format=4.0, table-column-width=2cm]|S[table-format=3.0, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics, costs, runtimes, and retry counts for detection of SQL antipatterns using Chain-of-Thought Prompting.}
+	\label{tab:chainOfThoughtBev}\\ \hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{7}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{7}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    \makecell[l]{\sotaModelNl} & 0.85 & 0.91 & 0.87 & 30.43 & 2896 & 1 \\ \hline
+    \makecell[l]{\openModelNl} & 0.87 & 0.88 & 0.87 & 15.39 & 9628 & 234 \\ \hline
+    \makecell[l]{\nonReasoningModelNl} & 0.92 & 0.90 & 0.90 & 40.86 & 956 & 0 \\ \hline
+    \makecell[l]{\mediumModelNl} & 0.81 & 0.85 & 0.82 & 1.62 & 895 & 3 \\
+\end{longtable}
+
+The prompting strategy did not improve performance over the baseline for any of the reasoning models; on the contrary, the F1-score decreased slightly for all of them. The non-reasoning model, Claude Opus 4.5, on the other hand, saw small improvements in the F1-score, increasing from \num{0.88} to \num{0.90}.
+
+In Appendix~\ref{chapter:appendix-chain-of-thought-accuracy} we show the detection performances for individual SQL antipatterns using the CoT prompting strategy. Performance improvements in Opus 4.5 can be seen for multiple antipatterns: for the “Implicit Columns” antipattern, both precision and recall metrics improved noticeably (from \num{0.94} to \num{0.97}, and from \num{0.93} to \num{0.95}), while the “ID Required” antipattern saw significant improvements in detection precision (from \num{0.90} to \num{0.95}). Contrarily, the precision for the “Keyless Entry” antipattern dropped from \num{0.77} to \num{0.72}. The precision for the “Fear of the Unknown” antipattern increased from \num{0.60} to \num{0.88}, while the recall dropped from \num{0.50} to \num{0.39}, resulting in the F1-score remaining nearly identical.
+
+While all other models also experienced fluctuations in their precision and recall scores for individual antipatterns, these fluctuations were mostly negligible. The most notable exception was the “31 Flavors” antipattern for the GPT-5.2 model, which saw a significant decrease in both precision and recall, resulting in the F1-score decreasing from \num{0.75} to \num{0.58}. We observed the largest overall decline in the precision and recall scores of the gpt-oss-120B model, further discussed in Section~\ref{sec:llmCapabilities}.
+
+\subsection{Tree-of-Thought Prompting}
+
+The ToT strategy was by far the most computationally expensive: the average analysis cost (across all models) increased by \qty{88}{\percent} compared to baseline, while the runtime for GPT-5.2 increased by \qty{94}{\percent}, and the runtime for Opus 4.5 increased by a staggering \qty{1181}{\percent}, as shown in Table~\ref{tab:treeOfThoughtBev}.
+
+\begin{longtable}[hp]{|p{4cm}|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=2.2, table-column-width=2cm]|S[table-format=4.0, table-column-width=2cm]|S[table-format=3.0, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics, costs, runtimes, and retry counts for detection of SQL antipatterns using Tree-of-Thought Prompting.}
+	\label{tab:treeOfThoughtBev}\\ \hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{7}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Model}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} & {\thead{Cost (USD)}} & {\thead{Runtime (s)}} & {\thead{Retries}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{7}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    \makecell[l]{\sotaModelNl} & 0.87 & 0.91 & 0.89 & 51.70 & 4702 & 2 \\ \hline
+    \makecell[l]{\openModelNl} & 0.92 & 0.88 & 0.87 & 16.42 & 5359 & 14 \\ \hline
+    \makecell[l]{\nonReasoningModelNl} & 0.92 & 0.90 & 0.90 & 81.43 & 4701 & 9 \\ \hline
+    \makecell[l]{\mediumModelNl} & 0.81 & 0.83 & 0.81 & 2.13 & 2139 & 58 \\
+\end{longtable}
+
+The results were similar to the ones of the CoT prompting strategy, with the non-reasoning model, Claude Opus 4.5, seeing the largest improvement in the F1-score, increasing from \num{0.88} to \num{0.90}. The F1-score dropped slightly for two of the three reasoning models, but interestingly, the GPT-5.2 model saw slight improvements in its detection performance. Once again, the gpt-oss-120B model exhibited the largest overall reduction in detection performance, exceeding even the decline observed with the CoT strategy.
+
+In Appendix~\ref{chapter:appendix-tree-of-thought-accuracy} we show the detection performances for individual SQL antipatterns using the ToT prompting strategy. Similarly to the CoT strategy, performance improvements in Opus 4.5 can be seen for multiple antipatterns: for the “Implicit Columns” antipattern, both precision and recall metrics improved slightly, while the “ID Required” antipattern saw significant improvements in detection precision (from \num{0.90} to \num{0.96}). The precision for the “Fear of the Unknown” antipattern increased from \num{0.60} to \num{0.87}, while the recall dropped from \num{0.50} to \num{0.39}, resulting in an overall decrease in the F1-score.
+
+While all other models also saw fluctuations to their precision and recall scores for individual antipatterns, they were mostly negligible. The most notable exception was the “Keyless Entry” antipattern for the GPT-5.2 model, which saw a significant increase in precision, increasing from \num{0.53} to \num{0.65}.
+
+\subsection{Summary}
+
+None of the evaluated prompting strategies showed a consistent improvement in detection performance across all models. Prompting strategies designed to elicit reasoning (CoT, ToT) displayed a \qty{2}{\percent} increase in the F1-score for the non-reasoning model, while often degrading the performance of reasoning models. Few-Shot Prompting increased the F1-score for GLM-5 while not affecting the performance of the other models.
+
+Compounded with the fact that the more complex prompting strategies resulted in a large increase in analysis costs and runtimes, we ultimately found that they were not reliably beneficial in this setting. Therefore, we used our baseline Zero-Shot prompts for the development of our SQL antipattern detection tool.
+
+\section{RQ3: How accurately can the developed LLM-based tool detect SQL antipatterns in Java code that uses jOOQ for database access?}\label{sec:resultsRQ3}
+
+We performed the analysis of the tool using the Claude Opus 4.5 model, with reasoning disabled, and temperature set to \num{0.0}. The tool performed the analysis using the previously developed Zero-Shot prompts. We selected the Claude Opus 4.5 model for the analysis because it was tied for the best performance under the Zero-Shot strategy while also being by far the fastest model evaluated. The cost of the analysis of \num{20} projects (containing \num{502} analysed “relevant” files) was \usd{14.34} and the runtime was \num{386} seconds.
+
+Importantly, during the subsequent qualitative analysis of the tool's output (discussed in detail in Section~\ref{sec:detectionErrors}), we discovered several inaccuracies and omissions in our human-annotated ground truth. Because these human errors negatively affected the tool’s performance metrics, we evaluated the tool against both the original (uncorrected) and revised (corrected) ground truth datasets.
+
+Table~\ref{tab:toolDetections} summarises the absolute detection counts—TPs, FPs, and FNs—for each individual antipattern when evaluated against the original, uncorrected ground truth. Detailed confusion matrices for each individual antipattern, reflecting both the uncorrected and corrected datasets, are available in Appendix~\ref{chapter:appendix-localisation-confusion-matrices}.
+
+\begin{longtable}[hp]{|l|S[table-format=3.0, table-column-width=1.5cm]|S[table-format=2.0, table-column-width=1.5cm]|S[table-format=2.0, table-column-width=1.5cm]|}
+	\caption{Absolute detection counts of SQL antipatterns using the developed tool (uncorrected).}
+	\label{tab:toolDetections}\\ \hline
+	{\thead[l]{Antipattern}} & {\thead{TP}} & {\thead{FP}} & {\thead{FN}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Antipattern}} & {\thead{TP}} & {\thead{FP}} & {\thead{FN}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{4}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    Implicit Columns & 253 & 4 & 17 \\ \hline
+    ID Required & 89 & 13 & 16 \\ \hline
+    Keyless Entry & 35 & 30 & 1 \\ \hline
+    Fear of the Unknown & 19 & 24 & 17 \\ \hline
+    31 Flavors & 38 & 1 & 1 \\ \hline
+    Poor Man's Search Engine & 13 & 4 & 8 \\ \hline
+    Rounding Errors & 13 & 0 & 3 \\
+\end{longtable}
+
+In Tables~\ref{tab:toolConfusion} and~\ref{tab:toolConfusionCorrected}, we show the overall confusion matrix for the tool, before and after applying corrections regarding mistakes in the ground truth.
+
+\begin{table}[H]
+    \centering
+    \caption{Confusion matrix for detection of SQL antipatterns using the developed tool.}
+    \label{tab:toolConfusion}
+    \begin{tabular}{l|l|c|c|c}
+        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted Presence}&\\
+        \cline{3-4}
+        \multicolumn{2}{c|}{}&\textbf{Present}&\textbf{Absent}&\multicolumn{1}{c}{Total}\\
+        \cline{2-4}
+        \multirow{2}{1.5cm}{Actual\\Presence}& \textbf{Present} & 460 & 63 & 523\\
+        \cline{2-4}
+        & \textbf{Absent} & 76 & N/A\footnotemark & 76\\
+        \cline{2-4}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{536} & \multicolumn{1}{c}{63} & \multicolumn{1}{c}{599}\\
+    \end{tabular}
+\end{table}
+\footnotetext{There is no clear way of calculating the number of True Negatives in the context of antipattern localisation, and the number would dwarf all other numbers in the table without offering much additional value. Therefore, we omit the number of True Negatives from our confusion matrices.}
+
+\begin{table}[H]
+    \centering
+    \caption{Confusion matrix for detection of SQL antipatterns using the developed tool (corrected).}
+    \label{tab:toolConfusionCorrected}
+    \begin{tabular}{l|l|c|c|c}
+        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted Presence}&\\
+        \cline{3-4}
+        \multicolumn{2}{c|}{}&\textbf{Present}&\textbf{Absent}&\multicolumn{1}{c}{Total}\\
+        \cline{2-4}
+        \multirow{2}{1.5cm}{Actual\\Presence}& \textbf{Present} & 512 & 51 & 563\\
+        \cline{2-4}
+        & \textbf{Absent} & 24 & N/A & 24\\
+        \cline{2-4}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{536} & \multicolumn{1}{c}{51} & \multicolumn{1}{c}{587}\\
+    \end{tabular}
+\end{table}
+
+We calculated the detection performance of our developed tool for each individual antipattern, as well as the overall detection performance, calculated as the weighted average of the detection performances of individual antipatterns. As the corrections to ground truth are inherently biased towards impacting detection performances positively, we provide detection performances for both uncorrected and corrected ground truths, shown in Tables~\ref{tab:toolBevUncorrected} and~\ref{tab:toolBevCorrected}.
+
+\begin{longtable}[hp]{|l|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics for detection of SQL antipatterns using the developed tool (uncorrected).}
+	\label{tab:toolBevUncorrected}\\ \hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{4}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    Implicit Columns & 0.98 & 0.94 & 0.96 \\ \hline
+    ID Required & 0.87 & 0.85 & 0.86 \\ \hline
+    Keyless Entry & 0.54 & 0.97 & 0.69 \\ \hline
+    Fear of the Unknown & 0.44 & 0.53 & 0.48 \\ \hline
+    31 Flavors & 0.97 & 0.97 & 0.97 \\ \hline
+    Poor Man's Search Engine & 0.76 & 0.62 & 0.68 \\ \hline
+    Rounding Errors & 1.00 & 0.81 & 0.90 \\ \hline
+    \textbf{Total} & 0.88 & 0.88 & 0.88 \\
+\end{longtable}
+
+\begin{longtable}[hp]{|l|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics for detection of SQL antipatterns using the developed tool (corrected).}
+	\label{tab:toolBevCorrected}\\ \hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{4}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    Implicit Columns & 1.00 & 0.94 & 0.97 \\ \hline
+    ID Required & 0.99 & 0.94 & 0.96 \\ \hline
+    Keyless Entry & 0.75 & 1.00 & 0.86 \\ \hline
+    Fear of the Unknown & 0.98 & 0.71 & 0.82 \\ \hline
+    31 Flavors & 0.97 & 0.97 & 0.97 \\ \hline
+    Poor Man's Search Engine & 0.76 & 0.62 & 0.68 \\ \hline
+    Rounding Errors & 1.00 & 0.81 & 0.90 \\ \hline
+    \textbf{Total} & 0.96 & 0.91 & 0.93 \\
+\end{longtable}
+
+\subsection{Without Localisation}
+
+We also performed the analysis using the classification mode, which detects antipatterns on a per-file basis, without specifying the exact location. The other settings remained the same: we used the Claude Opus 4.5 model, with reasoning disabled, and temperature set to \num{0.0}. With these settings, the cost of the analysis was \usd{12.24} and the runtime was 295 seconds.
+
+Similarly to before, we analysed the FPs and FNs in the results, and made corrections to errors found to be mistakes in the ground truth. In Appendix~\ref{chapter:appendix-classification-confusion-matrices}, we show the confusion matrices for each individual antipattern, along with corrected versions where necessary. In Tables~\ref{tab:toolClassificationConfusion} and~\ref{tab:toolClassificationConfusionCorrected}, we show the overall confusion matrix for the tool, before and after applying corrections regarding mistakes in the ground truth.
+
+\begin{table}[H]
+    \centering
+    \caption{Confusion matrix for detection of SQL antipatterns using the developed tool without localisation.}
+    \label{tab:toolClassificationConfusion}
+    \begin{tabular}{l|l|c|c|c}
+        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted Presence}&\\
+        \cline{3-4}
+        \multicolumn{2}{c|}{}&\textbf{Present}&\textbf{Absent}&\multicolumn{1}{c}{Total}\\
+        \cline{2-4}
+        \multirow{2}{1.5cm}{Actual\\Presence}& \textbf{Present} & 244 & 20 & 264\\
+        \cline{2-4}
+        & \textbf{Absent} & 63 & N/A & 63\\
+        \cline{2-4}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{307} & \multicolumn{1}{c}{20} & \multicolumn{1}{c}{327}\\
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Confusion matrix for detection of SQL antipatterns using the developed tool without localisation (corrected).}
+    \label{tab:toolClassificationConfusionCorrected}
+    \begin{tabular}{l|l|c|c|c}
+        \multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted Presence}&\\
+        \cline{3-4}
+        \multicolumn{2}{c|}{}&\textbf{Present}&\textbf{Absent}&\multicolumn{1}{c}{Total}\\
+        \cline{2-4}
+        \multirow{2}{1.5cm}{Actual\\Presence}& \textbf{Present} & 283 & 14 & 297\\
+        \cline{2-4}
+        & \textbf{Absent} & 24 & N/A & 24\\
+        \cline{2-4}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{307} & \multicolumn{1}{c}{14} & \multicolumn{1}{c}{321}\\
+    \end{tabular}
+\end{table}
+
+Based on the uncorrected and corrected confusion matrices, we calculated the detection performance of our developed tool for each individual antipattern, as well as the overall detection performance, calculated as the weighted average of the detection performances of individual antipatterns, shown in Tables~\ref{tab:toolClassificationBevUncorrected} and~\ref{tab:toolClassificationBevCorrected}.
+
+\begin{longtable}[hp]{|l|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics for detection of SQL antipatterns using the developed tool without localisation (uncorrected).}
+	\label{tab:toolClassificationBevUncorrected}\\ \hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{4}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    Implicit Columns & 0.95 & 0.99 & 0.97 \\ \hline
+    ID Required & 0.95 & 0.90 & 0.93 \\ \hline
+    Keyless Entry & 0.41 & 1.00 & 0.58 \\ \hline
+    Fear of the Unknown & 0.35 & 0.88 & 0.50 \\ \hline
+    31 Flavors & 1.00 & 1.00 & 1.00 \\ \hline
+    Poor Man's Search Engine & 1.00 & 0.91 & 0.95 \\ \hline
+    Rounding Errors & 1.00 & 0.60 & 0.75 \\ \hline
+    \textbf{Total} & 0.88 & 0.92 & 0.88 \\
+\end{longtable}
+
+\begin{longtable}[hp]{|l|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|S[table-format=1.2, table-column-width=1.5cm]|}
+	\caption{Binary evaluation metrics for detection of SQL antipatterns using the developed tool without localisation (corrected).}
+	\label{tab:toolClassificationBevCorrected}\\ \hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Antipattern}} & {\thead{Precision}} & {\thead{Recall}} & {\thead{F1-Score}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{4}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    Implicit Columns & 0.97 & 1.00 & 0.98 \\ \hline
+    ID Required & 1.00 & 0.95 & 0.98 \\ \hline
+    Keyless Entry & 0.77 & 1.00 & 0.87 \\ \hline
+    Fear of the Unknown & 0.74 & 0.94 & 0.83 \\ \hline
+    31 Flavors & 1.00 & 1.00 & 1.00 \\ \hline
+    Poor Man's Search Engine & 1.00 & 0.91 & 0.95 \\ \hline
+    Rounding Errors & 1.00 & 0.60 & 0.75 \\ \hline
+    \textbf{Total} & 0.93 & 0.95 & 0.94 \\
+\end{longtable}
+
+As seen from Tables~\ref{tab:toolClassificationBevUncorrected} and~\ref{tab:toolClassificationBevCorrected}, the weighted average detection performance remained similar to the localised version. Interestingly, the tool became significantly more paranoid in detecting several antipatterns (“Implicit Columns”, “Fear of the Unknown”), displaying a lower precision at a higher or similar recall. The “Poor Man's Search Engine” antipattern, which suffered from issues with localisation behaviour (discussed in Section~\ref{sec:detectionErrors}), saw a significant increase in both detection precision (\num{1.00} vs \num{0.76}) and recall (\num{0.91} vs \num{0.62}).
+
+Overall, the tool shows a strong detection performance for most evaluated SQL antipatterns, both in localisation and classification modes. The most difficult antipatterns to detect, both for LLMs and human annotators, are “Keyless Entry” and “Fear of the Unknown”, which require the most thorough understanding of the relationships of entities and business logic in the codebase.
+
+\section{RQ4: What patterns can be observed in the occurrence of SQL antipatterns in Java code that uses jOOQ for database access?}\label{sec:resultsRQ4}
+
+We analysed the complete set of \num{602} projects (containing \num{17450} analysed “relevant” files) with our tool, using the Claude Opus 4.5 model, with reasoning disabled, and temperature set to \num{0.0}. The cost of the analysis was \usd{1036.32} and the runtime was \num{12391} seconds (\num{3}h \num{31}m). The results of the analysis are shown in Table \ref{tab:prevalenceInTotal}.
+
+\begin{longtable}[hp]{|p{2cm}|S[table-format=5.0, table-column-width=2.1cm]|S[table-format=3.0, table-column-width=2.1cm]|S[table-format=2.2, table-column-width=2.1cm]|S[table-format=2.2, table-column-width=2.1cm]|S[table-format=1.2, table-column-width=2.1cm]|}
+	\caption{Prevalence of SQL antipatterns in analysed projects.}
+	\label{tab:prevalenceInTotal}\\ \hline
+	{\thead[l]{Antipattern}} & {\thead{Occurrence\\Count}} & {\thead{Containing\\Project\\Count}} & {\thead{Occurrences\\per Project}} & {\thead{Occurrences\\per\\Containing\\Project}} & {\thead{Occurrences\\per 100\\jOOQ\\Statements}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{6}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Antipattern}} & {\thead{Occurrence\\Count}} & {\thead{Containing\\Project\\Count}} & {\thead{Occurrences\\per Project}} & {\thead{Occurrences\\per\\Containing\\Project}} & {\thead{Occurrences\\per 100\\jOOQ\\Statements}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{6}{l}{\textit{Continues...}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+    \makecell[l]{Implicit\\Columns} & 7289 & 535 & 12.11 & 13.62 & 21.94 \\ \hline
+    ID Required & 3597 & 523 & 5.98 & 6.88 & 10.83 \\ \hline
+    \makecell[l]{Keyless\\Entry} & 2153 & 200 & 3.58 & 10.77 & 6.48 \\ \hline
+    \makecell[l]{Fear of the\\Unknown} & 1256 & 205 & 2.09 & 6.13 & 3.78 \\ \hline
+    31 Flavors & 390 & 87 & 0.65 & 4.48 & 1.17 \\ \hline
+    \makecell[l]{Poor Man's\\Search\\Engine} & 583 & 114 & 0.97 & 5.11 & 1.75 \\ \hline
+    \makecell[l]{Rounding\\Errors} & 663 & 86 & 1.10 & 7.71 & 2.00 \\ \hline
+    \textbf{Total} & 15931 & 601 & 26.46 & 26.51 & 47.96 \\
+\end{longtable}
+
+In total, we flagged \num{15931} occurrences of the seven detected antipatterns. “Implicit Columns” and “ID Required” are by far the most prevalent antipatterns, existing in \qty{89}{\percent} and \qty{87}{\percent} of the analysed projects, respectively. Although the remaining antipatterns appear in far fewer projects—with “Fear of the Unknown” leading the secondary group at \qty{34}{\percent}—their concentration within affected projects remains high.
+
+By evaluating Jaccard Indexes, Conditional Probabilities, and Spearman correlations (detailed in Appendices~\ref{chapter:appendix-jaccard-project}--\ref{chapter:appendix-spearman-file}), we identified distinct co-occurrence patterns among these antipatterns:
+
+\begin{itemize}
+    \item \textbf{The Ubiquitous Pair:} “Implicit Columns” and “ID Required” frequently co-exist (Jaccard: 0.81) and scale together in intensity (Spearman: 0.43).
+    \item \textbf{Constraint Neglect:} “Keyless Entry” and “Fear of the Unknown” demonstrate a mutual linkage. Half of the projects containing one will also contain the other, sharing a moderate positive correlation (Spearman: 0.32).
+    \item \textbf{Query Decay vs Schema Decay:} At the file level, design and query antipatterns exhibit negative correlations, naturally segregating into different files. Conversely, query antipatterns like “Poor Man's Search Engine” and “Implicit Columns” often share the same files.
+\end{itemize}
+
+Furthermore, the conditional probability data highlights that the presence of rare antipatterns acts as a weak indicator for common ones. The deeper implications of these co-occurrence patterns are explored further in Section~\ref{sec:anatomy}.
+
+\section{RQ5: Which jOOQ API methods are most frequently associated with query antipattern occurrences?}\label{sec:resultsRQ5}
+
+In the following sections, we examine the jOOQ API methods most commonly associated with the “Implicit Columns” and “Poor Man's Search Engine” SQL antipatterns.
+
+\subsection{Implicit Columns}
+
+As shown in Table~\ref{tab:implicitColumnsCauses}, we found that the most frequently associated methods for the “Implicit Columns” antipattern are \texttt{DSL.selectFrom(TABLE)} and \texttt{DSL.select().from(TABLE)}, making up nearly three quarters of all “Implicit Columns” antipattern occurrences in total.
+
+Calls to \texttt{TABLE.fields()} and \texttt{DSL.asterisk()} are associated with \qty{9.1}{\percent} and \qty{3.8}{\percent} of all occurrences. Generated DAO methods and plain SQL queries containing \texttt{*} wildcards are both associated with close to \qty{2}{\percent} of all occurrences.
+
+\begin{longtable}[hp]{|p{8cm}|S[table-format=4.0, table-column-width=3cm]|S[table-format=2.1, table-column-width=3cm]|}
+	\caption{jOOQ API methods most commonly associated with the “Implicit Columns” SQL antipattern.}
+	\label{tab:implicitColumnsCauses}\\ \hline
+	{\thead[l]{Method Signature}} & {\thead{Antipattern\\Occurrence Count}} & {\thead{Percentage of\\All Occurrences}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{3}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Method Signature}} & {\thead{Antipattern\\Occurrence Count}} & {\thead{Percentage of\\All Occurrences}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{l}{\textit{Continues...}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+    \texttt{DSL/DSLContext.selectFrom(TABLE)} & 3417 & 46.9 \\ \hline
+    \texttt{DSL/DSLContext.select().from(TABLE)} & 1810 & 24.8 \\ \hline
+    \texttt{TABLE.fields()} & 665 & 9.1 \\ \hline
+    \texttt{DSL.asterisk()} & 280 & 3.8 \\ \hline
+    Generated DAO methods (combined) & 163 & 2.2 \\ \hline
+    \texttt{DSL/DSLContext.fetch(TABLE, ...)} & 151 & 2.1 \\ \hline
+    Plain SQL wildcards & 137 & 1.9 \\ \hline
+    \texttt{DSL/DSLContext.fetchOne(TABLE, ...)} & 130 & 1.8 \\ \hline
+    \texttt{DSL/DSLContext.select(TABLE).from(TABLE)} & 107 & 1.5 \\ \hline
+    Other/uncategorised & 429 & 5.9 \\
+\end{longtable}
+
+\subsection{Poor Man's Search Engine}
+
+As shown in Table~\ref{tab:poorMansSearchEngineCauses}, the method most commonly associated with the “Poor Man's Search Engine” SQL antipattern is the \texttt{Field.like} DSL method with embedded \texttt{\%} wildcards, accounting for nearly half of all antipattern occurrences at \qty{46.8}{\percent}. The case-insensitive variant, \texttt{Field.likeIgnoreCase}, makes up another \qty{14.9}{\percent} of all occurrences.
+
+DSL methods \texttt{Field.containsIgnoreCase} and \texttt{Field.contains} are associated with \qty{16.5}{\percent} and \qty{10.5}{\percent} of all occurrences. Plain SQL queries with the \texttt{LIKE} operator and preceding and succeeding wildcards make up \qty{2.9}{\percent} of all occurrences, while regex matching operations using the \texttt{Field.likeRegex} DSL method make up \qty{2.1}{\percent} of all occurrences.
+
+\begin{longtable}[hp]{|p{8cm}|S[table-format=3.0, table-column-width=3cm]|S[table-format=2.1, table-column-width=3cm]|}
+	\caption{jOOQ API methods most commonly associated with the “Poor Man's Search Engine” SQL antipattern.}
+	\label{tab:poorMansSearchEngineCauses}\\ \hline
+	{\thead[l]{Method Signature}} & {\thead{Antipattern\\Occurrence Count}} & {\thead{Percentage of\\All Occurrences}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{3}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Method Signature}} & {\thead{Antipattern\\Occurrence Count}} & {\thead{Percentage of\\All Occurrences}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{l}{\textit{Continues...}} \\
+	\endfoot
+	\hline
+	\endlastfoot
+    \texttt{Field.like} & 273 & 46.8 \\ \hline
+    \texttt{Field.containsIgnoreCase} & 96 & 16.5 \\ \hline
+    \texttt{Field.likeIgnoreCase} & 87 & 14.9 \\ \hline
+    \texttt{Field.contains} & 61 & 10.5 \\ \hline
+    Plain SQL \texttt{LIKE} & 17 & 2.9 \\ \hline
+    \texttt{Field.likeRegex} & 12 & 2.1 \\ \hline
+    Other/uncategorised & 37 & 6.3 \\
+\end{longtable}

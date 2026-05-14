@@ -1,0 +1,34 @@
+\begin{longtable}[hp]{|p{2cm}|p{5cm}|p{4cm}|p{2.5cm}|}
+	\caption{Configuration options offered by the developed SQL antipattern detection tool.}
+	\label{tab:configurationOptions}\\ \hline
+	{\thead[l]{Name}} & {\thead[l]{Description}} & {\thead[l]{Accepted values}} & {\thead[l]{Default value}} \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{l}
+	{\tablename\ \thetable\ -- \textit{Continues...}} \\
+	\hline
+	{\thead[l]{Name}} & {\thead[l]{Description}} & {\thead[l]{Accepted values}} & {\thead[l]{Default value}} \\
+	\hline
+	\endhead
+	\hline \multicolumn{4}{l}{\textit{Continues...}}
+	\endfoot
+	\hline
+	\endlastfoot
+    directory & Positional argument, always required. Path to the project to analyse. & Valid path to a directory. & N/A \\ \hline
+    model & Model used for analysis, with provider prefix. & google, anthropic, openai, openrouter:model-name & anthropic:claude-opus-4.5 \\ \hline
+    thinking-effort & Thinking effort used by the model for analysis. & none, minimal, low, medium, high, xhigh & none \\ \hline
+    temperature & Sampling temperature used by the model for analysis. & Finite number. & \num{0.0} \\ \hline
+    concurrency & Number of files to analyse concurrently. & Positive integer. & \num{8} \\ \hline
+    retries & Retries per file on transient model failures. & Positive integer. & \num{2} \\ \hline
+    format & Output format. & text, json, csv & text \\ \hline
+    output & Write output to a file instead of stdout. & Path to an output file (the file is created if missing). & N/A \\ \hline
+    mode & Analysis mode. & localisation, classification & localisation \\ \hline
+    debug & Print per-file progress and retries to stderr. & N/A & N/A \\ \hline
+    gemini-api-key & Key for the Gemini API, required if the provider prefix in “model” equals “gemini”. & Valid Gemini API key. & N/A \\ \hline
+    anthropic-api-key & Key for the Anthropic API, required if the provider prefix in “model” equals “anthropic”. & Valid Anthropic API key. & N/A \\ \hline
+    openai-api-key & Key for the OpenAI API, required if the provider prefix in “model” equals “openai”. & Valid OpenAI API key. & N/A \\ \hline
+    openrouter-api-key & Key for the OpenRouter API, required if the provider prefix in “model” equals “openrouter”. & Valid OpenRouter API key. & N/A \\ \hline
+    config-file & File used to load the configuration options of the tool. & Valid path to a .yml configuration file. & N/A \\ \hline
+    prompts-file & File used to load the prompts used by the tool. & Valid path to a .json prompts file. & N/A \\ \hline
+    help & Displays the help page for the tool, does not run the analysis. & N/A & N/A \\
+\end{longtable}

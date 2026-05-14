@@ -1,0 +1,16 @@
+% Abstract's text goes here (square brackets should be removed)
+Traditional static analysis tools struggle to detect SQL antipatterns in dynamically generated queries built with domain-specific languages like the Java library jOOQ. To address this limitation, this thesis develops an LLM-powered static analysis tool capable of identifying SQL antipatterns directly from jOOQ database access code.
+
+The methodology involved creating a human-annotated dataset of \num{1562} antipattern occurrences from 61 open-source projects. An evaluation of four contemporary LLMs and various prompting strategies revealed that the Claude Opus 4.5 model using a Zero-Shot prompt achieved near-optimal detection performance at a low runtime, whereas complex reasoning prompts proved costly. 
+
+Deploying the finalised tool across 602 projects flagged \num{15931} occurrences of seven distinct antipatterns. Results indicated that antipatterns frequently co-occur, with “Implicit Columns” and “ID Required” present in nearly \qty{90}{\percent} of the projects. Furthermore, the analysis revealed that the vast majority of the detected query antipattern occurrences were associated with a few specific jOOQ convenience methods, such as \texttt{selectFrom} and \texttt{Field.like}. Ultimately, this research demonstrates the potential of LLMs to address the parsing limitations of dynamic database frameworks, offering actionable insights for improving software quality and API usage patterns.
+
+The finalised tool is available in the following GitHub repository: \href{https://github.com/kristoisberg/jooq-antipattern-detector}{https://github.com/\\kristoisberg/jooq-antipattern-detector}. All other artefacts produced as parts of the thesis are available in the following GitHub repository: \href{https://github.com/kristoisberg/masters-thesis}{https://github.com/kristoisberg/masters-thesis}.
+
+% No need to change this
+The thesis is in \langEng~and contains \calculatepages pages of text, 
+\total{totalchapters} chapters\ifthenelse{\equal{\totvalue{figure}}{0}}{}{% If no figures, do nothing
+, \total{figure} \ifnum\totvalue{figure}=1 figure\else figures\fi%
+}\ifthenelse{\equal{\totvalue{table}}{0}}{}{% If no tables, do nothing
+, \total{table} \ifnum\totvalue{table}=1 table\else tables\fi%
+}.

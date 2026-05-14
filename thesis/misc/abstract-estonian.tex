@@ -1,0 +1,24 @@
+% Annotatsiooni tekst läheb siia (square brackets should be removed)
+Andmebaasipäringute optimeerimine ja andmetervikluse tagamine on tarkvaraarenduses kriitilise tähtsusega. Tarkvaraprojektides esinevad sageli korduvad disaini- ja päringuvead, mida nimetatakse SQL antimustriteks. Need ebaoptimaalsed lahendused halvendavad märkimisväärselt süsteemide jõudlust, hooldatavust ja töökindlust. Kuigi traditsiooniliste, staatiliste SQL-lausete kontrollimiseks on loodud mitmeid analüüsitööriistu, puudub praeguseni piisav tugi dünaamiliselt genereeritavatele lausetele. Traditsiooniline staatiline koodianalüüs ei suuda tõhusalt analüüsida koodi, mis kasutab andmebaasiga suhtlemiseks valdkonnapõhiseid keeli (DSL), näiteks populaarset Java teeki jOOQ.
+
+Käesoleva lõputöö peamine eesmärk on arendada välja suurte keelemudelite (LLM) baasil töötav staatilise analüüsi tööriist, mis suudab tuvastada SQL antimustreid Java lähtekoodist, kus kasutatakse jOOQ teeki. Lisaks on töö teiseseks eesmärgiks analüüsida nende antimustrite levikut ja koosesinemist avatud lähtekoodiga tarkvaraprojektides ning selgitada välja, milliste jOOQ rakendusliidese (API) meetoditega antimustrite esinemisjuhud kõige sagedamini seostuvad.
+
+Lõputöö metoodika ja teostus jagunesid neljaks põhietapiks. Esimeses etapis viidi läbi andmekaeve GitHubi keskkonnas, kust koguti üle \num{600} avatud lähtekoodiga Java projekti. Valimist eraldati \num{61} esinduslikku projekti, millest otsiti ja märgiti käsitsi üles \num{1562} SQL antimustri esinemisjuhtu. Loodud andmestiku toel hinnati teises etapis nelja 2026. aasta alguse seisuga kaasaegse suure keelemudeli (OpenAI GPT-5.2, Z.ai GLM-5, Anthropic Claude Opus 4.5 ja OpenAI \mbox{gpt-oss-120B}) ning nelja erineva viipamisstrateegia (Zero-Shot, Few-Shot, Chain-of-Thought, Tree-of-Thought) suutlikkust probleeme tuvastada.
+
+Tulemused näitasid, et suured keelemudelid suudavad dünaamiliselt genereeritud andmebaasikoodist antimustreid leida suure täpsusega. Üllatuslikult ei parandanud keerukamad ja arutlemist nõudvad viibad (Chain-of-Thought, Tree-of-Thought) järjekindlalt tuvastamise täpsust, kuid suurendasid märkimisväärselt analüüsi kulusid ja käitusaega. Seetõttu valiti lõpliku tuvastustööriista aluseks Zero-Shot viipamisstrateegia ning Claude Opus 4.5 mudel (ilma täiendava arutlusprotsessita), mis saavutas mitmeklassilise ja mitme esinemisjuhuga asukoha tuvastamise ülesandes kõrge F1-skoori (vähemalt 0,88).
+
+Kolmandas etapis arendati välja iseseisev käsureatööriist, mis loeb sisendiks Java lähtekoodi ning suhtleb keelemudeliga antimustrite esinemisjuhtude tuvastamiseks. Neljandas etapis rakendati loodud tööriista algselt kogutud \num{602} projekti peal, et uurida antimustrite esinemissagedust. Empiiriline analüüs märgistas nendes projektides seitsme antimustri kohta kokku \num{15931} esinemisjuhtu. Tulemused kinnitasid, et antimustrid on avatud lähtekoodiga projektides laialt levinud. Ülekaalukalt kõige sagedasemad antimustrid olid "Ilmutamata veerud" (\textit{Implicit Columns}) ja "ID, palun" (\textit{ID Required}), mis eksisteerisid vastavalt \qty{89}{\percent} ja \qty{87}{\percent} analüüsitud projektides.
+
+Lisaks näitas analüüs sagedast koosesinemist spetsiifiliste jOOQ abstraktsioonimeetodite ja antimustrite esinemisjuhtude vahel. Lihtsustatud meetodite, nagu \texttt{selectFrom} ja \texttt{Field.like} (koos metamärkidega), kasutamine esines sageli samades koodilõikudes vastavate antimustritega. See viitab võimalikule korrelatsioonile nende meetodite kasutuse ja teatud vigade sageduse vahel.
+
+Lõputöö demonstreerib suurte keelemudelite võimet analüüsida dünaamilisi andmebaasiraamistikke kasutavate projektide valdkonnapõhisel keelel põhinevat lähtekoodi. Lõputöö pakub väärtuslikku teavet nii tarkvaraarendajatele koodikvaliteedi parandamiseks kui ka teekide hooldajatele dokumentatsiooni ja võimalike rakendusliidese-disaini muudatuste kaalumiseks.
+
+Lõputöö raames välja arendatud tööriist on saadaval GitHubi hoidlas: \href{https://github.com/kristoisberg/jooq-antipattern-detector}{https://github.com/\\kristoisberg/jooq-antipattern-detector}. Kõik muud lõputöö raames valminud artefaktid on saadaval GitHubi hoidlas: \href{https://github.com/kristoisberg/masters-thesis}{https://github.com/kristoisberg/masters-thesis}.
+
+% No need to change this
+Lõputöö on kirjutatud \langEst~keeles ning sisaldab teksti \calculatepages leheküljel, 
+\total{totalchapters} peatükki\ifthenelse{\equal{\totvalue{figure}}{0}}{}{% If no figures, do nothing
+, \total{figure} \ifnum\totvalue{figure}=1 joonis\else joonist\fi%
+}\ifthenelse{\equal{\totvalue{table}}{0}}{}{% If no tables, do nothing
+, \total{table} \ifnum\totvalue{table}=1 tabel\else tabelit\fi%
+}.

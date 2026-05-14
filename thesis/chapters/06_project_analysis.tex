@@ -1,0 +1,66 @@
+This chapter outlines the framework for our large-scale empirical analysis, which applies the newly developed tool to the complete dataset of \textbf{602} mined software projects. We detail the statistical methods and metrics used to examine the prevalence and co-occurrence patterns of the seven evaluated SQL antipatterns in real-world projects.
+
+\section{Quantitative Analysis}\label{sec:projectAnalysisQuantitative}
+
+For each of the seven targeted antipatterns, we calculated the following statistical values:
+
+\begin{itemize}
+    \item the total number of detected antipattern occurrences,
+    \item the number of projects containing that antipattern,
+    \item the average number of detected occurrences per project among all \num{602} projects,
+    \item the average number of detected occurrences per project among projects containing that antipattern,
+    \item the number of detected occurrences per \num{100} jOOQ statements among all \num{602} projects.
+\end{itemize}
+
+For antipatterns, which have been studied by other works, we compared our results to theirs. Other works \nobreakcite{muse2020prevalence}, \nobreakcite{sharma2018smelly}, which detect SQL antipatterns by extracting SQL statements from source code and parsing them, receive the number of SQL statements in the project as a side product of the extraction step. However, since the jOOQ API allows SQL statements to be constructed dynamically, it is difficult to accurately estimate the number of SQL statements in the projects. 
+
+Therefore, rather than estimating the number of SQL statements in the projects, we estimate the number of jOOQ statements as the number of references to jOOQ API methods that execute an SQL statement. It should be noted that because loop constructs and conditional query building can generate a vastly different number of actual SQL statements at runtime than static method references imply, this proxy measurement introduces a margin of error. As a result, the numbers between our study and others are not directly comparable. Despite this, they can be used as indications of broader trends.
+
+To study the co-occurrence patterns of SQL antipatterns, we calculated the Jaccard Indexes, Conditional Probabilities, and Spearman's correlations between the antipatterns, both at the project and file level. 
+
+The Jaccard Index measures the degree of co-occurrence between two SQL antipatterns, allowing us to identify “antipattern clusters”—groups of antipatterns that consistently occur together. A value of \num{1.0} indicates that two antipatterns always appear together, while \num{0.0} indicates that they never appear in the same project or file.
+
+Given \(A\) and \(B\), which represent the sets of projects or files containing each antipattern, and \(|A|\) and \(|B|\), which represent the number of observations in those sets:
+
+\begin{equation}
+J(A, B) = \frac{|A \cap B|}{|A \cup B|}
+\end{equation}
+
+Conditional Probability measures the directional dependency between two SQL antipatterns. It calculates the likelihood that antipattern \(B\) is present, given the presence of antipattern \(A\). This metric allows us to identify “indicator” antipatterns, which may predict the presence of others.
+
+\begin{equation}
+P(B | A) = \frac{|A \cap B|}{|A|}
+\end{equation}
+
+Spearman’s correlation (\(\rho\)) measures the relationship between the intensity of two antipatterns, rather than just their presence. Whereas the other metrics merely indicate the presence of a smell, Spearman’s correlation incorporates occurrence frequencies to assess whether increases in one antipattern are associated with increases in another.
+
+To account for tied ranks, which occur frequently when multiple projects share the same antipattern count, a correction factor \(T\) is applied to the variance. This factor is calculated for each antipattern based on the number of tied groups \(G\) and the number of tied observations \(t_j\) within the \(j\)-th group:
+
+\begin{equation}
+T = \sum_{j=1}^{G} \frac{t_j^3 - t_j}{12}
+\end{equation}
+
+Given \(d_i\), which represents the difference between the ranks of frequencies of the two antipatterns in a project or file \(i\), and \(n\), which represents the total number of projects or files containing at least one of the antipatterns:
+
+\begin{equation}
+n = |A \cup B|
+\end{equation}
+\begin{equation}
+\rho = \frac{\frac{n^3 - n}{6} - \sum d_i^2 - T_A - T_B}{\sqrt{\left(\frac{n^3 - n}{6} - 2T_A\right)\left(\frac{n^3 - n}{6} - 2T_B\right)}}
+\end{equation}
+
+Based on these results, we provide an answer to \textbf{RQ4} in Section~\ref{sec:resultsRQ4}.
+
+For two of the detected query antipatterns (“Implicit Columns” and “Poor Man's Search Engine”), we analysed the jOOQ API methods associated with each antipattern occurrence. We employed an iterative pattern-matching approach, assigning a label to each antipattern occurrence by comparing the containing code snippet against a collection of patterns, each of which indicated an associated API pattern for the antipattern occurrence.
+
+We skipped the analysis for all database design antipatterns, since for them, the associations only display how jOOQ generates classes based on an underlying problematic schema, and do not provide insights into potential API design issues.
+
+We also skipped the analysis for the “Fear of the Unknown” antipattern, which we detect from both classes representing the database schema and source classes containing DQL and DML statements. We initially planned to constrain the labelling to only occurrences found in DQL and DML statements, but only a negligible number of “Fear of the Unknown” occurrences (\num{16} occurrences, \qty{1.3}{\percent} of total) were found in DQL and DML statements, not providing a sufficient sample size.
+
+Based on this analysis, we provide an answer to \textbf{RQ5} in Section~\ref{sec:resultsRQ5}. We developed the pattern collection iteratively until we were able to assign a label to at least \qty{98}{\percent} of all antipattern occurrences, at which point only uncommon occurrences were left unlabelled, which did not affect the answer to the research question.
+
+\section{Qualitative Analysis}
+
+We discussed the results of quantitative analysis from a qualitative perspective in Sections~\ref{sec:comparison} to~\ref{sec:apiDesign}. We assessed whether there were any major discrepancies between the prevalence numbers found by us and prior works focusing on plain SQL, and discussed the reasons behind them.
+
+Additionally, we examined the most prominent co-occurrence patterns between antipatterns, discussing their implications, as well as the jOOQ API methods most commonly associated with SQL antipatterns.
