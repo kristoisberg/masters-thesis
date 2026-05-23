@@ -9,7 +9,7 @@ author: Kristo Isberg
 
 <style>
 section::after {
-  content: attr(data-marpit-pagination) ' / 19';
+  content: attr(data-marpit-pagination) ' / 18';
 }
 
 section.centered {
@@ -383,9 +383,9 @@ section::after {
 # 1) Why have you not applied Abstract Syntax Trees at your SQL code classification method? How do you see the combination of LLMs and ASTs in SQL antipattern detection?
 
 <!--
-The first question was regarding us choosing an LLM-based approach for antipattern detection, rather than utilising AST based methods, both exclusively and in combination.
+The first question was regarding us choosing an LLM-based approach, rather than using AST based methods.
 
-First, it must be said that a more comprehensive analysis between an LLM and AST based approach was initially planned as part of the thesis, but as part of feedback at the Master's seminar, I was suggested to focus on one to keep the scope manageable. There were several reasons for choosing an LLM-based approach, and they were touched upon in the thesis, but the main reasons were a much smaller implementation complexity to achieve a similar result, and better generalisability and extensibility due to LLMs semantic understanding of codebases.
+A more comprehensive comparison between an LLM and AST based approach was initially planned as part of the thesis, but resulting from feedback at the Master's seminar, we limited the scope to just one approach. The main reasons for choosing LLMs were a much smaller implementation complexity to achieve a similar result, and better generalisability and extensibility due to LLMs semantic understanding of codebases.
 -->
 
 ---
@@ -423,7 +423,7 @@ void getColumns(boolean fetchOther) {
 ```
 
 <!--
-Let me demonstrate this with a couple of examples. First of all, the "Implicit Columns" antipattern, which should be detected when all of a table's columns are fetched with a blind projection. To detect this correctly, the tool needs to know both the list of columns selected, and the context of the query, because in some cases, fetching them all is fine, such as in an EXISTS or COUNT subquery. But due to the dynamic nature of jOOQ's DSL, the list of columns could be directly embedded into the query, it could be in an intermediate variable, it could be constructed conditionally, it could be in a separate method, and so on. Using a purely AST-based solution, this would require both intra- and inter-procedural data flow analysis, which would be a lot more complex to implement.
+For example, the "Implicit Columns" antipattern should be detected when all of a table's columns are fetched implicitly. To detect this correctly, the tool needs to know both the list of columns selected, and the context of the query, because in some cases, fetching them all is fine, such as in EXISTS or COUNT subqueries. But due to the dynamic nature of jOOQ's DSL, the list of columns could be directly embedded into the query, it could be in an intermediate variable, in a separate method, could be constructed conditionally, and so on. Using a purely AST-based solution, this would require complex intra- and inter-procedural data flow analysis.
 -->
 
 ---
@@ -455,13 +455,13 @@ public class UsersTable extends TableImpl<UsersTableRecord> {
 ```
 
 <!--
-And the second example is regarding the "31 Flavors" antipattern, which should be detected when an ENUM or CHECK constraint is used to limit the values of a column to a predetermined list, rather than a separate code table.
+And the second example is regarding the "31 Flavors" antipattern, which should be detected when a CHECK constraint is used to limit a column's values to a predetermined list.
 
-The issue is that jOOQ doesn't represent CHECK constraints as parts of the Java code, but fragments of SQL. This means that the SQL fragments would need to be parsed and analysed separately, essentially requiring the static analysis of two separate programming languages.
+The issue is that jOOQ doesn't represent CHECK constraints as parts of the Java code, but as fragments of SQL. This means that the SQL fragments would need to be parsed and analysed separately, essentially requiring the analysis of two separate programming languages.
 
 And CHECK constraints can also be written in all sorts of different weird ways, so the complexities pile up fast.
 
-So I do believe that using LLMs is the correct approach for detecting SQL antipatterns, especially if this approach is extended to antipatterns from other sources, which require analysing relationships between different queries. Yet, I believe ASTs could be used as a pre-processing step to provide the model with more granular context, rather than entire source files, to save tokens, as well as more extensive context when combined with an approach like RAG.
+So I do believe that using LLMs is the correct approach for detecting SQL antipatterns, especially if this approach is extended to antipatterns, which require analysing relationships between different queries. Yet, I believe ASTs could be used as a pre-processing step to provide the model with more granular context to save tokens, as well as more extensive context when combined with an approach like RAG.
 -->
 
 ---
@@ -475,7 +475,7 @@ section::after {
 # 2) Why some existing no-LLM detection solutions like DBDeo were not included in related work comparison?
 
 <!--
-The second question was regarding comparisons to other tools and studies. While we our related works chapter mentioned a large number of different SQL antipattern detection methods of different kinds, we only compared our performance metrics against two of them. So the question is why the others were omitted, and one prominent example mentioned is DbDeo.
+The next question addresses why some existing tools, prominently DbDeo, were left out of our performance evaluations despite being mentioned in our related work.
 -->
 
 ---
@@ -504,17 +504,13 @@ ol {
 | **Total**       |    0.88    | 0.83  |   0.95   |
 
 <!--
-Firstly, we only compared our performance to other static analysis methods for application source code, and excluded other methods such database query log analysis. One reason was that such comparisons would be performed under vastly different conditions. Comparing the analysis of source code, where each SQL statement hopefully carries a different semantic meaning, to the analysis of a database query log, which could contain queries from multiple different sources, and where each query could be present many times, would not carry much value.
+Firstly, we only compared our performance to other static source code analysers, and excluded other methods, such as database query log analysers. One reason was that such comparisons would be performed under vastly different conditions, and would evaluate entirely different things, so they would not carry much value. And the other reason is that most other studies did not publish performance metrics at all.
 
-And the other reason is that most other studies did not measure their performance at all, especially the non-source code analysis methods, which were already excluded under the previous criterion.
+DbDeo belongs somewhat into the latter camp. Our studies only had an overlap of one detected antipattern. And they evaluated their tool on such a small dataset that their tool didn't find any occurrences of that antipattern, so we didn't have any comparison points.
 
-DbDeo belongs somewhat into the latter camp. Our tool had an overlap of just one detected antipattern with their original study. And they evaluated their tool on such a small dataset that their tool didn't find any true or false positive occurrences of that antipattern, so we didn't have any comparison points with that study.
+A third party study analysed a later version of DbDeo and the overlap had grown to two antipatterns, and they also used a larger dataset. However, they didn't use a ground truth, but rather classified the detections manually as true and false positives. This means that they don't have recall and F1-score measures available, but only the precision.
 
-To be completely transparent, a later study evaluated DbDeo to use as their own baseline, and they must have evaluated a later version, as the overlap had grown to two antipatterns, and they also used a larger dataset. However, what's making a comparison difficult is that they didn't use a ground truth dataset, but they reviewed the detections manually to find out the number of true and false positives. This means that they don't have recall and F1-score measures available, but only the precision.
-
-In the table on the screen, you can see the comparison of precisions between our study, and the tools from the other study. The overlap of detected antipatterns between the studies was two antipatterns, "31 Flavors" and "Rounding Errors", and in both cases, our results are very competitive with the others.
-
-However, taken out of context, these numbers could be misleading. For example, in this comparison, SQLCheck achieved a slightly lower precision for the "Rounding Errors" antipattern than DbDeo. However, it is known that SQLCheck achieved this at recall that was about 30 percent higher than DbDeo's, it just isn't quantifiable in absolute numbers, and the numbers only show the full picture when evaluated on the exact same dataset, which ours isn't. That is the reason for excluding these numbers from the comparison.
+As seen in the table, our precision is highly competitive with theirs. However, taken out of context, these numbers could be misleading. For example, SQLCheck achieved a slightly lower precision for "Rounding Errors" here than DbDeo. However, it is known that SQLCheck achieved this at recall about 30 percent higher than DbDeo's. It just isn't quantifiable in absolute numbers, and the numbers only show the full picture when each tool is evaluated on the exact same dataset.
 -->
 
 ---
@@ -528,7 +524,7 @@ section::after {
 # 3) How would you overcome the size limitation of your original dataset? (Some antipattern types were not included in train-validate-test sets due to their rarity)
 
 <!--
-And the third question was regarding our manually annotated dataset. Even though the annotation process was very laborious and time-consuming, we eventually did not gather enough samples of most antipatterns to evaluate them, so we had to exclude them from our dataset.
+And the third question was regarding our manually annotated dataset. Despite a very laborious annotation process up front, we didn't gather enough samples of certain rare antipatterns to evaluate them, forcing us to exclude them.
 
 This was a very refreshing point of view, as so far, I had been mostly thinking about how to make the dataset more robust, more consistent, more objective, which would all require even more time. So this made me consider that maybe the previously mentioned studies, which didn't have a ground truth, and didn't count false negatives, were onto something.
 -->
@@ -556,12 +552,22 @@ $$ P = \frac{\text{TP}}{\text{TP} + \text{FP}}, \quad R = \text{TP} $$
 2. Augment data with synthetic samples
 
 <!--
-If we ditched the ground truth and only classified the tool's detections as true and false positives afterwards, we would save a huge amount of effort otherwise spent on annotation up front. As we wouldn't need to worry about statistical validity of the ground truth, we could come up with detection strategies for less common antipatterns, and to evaluate them when any occurrences are found and classified. The evaluations would initially be more time consuming, but by caching the classifications and reusing them for future evaluations, the effort would shrink with each iteration.
+If we ditched the ground truth and manually classified the tool's detections as true and false positives afterwards, we would save a huge amount of up front effort. As we wouldn't need to worry about statistical validity of the ground truth, we could come up with detection strategies for less common antipatterns, and evaluate them when they detect something. The evaluations would initially be more time consuming, but by caching and reusing the classifications, the effort would shrink with each evaluation.
 
-Using the true and false positive classifications, we could still calculate the precision of the tool, but rather than using a recall ratio, we would need to compare the raw number of true positive detections to see. In the context of this study, this is nearly as good to evaluate, which model, prompting strategy, or detection strategy finds the most true positives, but it wouldn't be as useful in a broader context.
+Using the true and false positive classifications, we could still calculate the precision of the tool, but rather than using a recall ratio, we would need to compare the raw number of true positive detections. In the context of this study, this is nearly as good to evaluate, which model, prompting strategy, or detection strategy finds the most true positives, but it wouldn't be as useful in a broader context.
 
 Another option, which would preserve the human-annotated dataset without spending an enormous amount of time annotating or sacrificing statistical validity of some antipatterns, would be to produce synthetic data, but this produces its own challenges, as it is hard to predict all variations of an antipattern, which could be out there.
 -->
+
+---
+
+<style scoped>
+section::after {
+  display: none;
+}
+</style>
+
+# Thank you for listening!
 
 ---
 
