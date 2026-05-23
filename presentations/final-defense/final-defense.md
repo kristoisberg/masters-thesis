@@ -30,63 +30,42 @@ Tallinn University of Technology
 25.05.2026
 
 <!--
-Hi, I'm Kristo and my Master's thesis topic is Detection of SQL Antipatterns in jOOQ Database Access Code Using LLMs. My supervisor is Erki Eessaar, who sadly couldn't attend this defense today.
+Honorable Chair, members of the committee, supervisor, and guests. I'm Kristo and my Master's thesis topic is Detection of SQL Antipatterns in jOOQ Database Access Code Using LLMs. My supervisor is Erki Eessaar, who sadly couldn't attend this defense today.
 
 I will first briefly go over the background to explain the relevance of my topic, and then my research goals, and how I fulfilled them along with results.
 -->
 
 ---
 
-# SQL Antipatterns
+# Background
 
-- "... a commonly occurring solution to a problem that generates decidedly negative consequences" (Brown et al., 1998)
-- "... the most frequent missteps software developers naively make while using SQL" (Karwin, 2022)
-- Can affect performance, maintainability, portability, and data integrity
-
-<!--
-SQL antipatterns are a class of issues in SQL database access code. They were first introduced by Bill Karwin in a similarly named book.
-
-They describe common solutions to common problems in databases, for example, related to database schema design or querying data. These solutions may solve the original problem in the short term, but in the long term they will cause more harm than good, so those solutions turn into problems themselves. For example, by harming the performance of the application, the maintainability of it, the portability between different system architectures and database engines, and the integrity of data.
--->
-
----
-
-# What is jOOQ?
-
-- Java Object Oriented Querying
-- Open-source Java library for interacting with SQL databases
-- Highly popular, especially in industrial projects
-- Integrates SQL into Java as a domain-specific language
-- Leverages code generation heavily
-- Provides strong type safety
+- **SQL Antipatterns**
+  - "... a commonly occurring solution to a problem that generates decidedly negative consequences" (Brown et al., 1998)
+  - Can affect performance, maintainability, portability, and data integrity
+  - **Example:** _Implicit Columns_ (using `SELECT *`) can waste >25% of runtime/energy
+- **jOOQ:** Popular Java library for type-safe, DSL-based database access
 
 <!--
-jOOQ is an open-source library for performing database interactions in Java. Compared to object relational mappers or ORMs, it offers much more flexibility, since it doesn't abstract away SQL, but rather integrates SQL into Java as an embedded domain-specific language.
+SQL antipatterns are common but counterproductive solutions to database design and querying. While they may seem effective initially, they eventually lead to significant issues in performance, maintainability, portability, and data integrity.
 
-This makes it very popular in industrial projects, and it is often preferred for the most complex and critical use cases, where ORMs are not able to perform efficiently, or even at all.
-
-It is also highly type safe, and to achieve that, it leverages code generation heavily.
+My research focuses specifically on jOOQ, a popular Java library that integrates SQL directly into Java as a type-safe, domain-specific language. It is widely used in complex industrial projects where traditional ORMs fall short.
 -->
 
 ---
 
 # SQL Antipatterns in Java: literature review
 
-- Quantifiable performance impact
-  - Fixing _Implicit Columns_ improved runtime and energy efficiency of local queries in mobile applications by more than 25%
 - Prevalent in Java projects
   - _Implicit Columns_ affects every 50th query
   - Remain unfixed longer than traditional code smells
   - Authors suspect lack of awareness or low priority
-- Two tools capable of statically detecting SQL Antipatterns in Java
+- Two tools capable of statically detecting SQL antipatterns in Java
   - None capable of detecting from jOOQ DSL
 
 <!--
-SQL antipatterns in Java have had some research around it. One study managed to quantify their impact on the performance and enerrgy consumption of mobile applications, and, for example, found that fixing the "Implicit Columns" antipattern improved runtimes and energy consumption by more than 25 percent. "Implicit Columns", in essence, means fetching too much information from a database by using the asterisk wildcard or some other blind projection.
+Previous research confirms that SQL antipatterns are highly prevalent in Java projects and have a quantifiable negative impact. For instance, fixing just one common pattern—Implicit Columns—can improve runtime and energy efficiency by over 25%. Despite this, these patterns often remain unfixed because developers either lack awareness or lack the proper tools to detect them.
 
-Another study looked at their prevalence in Java projects. For example, the Implicit Columns antipattern impacts two queries out of every one hundred. Also, SQL antipatterns tend to remain unfixed for a longer time than traditional Java code smells, and often they never get fixed at all. The authors of that study speculate that the reason is that developers aren't aware of SQL antipatterns, or they don't see fixing them as high enough priority.
-
-A couple of tools have been developed to statically detect SQL antipatterns in Java code. They work just fine, but they have one large limitation. They are designed to find plain SQL queries in the Java source code, and then perform the detection on those. However, most queries in projects using jOOQ are created using the jOOQ DSL, therefore such detectors are unable to find those queries.
+This brings us to the core problem: current static analysis tools in Java are designed to find antipatterns in plain SQL strings. However, because jOOQ builds queries dynamically through its own DSL, these existing tools are completely unable to see them.
 -->
 
 ---
@@ -124,12 +103,12 @@ To help us in our goals, we formulated five research questions regarding LLMs' c
 - Annotated a subset of 10% projects
   - Stratified sampling using head-tail breaks to preserve size distribution
   - 4 large, 10 medium, 47 small projects
-  - **1,562** total antipattern occurrences identified in them
+  - **1,562** total antipattern occurrences identified manually
 
 <!--
 As there weren't any datasets available on SQL antipatterns in jOOQ, we had to create one ourselves. First, we mined for software projects depending on jOOQ using the GitHub search API. Then we applied several filters to exclude projects, which were not suitable for our dataset, such as projects written languages that weren't Java, and duplicates. In the end, we were left with 602 projects.
 
-We selected a subset of ten percent of projects to annotate as our ground truth. As the size distribution of projects was heavily skewed towards small projects, we wanted to preserve the original size distribution in that subset. We used head-tail breaks to divide projects into three size categories, and sampled ten percent of each.
+We selected a subset of ten percent of projects to annotate as our ground truth. As the dataset was heavily skewed towards small projects, we wanted to preserve the original size distribution in that subset. We used head-tail breaks to divide projects into three size categories, and sampled ten percent of each.
 
 And then we carefully annotated the subset.
 -->
@@ -186,7 +165,7 @@ And we evaluated four different prompting strategies. Zero-shot, which we treate
 <!--
 We iteratively designed prompts for each prompting strategy, measuring their performance against the training set. Once we were happy with the prompts, we evaluated their performance with each LLM on the validation set, and calculated their F1-scores, while also keeping track of their costs, runtimes, and general stability.
 
-Here lies one novelty in our study. So far, all studies examining LLMs' capabilities in detecting code smells have treated it as a classification task, just indicating which code smells the provided source file contains. In our study, the model also needs to locate the antipatterns, providing the exact line range where the antipattern occurrences reside. A prediction is only considered a true positive, if the prediction lines up by at least 50 percent with the ground truth.
+Here lies one novelty in our study. So far, all studies regarding LLMs' performance in detecting code smells have treated it as a classification task, just indicating which code smells the provided source file contains. We treat is as a localisation task, so the model also needs to locate exact line ranges where the antipatterns reside. A prediction is only considered a true positive, if the prediction lines up by at least 50 percent with the ground truth.
 -->
 
 ---
@@ -269,7 +248,7 @@ The Few-Shot prompting strategy slightly benefitted the open models, GLM-5 and g
 - **Output:** Human-readable text summaries + machine-readable JSON/CSV.
 
 <!--
-We implemented the learnings from our experiments as an analysis tool. We built it using the Bun JavaScript toolchain, with TypeScript as the programming language and Vercel's AI SDK as a means to communicate with different LLM providers. It is a built as a self-contained executable command-line tool, so it can be used without installing any external runtime like Java or Node, and does not require a graphical interface.
+We implemented the learnings from our experiments as a full-featured analysis tool. We built it using the Bun JavaScript toolchain, with TypeScript as the programming language and Vercel's AI SDK as a means to communicate with different LLM providers. It is a built as a self-contained executable command-line tool, so it can be used without installing any external runtime like Java or Node, and does not require a graphical environment.
 
 While a lot of the weight lies on the model and the prompts, the tool does a number of things to help them in their job. For example, it skips the analysis on files, which are considered to be irrelevant based on their paths or contents, to avoid performing unnecessary model calls. It also prepends each line with its line number, which is necessary for LLMs to identify correct line numbers, as they struggled with it otherwise.
 
