@@ -20,7 +20,7 @@ section.centered {
 }
 </style>
 
-# Detection of SQL Antipatterns in jOOQ Database Access Code Using Large Language Models
+# Detecting SQL Antipatterns in jOOQ Database Access Code Using Large Language Models
 
 &nbsp;
 **Kristo Isberg**
@@ -30,7 +30,7 @@ Tallinn University of Technology
 25.05.2026
 
 <!--
-Honorable Chair, members of the committee, supervisor, and guests. I'm Kristo and my Master's thesis topic is Detection of SQL Antipatterns in jOOQ Database Access Code Using LLMs. My supervisor is Erki Eessaar, who sadly couldn't attend this defense today.
+Honorable Chair, members of the committee, supervisor, and guests. I'm Kristo and my Master's thesis topic is Detecting SQL Antipatterns in jOOQ Database Access Code Using LLMs. My supervisor is Erki Eessaar, who sadly couldn't attend this defense today.
 
 I will first briefly go over the background to explain the relevance of my topic, and then my research goals, and how I fulfilled them along with results.
 -->
