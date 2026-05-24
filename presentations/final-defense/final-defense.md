@@ -39,7 +39,7 @@ I will first briefly go over the background to explain the relevance of my topic
 
 # Background
 
-- **SQL Antipatterns**
+- **SQL Antipattern**
   - "... a commonly occurring solution to a problem that generates decidedly negative consequences" (Brown et al., 1998)
   - Can affect performance, maintainability, portability, and data integrity
   - **Example:** _Implicit Columns_ (using `SELECT *`) can waste >25% of runtime/energy
@@ -102,7 +102,7 @@ To help us in our goals, we formulated five research questions regarding LLMs' c
   - Gathered **602** applicable projects
 - Annotated a subset of 10% projects
   - Stratified sampling using head-tail breaks to preserve size distribution
-  - 4 large, 10 medium, 47 small projects
+  - 4 large, 10 medium, and 47 small projects
   - **1,562** total antipattern occurrences identified manually
 
 <!--
@@ -137,14 +137,14 @@ We then divided the annotations into training, validation, and test sets using M
 
 - Models:
   - OpenAI GPT-5.2 — reasoning model
-  - Anthropic Claude 4.5 Opus — non-reasoning\* model
+  - Anthropic Claude 4.5 Opus — non-reasoning model
   - Z.ai GLM-5 — open model
   - OpenAI gpt-oss-120B — medium-sized open model
 - Prompting strategies:
   - Zero-Shot — baseline
   - Few-Shot — providing examples
-  - Chain-of-Thought — "Think step by step."
-  - Tree-of-Thought — simulating a conversation between three experts
+  - Chain-of-Thought (CoT) — "Think step by step."
+  - Tree-of-Thought (ToT) — simulating a conversation between three experts
 
 <!--
 We included a set of four diverse models in our analysis. GPT-5.2, which was the state-of-the-art reasoning model at the time. GLM-5, which was the best-performing open source model. Claude Opus 4.5, which we used as a non-reasoning model by disabling its reasoning capabilities. And gpt-oss-120B, which was one of the top-performing medium-sized models at the time.
@@ -237,15 +237,15 @@ The Few-Shot prompting strategy slightly benefitted the open models, GLM-5 and g
 
 ---
 
-# Analysis tool development and evaluation
+# Development and evaluation of the analysis tool
 
-- **Stack:** Bun (build tool & runtime), TypeScript, Vercel AI SDK.
+- **Stack:** Bun (build tool & runtime), TypeScript, and Vercel AI SDK
 - **Architecture:** Self-contained CLI tool
 - **Pre-processing:**
   - Irrelevant files skipped based on black- and whitelists
   - **Line number prefixing:** Helps LLMs maintain spatial awareness and prevent miscalculations
 - Zero-Shot prompt, default model Claude Opus 4.5 (non-reasoning)
-- **Output:** Human-readable text summaries + machine-readable JSON/CSV.
+- **Output:** Human-readable text summaries + machine-readable JSON/CSV
 
 <!--
 We implemented the learnings from our experiments as a full-featured analysis tool. We built it using the Bun JavaScript toolchain, with TypeScript as the programming language and Vercel's AI SDK as a means to communicate with different LLM providers. It is a built as a self-contained executable command-line tool, so it can be used without installing any external runtime like Java or Node, and does not require a graphical environment.
@@ -318,9 +318,9 @@ h1 {
 ### Implicit Columns
 
 - More than 75% associated with shorthands for fetching jOOQ records
-  - e.g. `DSL.selectFrom(TABLE)`, `DSL.select().from(TABLE)`
+  - e.g., `DSL.selectFrom(TABLE)`, `DSL.select().from(TABLE)`
 - Only 12.9% explicitly show the intent to fetch all columns
-  - e.g. `DSL.asterisk()`, `TABLE.fields()`
+  - e.g., `DSL.asterisk()`, `TABLE.fields()`
 
 <!--
 We further investigated the occurrences of two query antipatterns to see, which methods they were associated with.
